@@ -132,6 +132,11 @@ public:
 
     void setData(std::string newData);
     std::string getData()const;
+
+    //根据新鲜度比较
+    friend bool operator>(const RottenTomatoesScore& right);
+    friend bool operator<(const RottenTomatoesScore& right);
+    friend bool operator==(const RottenTomatoesScore& right);
 };
 
 #endif

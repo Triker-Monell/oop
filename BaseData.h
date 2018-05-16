@@ -11,7 +11,7 @@ private:
 public:
     BaseData(std::string _name,std::string _type):DataName(_name),Type(_type){};
     std::string getDataName()const{return DataName;};
-    std::string getType()const{return Type};  //得到数据类型(int/string.....)
+    std::string getType()const{return Type;};  //得到数据类型(int/string.....)
     virtual void setData(std::string newData)=0;
     virtual std::string getData() const =0; //将数据都转换成string 然后返回
     virtual ~BaseData()=0;

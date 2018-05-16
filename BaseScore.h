@@ -12,16 +12,6 @@ public:
 
     void setScore(double _score);
     double getScore()const;
-
-    //注意比较必须在同一个电影网站中的评分进行比较
-    //因此需要提前判断是否为同一个电影网站
-    //下列函数不判断是否为同一个电影网站
-    friend bool operator>(const Score& right)const;
-    friend bool operator<(const Score& right)const;
-    friend bool operator==(const Score& right)const;
-
-    friend istream& operator>>(istream& in,Score& right);
-    friend ostream& operator<<(ostream& out,const Score& right)const;
 };
 
 #endif

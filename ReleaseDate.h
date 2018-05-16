@@ -37,8 +37,8 @@ public:
     friend bool operator==(const ReleaseDate& right)const;//只针对日期是否相同，不针对地区
 
     //流运算符重载均为标准格式输入与输出
-    friend istream& operator>>(istream& in,ReleaseDate& right);
-    friend ostream& operator<<(ostream& out,const ReleaseDate& right)const;
+    friend std::istream& operator>>(std::istream& in,ReleaseDate& right);
+    friend std::ostream& operator<<(std::ostream& out,const ReleaseDate& right)const;
 };
 
 #endif

@@ -27,7 +27,7 @@ public:
     };   //采用MovieType::ChineseType[MovieType::Comedy]来获得对应的中文
 
     MovieType():BaseData("MovieType","int"),type(-1),isChinese(true){};
-    MovieType(int _type):BaseData("MovieType","int"),type(_type),{};
+    MovieType(int _type):BaseData("MovieType","int"),type(_type){};
     MovieType(std::string _type);//参数可为中文或者英文
 
 

@@ -17,6 +17,11 @@ public:
     void setData(std::string newData);
     std::string getData()const;
 
+    //根据豆瓣评分比较
+    friend bool operator>(const DouBanScore& right);
+    friend bool operator<(const DouBanScore& right);
+    friend bool operator==(const DouBanScore& right);
+
 };
 
 #endif
