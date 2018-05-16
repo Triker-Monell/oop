@@ -4,7 +4,7 @@
 #include "BaseData.h"
 class ReleaseDate:public BaseData{
     //*******
-    //标准格式  xxxx-xx-xx(xxxxx)  其中括号及其中内容是可选的
+    //标准格式(年月日)  xxxx-xx-xx(xxxxx)  其中括号及其中内容是可选的
     //*******
     int year;
     int month;
