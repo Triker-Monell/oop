@@ -4,7 +4,7 @@
 #include "BaseData.h"
 class ReleaseDate:public BaseData{
     //*******
-    //标准格式(年月日)  xxxx-xx-xx(xxxxx)  其中括号及其中内容是可选的
+    //标准格式  (年月日)  xxxx-xx-xx(xxxxx)  其中括号及其中内容是可选的
     //*******
     int year;
     int month;
@@ -32,9 +32,9 @@ public:
     void setDay(std::string _day);
     std::string getDay()const;
 
-    friend bool operator>(const ReleaseDate& right)const;
-    friend bool operator<(const ReleaseDate& right)const;
-    friend bool operator==(const ReleaseDate& right)const;//只针对日期是否相同，不针对地区
+    bool operator>(const ReleaseDate& right)const;
+    bool operator<(const ReleaseDate& right)const;
+    bool operator==(const ReleaseDate& right)const;//只针对日期是否相同，不针对地区
 
     //流运算符重载均为标准格式输入与输出
     friend std::istream& operator>>(std::istream& in,ReleaseDate& right);

@@ -15,9 +15,9 @@ public:
     void setMinute(int _min);
     int getMinute()const;
 
-    friend bool operator>(const Runtime& right);
-    friend bool operator<(const Runtime& right);
-    friend bool operator==(const Runtime& right);
+    bool operator>(const Runtime& right);
+    bool operator<(const Runtime& right);
+    bool operator==(const Runtime& right);
 };
 
 #endif
