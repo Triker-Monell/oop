@@ -1,3 +1,6 @@
+#ifndef _RDFORMAT_H
+#define _RDFORMAT_H
+
 #include <tuple>
 #include <sstream>
 class RDformat{  //放映时期的格式
@@ -24,3 +27,5 @@ public:
     std::tuple<int,int,int,std::string> setRD(std::string newData);
     std::string getRD(int year,int month,int day,std::string CountryorRegion);
 };
+
+#endif

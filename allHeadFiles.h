@@ -12,5 +12,7 @@
 #include "ReleaseDate.h"
 #include "RottenTomatoesScore.h"
 #include "Runtime.h"
+#include "TypeLanguage.h"
+#include "RDformat.h"
 
 #endif
