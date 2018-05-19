@@ -18,12 +18,8 @@ std::string MovieType::getData() const {
     return typelanguage->getType(type);
 }
 
-std::string MovieType::getType(TypeLanguage *tl) const {
+std::string MovieType::getType(TypeLanguage *tl=typelanguage) const {
     return  tl->getType(type);
-}
-
-MovieType::~MovieType() {
-    delete typelanguage;
 }
 
 

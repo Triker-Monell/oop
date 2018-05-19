@@ -52,14 +52,14 @@ public:
     MovieType(TypeLanguage* tlanguage,std::string _type);//_type的语言应为tlanguage对应语言
 
 
-    void setData(std::string newData);//参数应为TypeLanguage对应的语言
+    void setData(std::string newData) override ;//参数应为TypeLanguage对应的语言
     void setData_byMovieType(int _type); //参数应为MovieType::Comedy等等
-    std::string getData()const; //根据TypeLanguage的语言输出
+    std::string getData()const override ; //根据TypeLanguage的语言输出
 
     std::string getType(TypeLanguage* tl=typelanguage)const; //根据参数给出的语言输出
 
 
-    ~MovieType();
+    ~MovieType(){delete typelanguage;};
 };
 
 

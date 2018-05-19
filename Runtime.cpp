@@ -22,10 +22,10 @@ bool operator>(const Runtime& right){
 }
 
 
-bool operator<(const Runtime& right){
+bool Runtime::operator<(const Runtime& right){
     return this->minute<right.minute;
 }
 
-bool operator==(const Runtime& right){
+bool Runtime::operator==(const Runtime& right){
     return this->minute==right.minute;
 }
