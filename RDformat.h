@@ -3,6 +3,7 @@
 
 #include <tuple>
 #include <sstream>
+#include <string>
 class RDformat{  //放映时期的格式
 public:
     virtual std::tuple<int,int,int,std::string> setRD(std::string newData)=0;
