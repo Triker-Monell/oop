@@ -3,7 +3,6 @@
 
 #include<string>
 #include<iostream>
-#include<vector>
 class BaseData{
 private:
     std::string DataName; //数据名称  类名.......
