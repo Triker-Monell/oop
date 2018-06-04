@@ -1,14 +1,15 @@
-#ifndef _LANGUAGE_H
-#define _LANGUAGE_H
+#ifndef LANGUAGE_H
+#define LANGUAGE_H
 
 #include "BaseData.h"
+//使用语言
+
 class Language:public BaseData{
-    std::string language;
 public:
-    Language():BaseData("Language","string"){};
-    Language(std::string _language):BaseData("Language","string"),language(_language){};
-    void setData(std::string newData);
-    std::string getData()const;
+    Language():BaseData("语言"){};
+    void setData(std::string);
+    std::string showData()const;
 };
+
 
 #endif

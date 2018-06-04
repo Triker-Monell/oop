@@ -1,21 +1,23 @@
-#ifndef _BASEDATA_H
-#define _BASEDATA_H
+#ifndef BASEDATA_H
+#define BASEDATA_H
 
-#include<string>
-#include<iostream>
-#include<vector>
+#include <string>
+#include <vector>
 class BaseData{
-private:
-    std::string DataName; //数据名称  类名.......
-    std::string Type; //数据类型  若为complex则代表有多个数据成员
-    void setDateName(std::string _dataname){DataName=_dataname;};
+    const std::string type;
+protected:
+    std::vector<std::string> datas;
 public:
-    BaseData(std::string _name,std::string _type):DataName(_name),Type(_type){};
-    std::string getDataName()const{return DataName;};
-    std::string getType()const{return Type;};  //得到数据类型(int/string.....)
-    virtual void setData(std::string newData)=0;
-    virtual std::string getData() const =0; //将数据都转换成string 然后返回
-    virtual ~BaseData()=0;
+    BaseData(std::string _type):type(_type){};
+    virtual void setData(std::string data) =0;
+    virtual std::string showData() const =0;
+    int num()const{
+        return datas.size();
+    }
+    std::string showType() const{
+        return type;
+    }
 };
+
 
 #endif

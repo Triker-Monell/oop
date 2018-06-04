@@ -1,23 +1,15 @@
-#ifndef _RUNTIME_H
-#define _RUNTIME_H
+#ifndef RUNTIME_H
+#define RUNTIME_H
 
 #include "BaseData.h"
+
+//片长
 class Runtime:public BaseData{
-    //标准单位 分钟
-    int minute;
 public:
-    Runtime():BaseData("Runtime","int"),minute(0){};
-    Runtime(int _min):BaseData("Runtime","int"),minute(_min){};
-
-    void setData(std::string newData){};
-    std::string getData()const;
-
-    void setMinute(int _min);
-    int getMinute()const;
-
-    bool operator>(const Runtime& right);
-    bool operator<(const Runtime& right);
-    bool operator==(const Runtime& right);
+    Runtime():BaseData("片长"){};
+    void setData(std::string data);
+    std::string showData()const;
 };
+
 
 #endif
