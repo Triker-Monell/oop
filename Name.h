@@ -11,8 +11,8 @@ public:
      * 输入输出标准格式 名称之间以/隔开 第一个名称为最常用名称
      * name1/name2/name3
      */
-    void setData(std::string data) final ;
-    std::string showData()const final;
+    void setData(std::string data,Input* in) final ;
+    std::string showData(Output* out)const final;
 };
 
 

@@ -16,8 +16,8 @@ public:
 class FilmMakingArea:public Place{
 public:
     FilmMakingArea():Place("制片地区"){};
-    void setData(std::string data);
-    std::string showData()const;
+    void setData(std::string data,Input* in);
+    std::string showData(Output* out)const;
 };
 
 
@@ -25,8 +25,8 @@ public:
 class BirthPlace:public Place{
 public:
     BirthPlace():Place("出生地"){};
-    void setData(std::string data);
-    std::string showData()const;
+    void setData(std::string data,Input* in);
+    std::string showData(Output* out)const;
 };
 
 

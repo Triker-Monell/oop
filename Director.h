@@ -7,8 +7,8 @@
 class Director:public People{
 public:
     Director():People("导演"){};
-    void setData(std::string data);
-    std::string showData()const;
+    void setData(std::string data,Input* in);
+    std::string showData(Output* out)const;
 };
 
 #endif

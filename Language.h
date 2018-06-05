@@ -7,8 +7,8 @@
 class Language:public BaseData{
 public:
     Language():BaseData("语言"){};
-    void setData(std::string);
-    std::string showData()const;
+    void setData(std::string,Input* in);
+    std::string showData(Output* out)const;
 };
 
 

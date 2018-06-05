@@ -7,8 +7,8 @@
 class Type:public BaseData{
 public:
     Type():BaseData("类型"){};
-    void setData(std::string data);
-    std::string showData()const;
+    void setData(std::string data,Input* in);
+    std::string showData(Output* out)const;
 };
 
 #endif
