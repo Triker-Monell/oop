@@ -11,9 +11,9 @@ public:
     void setData(std::string data,Input* in);
     std::string showData(Output* out)const;
 
-    bool operator<(Runtime* right);
-    bool operator>(Runtime* right);
-    bool operator==(Runtime* right);
+    bool operator<(Runtime& right);
+    bool operator>(Runtime& right);
+    bool operator==(Runtime& right);
 };
 
 

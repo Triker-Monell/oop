@@ -1,11 +1,12 @@
 #include "DateFormat.h"
 #include <sstream>
-
+#include <iostream>
 std::tuple<int,int,int> stdDateFormat::getNum(std::string data) {
     std::string year,month,day;
     year=data.substr(0,4);
-    month=data.substr(4,2);
-    day=data.substr(6,2);
+    month=data.substr(5,2);
+    day=data.substr(8,2);
+    //std::cout << year << " " << month << " " << std::endl;
     return std::make_tuple(std::stoi(year),std::stoi(month),std::stoi(day));
 }
 

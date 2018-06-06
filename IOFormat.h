@@ -11,11 +11,15 @@ public:
 
 class Output{
 public:
-    virtual std::string output(std::vector<std::string>& vec)=0;
+    virtual std::string output(const std::vector<std::string>& vec)=0;
 };
 
 
 //派生类
+/********************标准输入输出*********************/
+/*
+ * 多个数据之间以 / 分割
+ */
 class stdInput:public Input{
 public:
     void input(std::vector<std::string>& vec,std::string data);
@@ -23,8 +27,10 @@ public:
 
 class stdOutput:public Output{
 public:
-    std::string output(std::vector<std::string>& vec);
+    std::string output(const std::vector<std::string>& vec);
 };
+
+/****************************************************/
 
 
 #endif
