@@ -4,6 +4,7 @@
 #include "BaseData.h"
 
 //片长
+//标准格式 数字+单位(语言任意)  数字需以分钟为单位
 class Runtime:public BaseData{
     int minute;
 public:
