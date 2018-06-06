@@ -12,7 +12,8 @@ public:
 
 /*
  * 标准日期格式
- * xxxx/xx/xx  年月日
+ * xxxx-xx-xx  年月日
+ * 注意其中 - 可换为其他 任何 非/ 的字符
  */
 class stdDateFormat:public DateFormat{
 public:
