@@ -2,6 +2,7 @@
 #define DATE_H
 
 #include "BaseData.h"
+#include "DateFormat.h"
 //日期  可派生为上映日期 生日等等
 
 class Date:public BaseData{
@@ -11,11 +12,11 @@ class Date:public BaseData{
 public:
     Date(std::string _type):BaseData(_type){};
 
-    bool operator>(Date* right);
-    bool operator<(Date* right);
-    bool operator==(Date* right);
+    bool operator>(Date& right);
+    bool operator<(Date& right);
+    bool operator==(Date& right);
 
-    void setDate(DateFormat* format);
+    void setDateNum(DateFormat* format);
 };
 
 
