@@ -11,7 +11,7 @@ void RottenTomatoesScore::setData(std::string data, Input *in) {
     for(int i=0;i<datas[1].size()&&datas[1][i]!='/';i++)
         ar+=datas[1][i];
 
-    fresh=std::stod(freshstr);
+    fresh=std::stod(freshstr)/100.0;
     averagerating=std::stod(ar);
 }
 

@@ -28,4 +28,9 @@ public:
     PersonName():Name("姓"){};
 };
 
+//电视剧名
+class TVplayName:public Name{
+public:
+    MovieName():Name("电视剧"){};
+};
 #endif
