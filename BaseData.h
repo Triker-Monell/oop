@@ -17,6 +17,10 @@ public:
     int num()const{
         return datas.size();
     }
+    std::string showSingle(int num){
+        if(num>=datas.size()) return "";
+        return datas[num];
+    }
     const std::string showType() const{
         return type;
     }
