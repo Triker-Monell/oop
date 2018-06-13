@@ -3,7 +3,7 @@
 #include<string>
 #include<vector>
 
-BaseObject::BaseObject(std::string _name,BaseStrategy* _strategy):name(_name),type(_type){
+BaseObject::BaseObject(std::string _name,BaseStrategy* _strategy,std::string _type):name(_name),type(_type){
   //_strategy 是 new之后 送进来的
   BaseCatcher* _catcher = new BaseCatcher(_name);   //给爬虫名字，开始爬
   _catcher.SaveinBaseObject(this->complexData, this->simpleData, _strategy);  //爬虫用不同策略录入数据
