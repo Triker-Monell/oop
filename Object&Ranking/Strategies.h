@@ -1,28 +1,16 @@
 #ifndef _STRATEGIES_H
 #define _STRATEGIES_H
 
+#include<vector>
 #include<string>
 
 #include"BaseObject.h"
 
 class BaseStrategy{
 public:
-  virtual set(std::string _data,)=0;
+  virtual work(std::vector<BaseData*>& _complexData, std::vector<BaseData*>& _simpleData,std::string _data,)=0;   
 };
 
-class ImdbStrategy: public BaseStrategy{
-public:
-  set(std::string _data,BaseObject* _object);
-};
-
-class DoubanStrategy{
-public:
-  set(std::string _data,BaseObject* _object);
-};
-
-class TomatoStrategy{
-public:
-  set(std::string _data,BaseObject* _object);
-};
+// 请派生
 
 #endif
