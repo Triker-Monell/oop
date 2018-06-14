@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
-
+import sys
 import re
 import requests
 import numpy as np
 import matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
-
+reload(sys)
+sys.setdefaultencoding('utf-8')
 num = 1 #电影计数
 All_txt = [] #全部电影的信息
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0'}#浏览器代理
@@ -38,7 +39,7 @@ def get_all_information(url,page):
     pattern = re.compile(rel)
     time_ = ''.join(pattern.findall(Cname))
     #print(time_)
-    with open('time.txt','a',encoding='utf-8') as t:
+    with open('time.txt','a') as t:
         t.write( time_.replace('（','').replace('）','') + '\n' )
     #find_Score
     rel = '<i>'+'[\s\S]*?'+'</i>'
@@ -146,11 +147,12 @@ def work():
     for i in range(2,10):
         getin_one( 'http://www.imdb.cn/imdb250/'+str(i) , i )
     #将已有内容清空
-    with open('All_infor.txt','w',encoding='utf-8') as x:
+    with open('IMDB_by_toplist.txt','w') as x:
         pass
-    with open('All_infor.txt','a',encoding='utf-8') as x:
+    with open('IMDB_by_toplist.txt','a') as x:
         for i in All_txt:
             x.write(i)
     Analyze_some_infor()
 
-work()
+if __name__=='__main__':
+   work()
