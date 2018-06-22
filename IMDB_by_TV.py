@@ -124,7 +124,16 @@ def read_file(filename):  #读取文件
     return text
 def work():
         text="TV: "
-        name = raw_input()
+        try:
+            f = open('IMDB_by_TV.txt', 'r')
+
+            name = f.read()
+        finally:
+            if f:
+                f.close()
+                w = open('IMDB_by_TV.txt', 'w')
+                w.truncate()
+                w.close()
         preurl = 'https://www.imdb.com/find?q=' + name
         url = get_movie_url(preurl)
         html = get_html(url)

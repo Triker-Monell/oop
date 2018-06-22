@@ -71,7 +71,16 @@ def read_file(filename):  #读取文件
     f.close()
     return text
 def work():
-        name = raw_input()
+    try:
+        f = open('Douban_by_TV.txt', 'r')
+
+        name = f.read()
+    finally:
+        if f:
+            f.close()
+            w = open('Douban_by_TV.txt', 'w')
+            w.truncate()
+            w.close()
         preurl = 'https://www.douban.com/search?q=' + str(name)
         url = get_movie_url(preurl)
         html = get_html(url)
