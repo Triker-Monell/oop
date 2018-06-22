@@ -10,6 +10,7 @@ def get_html(url):  #通过url获取网页内容
     result = urllib.urlopen(url)
     return result.read()
     # save_file(result.read(), 'thefile.txt')
+
 def get_movie_url(url):
     html=get_html(url)
     soup=BeautifulSoup(html,"html.parser")
@@ -18,6 +19,30 @@ def get_movie_url(url):
     the_url=soup_name.find('a')
     url='https://www.imdb.com'+the_url.get('href')
     return url
+
+def get_all_photos(url):
+    t = 1  # 记录张数
+    os.chdir(os.path.join(os.getcwd(), 'allphotos'))
+    for i in range(1, 10, 1):
+        url_min = str(url)[:-17]
+        photos_url = url_min + '/mediaindex?page=' + str(i) + '&ref_=nm_phs_md_sm'
+
+        html = get_html(photos_url)
+        soup=BeautifulSoup(html,"html.parser")
+
+        src =soup.find_all('div', class_="media_index_thumb_list" ,id="media_index_thumbnail_grid")
+
+        for myimg in src:
+
+            the_img_src = myimg.find_all('img')
+
+            for the_img_src_it in the_img_src:
+                pic_name = str(t) + '.jpg'
+                img_src = the_img_src_it.get('src')
+                urllib.urlretrieve(img_src, pic_name)
+                t += 1
+
+    os.chdir(r'D:\PyCharm 2017.3.4\untitled')
 def get_movie_all(html):     #通过soup提取到每个电影的全部信息，以list返回
     soup = BeautifulSoup(html,"html.parser")
     movie_1 = soup.find_all('h1' ,class_="header")
@@ -104,7 +129,7 @@ def work():
             result = get_movie_one(movie)
             text = str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, 'IMDB_by_people.txt')
-
+        get_all_photos(url)
 
 if __name__=='__main__':
    work()
