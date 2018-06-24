@@ -1,27 +1,27 @@
 #!/usr/bin/env python
 # -*- coding=utf-8 -*-
 import sys
-import urllib.request
-import re
-import time
+import urllib
 from bs4 import BeautifulSoup
+reload(sys)
+sys.setdefaultencoding('utf-8')
 def get_html(url):  #通过url获取网页内容
-    result = urllib.request.urlopen(url)
+    result = urllib.urlopen(url)
     return result.read()
     # save_file(result.read(), 'thefile.txt')
 def get_movie_all(html):     #通过soup提取到每个电影的全部信息，以list返回
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html,"html.parser")
     movie_1 = soup.find_all('table', class_="table")
     movie_str=str(movie_1[0])
     movie=[movie_str]
     return movie
 def get_movie_one(movie):
     result = []  # 用于存储提取出来的电影信息
-    soup_all = BeautifulSoup(str(movie))
+    soup_all = BeautifulSoup(str(movie),"html.parser")
     result_str=""
     movie=soup_all.find_all('a')
     for it_movie in movie:
-        soup_movie=BeautifulSoup(str(it_movie))
+        soup_movie=BeautifulSoup(str(it_movie),"html.parser")
         for line in soup_movie.stripped_strings:
             result_str=result_str+line+'\n'
 
@@ -30,7 +30,7 @@ def get_movie_one(movie):
     return result  #返回获取到的结果
 def save_file(text, filename):  #保存网页到文件
     f= open(filename,'ab')
-    f.write(bytes(text, encoding="utf8"))
+    f.write(bytes(text))
     f.close()
 def read_file(filename):  #读取文件
     f = open(filename,'r')
@@ -45,7 +45,7 @@ def work():
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie)
             text = ''+str(result[0])+'\t'
-            save_file(text, 'thee.txt')
+            save_file(text, 'RottenTomatoes_by_toplist.txt')
 
 
 if __name__=='__main__':
