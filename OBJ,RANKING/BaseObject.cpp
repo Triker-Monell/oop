@@ -54,7 +54,7 @@ const BaseData* BaseObject::func_not_clicked(int _num){
 const BaseData* BaseObject::queryData(std::string _type){  //类型：精确！
     std::vector<BaseData*>::iterator it;
 
-//寻找type类型的数据，并与 OBJ 绑定传回
+//寻找type类型的数据
     for(it = complexData.begin();it != complexData.end();it++){
       std::string tmpType = (*it)->showType();
       if( tmpType == _type ){
