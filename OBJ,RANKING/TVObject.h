@@ -11,6 +11,7 @@
 class TVObject : public BaseObject{
 public:
     TVObject(std::string _data, BaseStrategy* _strategy,std::string _type = "TV"){};
+    ~TVObject(){};
 };
 
 #endif
