@@ -11,6 +11,7 @@
 class MovieObject : public BaseObject{
 public:
     MovieObject(std::string _name,BaseStrategy* _strategy,std::string _type = "Movie"){};
+    ~MovieObject(){};
 };
 
 #endif
