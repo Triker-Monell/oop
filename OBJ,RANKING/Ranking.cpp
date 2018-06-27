@@ -1,6 +1,7 @@
 #include "Ranking.h"
 
 #include <utility>
+#include <vector>
 
 void Ranking::pushData(BaseObject* _object){
   rankings.push_back(_object);
