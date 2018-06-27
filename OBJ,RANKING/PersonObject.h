@@ -11,6 +11,7 @@
 class PersonObject : public BaseObject{
 public:
     PersonObject(std::string _data, BaseStrategy* _strategy,std::string _type = "Person"){};
+    ~PersonObject(){};
 };
 
 #endif
