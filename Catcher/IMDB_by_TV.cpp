@@ -16,7 +16,7 @@ void IMDB_by_TV::MakeCatcher() {
     pValue = PyObject_CallObject(pFunc,pArgs);
     Py_Finalize();
 }
-void IMDB_by_TV::SaveinBaseObject() {
+std::ifstream IMDB_by_TV::SaveinBaseObject() {
     std::ifstream readfile;
     readfile.open("IMDB_by_TV.txt",std::ios::in);
     std::string name,rating,actors,info,sites,country,language,year,othername,related_movies,

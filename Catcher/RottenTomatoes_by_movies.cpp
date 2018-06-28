@@ -11,7 +11,7 @@ void RottenTomatoes_by_movies::MakeCatcher() {
     pValue = PyObject_CallObject(pFunc,pArgs);
     Py_Finalize();
 }
-void RottenTomatoes_by_movies::SaveinBaseObject() {
+std::ifstream RottenTomatoes_by_movies::SaveinBaseObject() {
     std::ifstream readfile;
     readfile.open("RottenTomatoes_by_movies.txt",std::ios::in);
     std::string name,rating,actors,info,genre,director,

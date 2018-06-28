@@ -6,6 +6,7 @@
 #include <fstream>
 #include <C:\Users\lenovo\AppData\Local\Programs\Python\Python36\include/Python.h>
 #include "allHeadFiles.h"
+#include "BaseObject.h"
 class BaseCatcher{
     BaseObject* base_object;
     std::string name_args;
@@ -20,7 +21,7 @@ public:
 
     virtual void MakeCatcher()= 0;
 
-    virtual void SaveinBaseObject()= 0;
+    virtual std::ifstream SaveinBaseObject()= 0;
 
     virtual void ExporttoDatabase()= 0;
 

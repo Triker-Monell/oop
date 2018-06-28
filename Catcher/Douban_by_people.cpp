@@ -12,8 +12,10 @@ void Douban_by_people::MakeCatcher() {
     pValue = PyObject_CallObject(pFunc,pArgs);
     Py_Finalize();
 }
-void Douban_by_people::SaveinBaseObject() {
-
+std::ifstream Douban_by_people::SaveinBaseObject() {
+    std::ifstream readfile;
+    readfile.open("Douban_by_people.txt",std::ios::in);
+    return readfile;
 }
 void Douban_by_people::SetBaseData() {
 

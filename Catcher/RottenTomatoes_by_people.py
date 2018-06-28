@@ -55,16 +55,7 @@ def read_file(filename):  #读取文件
     f.close()
     return text
 def work():
-    try:
-        f = open('RottenTomatoes_by_people.txt', 'r')
-
-        people_name= f.read()
-    finally:
-        if f:
-            f.close()
-            w = open('RottenTomatoes_by_people.txt', 'w')
-            w.truncate()
-            w.close()
+        people_name=raw_input()
         url = 'https://www.rottentomatoes.com/celebrity/'+people_name
         html = get_html(url)
         movie_list = get_movie_all(html)

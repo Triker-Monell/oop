@@ -16,7 +16,7 @@ public:
 
     void MakeCatcher();
 
-    void SaveinBaseObject();
+    std::ifstream SaveinBaseObject();
 
     void ExporttoDatabase();
 };

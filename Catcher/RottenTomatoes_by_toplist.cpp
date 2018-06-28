@@ -16,7 +16,7 @@ void RottenTomatoes_by_toplist::MakeCatcher() {
     pValue = PyObject_CallObject(pFunc,pArgs);
     Py_Finalize();
 }
-void RottenTomatoes_by_toplist::SaveinBaseObject() {
+std::ifstream RottenTomatoes_by_toplist::SaveinBaseObject() {
 
 }
 void RottenTomatoes_by_toplist::SetBaseData() {

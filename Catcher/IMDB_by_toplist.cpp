@@ -16,7 +16,7 @@ void IMDB_by_toplist::MakeCatcher() {
     pValue = PyObject_CallObject(pFunc,pArgs);
     Py_Finalize();
 }
-void IMDB_by_toplist::SaveinBaseObject() {
+std::ifstream IMDB_by_toplist::SaveinBaseObject() {
 
 }
 void IMDB_by_toplist::SetBaseData() {

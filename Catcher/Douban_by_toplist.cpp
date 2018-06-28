@@ -16,7 +16,7 @@ void Douban_by_toplist::MakeCatcher() {
     pValue = PyObject_CallObject(pFunc,pArgs);
     Py_Finalize();
 }
-void Douban_by_toplist::SaveinBaseObject() {
+std::ifstream Douban_by_toplist::SaveinBaseObject() {
 
 }
 void Douban_by_toplist::SetBaseData() {

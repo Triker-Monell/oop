@@ -12,38 +12,15 @@ def get_html(url):  #通过url获取网页内容
     # save_file(result.read(), 'thefile.txt')
 def get_movie_url(url):
     html=get_html(url)
-    soup_url=BeautifulSoup(html,"html.parser")
-    name=soup_url.find('table', class_="findList")
+    soup=BeautifulSoup(html,"html.parser")
+    name=soup.find('table', class_="findList")
     soup_name=BeautifulSoup(str(name),"html.parser")
     the_url=soup_name.find('a')
     url='https://www.imdb.com'+the_url.get('href')
     return url
-def get_all_photos(url):
-    t = 1  # 记录张数
-    os.chdir(os.path.join(os.getcwd(), 'allphotos'))
-    for i in range(1, 10, 1):
-        url_min = str(url)[:-17]
-        photos_url = url_min + '/mediaindex?page=' + str(i) + '&ref_=tt_pv_mi_sm'
-
-        html = get_html(photos_url)
-        soup=BeautifulSoup(html,"html.parser")
-
-        src =soup.find_all('div', class_="media_index_thumb_list" ,id="media_index_thumbnail_grid")
-
-        for myimg in src:
-
-            the_img_src = myimg.find_all('img')
-
-            for the_img_src_it in the_img_src:
-                pic_name = str(t) + '.jpg'
-                img_src = the_img_src_it.get('src')
-                urllib.urlretrieve(img_src, pic_name)
-                t += 1
-
-    os.chdir(r'D:\PyCharm 2017.3.4\untitled')
 
 def get_movie_all(html):     #通过soup提取到每个电影的全部信息，以list返回
-    soup = BeautifulSoup(html,"html.parser")
+    soup = BeautifulSoup(html)
     movie_1 = soup.find_all('h1',itemprop="name" ,class_="")
     movie_2 = soup.find_all('span', itemprop="ratingValue")
     movie_3 = soup.find_all('a',title="See more release dates")
@@ -133,7 +110,6 @@ def get_movie_one(movie):
             t += 1
 
     os.chdir(r'D:\PyCharm 2017.3.4\untitled')
-
     result.append(result_str)
 
     return result  #返回获取到的结果
@@ -149,19 +125,9 @@ def read_file(filename):  #读取文件
 def work():
 
         text="movie: "
-        try:
-            f = open('IMDB_by_movies.txt', 'r')
-
-            name = f.read()
-        finally:
-            if f:
-                f.close()
-                w = open('IMDB_by_movies.txt', 'w')
-                w.truncate()
-                w.close()
+        name = raw_input()
         preurl = 'https://www.imdb.com/find?q='+name
         url = get_movie_url(preurl)
-
         html = get_html(url)
         movie_list = get_movie_all(html)
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
@@ -171,7 +137,6 @@ def work():
             text = text +'\n'+'\t'
             save_file(text, 'IMDB_by_movies.txt')
 
-        get_all_photos(url)
 
 if __name__=='__main__':
    work()
