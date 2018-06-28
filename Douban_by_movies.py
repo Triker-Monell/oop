@@ -18,6 +18,29 @@ def get_movie_url(url):
     url=name.get('href')
     return url
 
+def get_all_photos(url):
+    t = 1  # 记录张数
+    os.chdir(os.path.join(os.getcwd(), 'allphotos'))
+    for i in range(0, 300, 30):
+
+        photos_url = url+'/photos?type=S&start='+str(i)+'&sortby=like&size=a&subtype=a'
+
+        html = get_html(photos_url)
+        soup=BeautifulSoup(html,"html.parser")
+
+        src =soup.find_all('ul', class_="poster-col3 clearfix",id="")
+
+        for myimg in src:
+
+            the_img_src = myimg.find_all('img')
+
+            for the_img_src_it in the_img_src:
+                pic_name = str(t) + '.jpg'
+                img_src = the_img_src_it.get('src')
+                urllib.urlretrieve(img_src, pic_name)
+                t += 1
+
+    os.chdir(r'D:\PyCharm 2017.3.4\untitled')
 
 def get_movie_all(html):     #通过soup提取到每个电影的全部信息，以list返回
     soup = BeautifulSoup(html, "html.parser")
@@ -109,7 +132,7 @@ def work():
             result = get_movie_one(movie)
             text = '' + '电影名：' + str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, 'Douban_by_movies.txt')
-
+        get_all_photos(url)
 
 if __name__=='__main__':
    work()
