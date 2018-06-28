@@ -33,6 +33,10 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     readfile>>name;
     do{
         readfile>>temp;
+
+        //分割 然后push进vector里
+
+
     }while(temp!="Born:");
     do{
         readfile>>temp;
