@@ -6,11 +6,9 @@
 #define MICP_IMDB_BY_PEOPLE_H
 #include "BaseCatcher.h"
 class IMDB_by_people:public BaseCatcher{
-    std::string name_args;
 public:
     IMDB_by_people();
 
-    IMDB_by_people(std::string &name);
 
     void SetParameter();
 

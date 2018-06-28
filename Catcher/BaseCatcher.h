@@ -8,10 +8,8 @@
 class BaseObject;
 class BaseCatcher{
     BaseObject* base_object;
-    std::string name_args;
 public:
     BaseCatcher();
-    BaseCatcher(std::string &name):name_args(name){};
     virtual ~BaseCatcher();
 
     virtual void SetParameter()= 0;

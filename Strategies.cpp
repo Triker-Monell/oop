@@ -14,7 +14,10 @@ BaseStrategy::BaseStrategy() {
 
 }
 
-void Imdb_movies_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+    //create a txt
+
+
     bas=new IMDB_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -40,7 +43,7 @@ void Imdb_movies_Strategy::exec(std::vector<BaseData*> &complexData, std::vector
 
 }
 
-void Douban_movies_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new Douban_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -81,7 +84,7 @@ void Douban_movies_Strategy::exec(std::vector<BaseData*> &complexData, std::vect
     delete bas;
 }
 
-void Tomato_movies_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new RottenTomatoes_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -124,7 +127,7 @@ void Tomato_movies_Strategy::exec(std::vector<BaseData*> &complexData, std::vect
 
 }
 
-void Imdb_TV_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new IMDB_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -194,7 +197,7 @@ void Imdb_TV_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<Bas
 
 }
 
-void Douban_TV_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new Douban_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -241,7 +244,7 @@ void Douban_TV_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<B
 
 }
 
-void Tomato_TV_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new RottenTomatoes_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -287,7 +290,7 @@ void Tomato_TV_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<B
 
 }
 
-void Imdb_people_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas =new IMDB_by_people();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -310,7 +313,7 @@ void Imdb_people_Strategy::exec(std::vector<BaseData*> &complexData, std::vector
     fclose(fopen("IMDB_by_people.txt","w"));
 }
 
-void Douban_people_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+void Douban_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new Douban_by_people();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -357,7 +360,7 @@ void Douban_people_Strategy::exec(std::vector<BaseData*> &complexData, std::vect
 
 }
 
-void Tomato_people_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new RottenTomatoes_by_people();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();

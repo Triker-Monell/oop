@@ -6,10 +6,8 @@
 #define MICP_IMDB_BY_TV_H
 #include "BaseCatcher.h"
 class IMDB_by_TV:public BaseCatcher{
-    std::string name_args;
 public:
     IMDB_by_TV();
-    IMDB_by_TV(std::string &name);
     void SetParameter();
 
     void  SetBaseData();

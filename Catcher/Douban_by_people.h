@@ -6,10 +6,8 @@
 #define MICP_DOUBAN_BY_PEOPLE_H
 #include "BaseCatcher.h"
 class Douban_by_people:public BaseCatcher{
-    std::string name_args;
 public:
     Douban_by_people();
-    Douban_by_people(std::string &name);
     void SetParameter();
 
     void  SetBaseData();

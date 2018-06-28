@@ -3,10 +3,8 @@
 
 #include "BaseCatcher.h"
 class RottenTomatoes_by_movies:public BaseCatcher{
-    std::string name_args;
 public:
     RottenTomatoes_by_movies();
-    RottenTomatoes_by_movies(std::string &name);
     void SetParameter();
 
     void  SetBaseData();

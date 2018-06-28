@@ -4,10 +4,8 @@
 
 #include "BaseCatcher.h"
 class IMDB_by_movies:public BaseCatcher{
-    std::string name_args;
 public:
     IMDB_by_movies();
-    IMDB_by_movies(std::string &name);
 
     void SetParameter();
 
