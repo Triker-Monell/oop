@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>RottenTomatoes.ico</file>
-        <file>DouBan.ico</file>
-        <file>IMDB.ico</file>
-        <file>test.jpg</file>
-        <file>yellowBar.jpg</file>
-    </qresource>
-</RCC>
