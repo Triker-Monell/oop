@@ -6,10 +6,12 @@
 #include <vector>
 #include "BaseData.h"
 #include <iostream>
+#include <fstream>
 class BaseCatcher;
 class BaseStrategy{
 protected:
     BaseCatcher* bas;
+    void initialTXT(std::string _filename,std::string _name);
 public:
     BaseStrategy();
     virtual void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData)=0;
