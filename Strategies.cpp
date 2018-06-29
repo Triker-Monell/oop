@@ -26,12 +26,16 @@ BaseStrategy::BaseStrategy() {
 
 }
 
-void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-
+void BaseStrategy::initialTXT(std::string _filename, std::string _name) {
     std::ofstream outf;
-    outf.open("IMDB_by_movies.txt");
+    outf.open(_filename);
     outf<<_name<<std::endl;
     outf.close();
+}
+
+void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+
+    initialTXT("IMDB_by_movies.txt",_name);
     bas=new IMDB_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -142,10 +146,8 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
 }
 
 void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    std::ofstream outf;
-    outf.open("Douban_by_movies.txt");
-    outf<<_name<<std::endl;
-    outf.close();
+    initialTXT("Douban_by_movies.txt",_name);
+
     bas=new Douban_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -187,10 +189,8 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 }
 
 void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    std::ofstream outf;
-    outf.open("RottenTomatoes_by_movies.txt");
-    outf<<_name<<std::endl;
-    outf.close();
+    initialTXT("RottenTomatoes_by_movies.txt",_name);
+
     bas=new RottenTomatoes_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -240,10 +240,8 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 }
 
 void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    std::ofstream outf;
-    outf.open("IMDB_by_TV.txt");
-    outf<<_name<<std::endl;
-    outf.close();
+    initialTXT("IMDB_by_TV.txt",_name);
+
     bas=new IMDB_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -332,10 +330,8 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
 }
 
 void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    std::ofstream outf;
-    outf.open("Douban_by_TV.txt");
-    outf<<_name<<std::endl;
-    outf.close();
+    initialTXT("Douban_by_TV.txt",_name);
+
     bas=new Douban_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -383,10 +379,8 @@ void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 }
 
 void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    std::ofstream outf;
-    outf.open("RottenTomatoes_by_TV.txt");
-    outf<<_name<<std::endl;
-    outf.close();
+    initialTXT("RottenTomatoes_by_TV.txt",_name);
+
     bas=new RottenTomatoes_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -433,10 +427,8 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 }
 
 void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    std::ofstream outf;
-    outf.open("IMDB_by_people.txt");
-    outf<<_name<<std::endl;
-    outf.close();
+    initialTXT("IMDB_by_people.txt",_name);
+
     bas =new IMDB_by_people();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -461,10 +453,8 @@ void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
 
 void Douban_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
 
-    std::ofstream outf;
-    outf.open("Douban_by_people.txt");
-    outf<<_name<<std::endl;
-    outf.close();
+    initialTXT("Douban_by_people.txt",_name);
+
     bas=new Douban_by_people();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -512,10 +502,8 @@ void Douban_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 }
 
 void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    std::ofstream outf;
-    outf.open("RottenTomatoes_by_people.txt");
-    outf<<_name<<std::endl;
-    outf.close();
+    initialTXT("RottenTomatoes_by_people.txt",_name);
+
     bas=new RottenTomatoes_by_people();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
