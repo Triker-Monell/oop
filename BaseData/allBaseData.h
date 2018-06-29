@@ -19,6 +19,7 @@
 //#include "Image.h"
 #include "IMDBScore.h"
 #include "Intro.h"
+#include"Jobs"
 #include "Language.h"
 #include "LeadingActor.h"
 #include "Name.h"
@@ -30,6 +31,8 @@
 #include "Runtime.h"
 #include "Score.h"
 #include "Similar.h"
+#include "Studio.h"
+#include "Season.h
 #include "Type.h"
 #include "Writer.h"
 #include "Sex.h"
