@@ -31,6 +31,7 @@
 #include "Runtime.h"
 #include "Score.h"
 #include "Similar.h"
+#include"Studio.h"
 #include "Type.h"
 #include "Writer.h"
 
