@@ -96,7 +96,7 @@ void Imdb_movies_Strategy::exec(std::vector<BaseData*> &complexData, std::vector
     Input* in =new stdInput;
     Input* ins= new IMDBSInput;
     BaseData* _name=new MovieName();
-    BaseData* _rating=new Rated();
+    BaseData* _rating=new IMDBScore();
     BaseData*_actors=new LeadingActor();
     BaseData*_info=new Intro();
     BaseData*_sites=new OfficialSites();
