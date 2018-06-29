@@ -96,7 +96,7 @@ def get_movie_one(movie):
         actor_str = soup_actor.find_all('span',itemprop="name")
         soup_actor = BeautifulSoup(str(actor_str[0]),"html.parser")
         for line in soup_actor.stripped_strings:
-            result_str = result_str + line + "  "
+            result_str = result_str + line + "/"
 
     releasedate=soup_all.find_all('a',title="See more release dates")
     soup_releasedate=BeautifulSoup(str(releasedate[0]),"html.parser")
@@ -109,7 +109,7 @@ def get_movie_one(movie):
     for it_rec in rec_movies:
         soup_rec_movies=BeautifulSoup(str(it_rec),"html.parser")
         for line in soup_rec_movies.stripped_strings:
-            result_str=result_str+line
+            result_str=result_str+line+"/"
 
 
     result_str=result_str+" "
