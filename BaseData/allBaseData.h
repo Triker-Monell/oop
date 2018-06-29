@@ -19,6 +19,7 @@
 //#include "Image.h"
 #include "IMDBScore.h"
 #include "Intro.h"
+#include"Jobs"
 #include "Language.h"
 #include "LeadingActor.h"
 #include "Name.h"
