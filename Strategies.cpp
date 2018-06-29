@@ -1,63 +1,142 @@
 #include "Strategies.h"
-#include "IMDB_by_TV.h"
-#include "IMDB_by_people.h"
-#include "IMDB_by_movies.h"
-#include "Douban_by_TV.h"
-#include "Douban_by_movies.h"
-#include "Douban_by_people.h"
-#include "RottenTomatoes_by_movies.h"
-#include "RottenTomatoes_by_TV.h"
-#include "RottenTomatoes_by_people.h"
+#include "Base/BaseData.h"
+#include "Base/Date.h"
+#include "Base/Director.h"
+#include "Base/DouBanScore.h"
+#include "Base/Episodes.h"
+#include "Base/Image.h"
+#include "Base/IMDBScore.h"
+#include "Base/Language.h"
+#include "Base/LeadingActor.h"
+#include "Base/Name.h"
+#include "Base/People.h"
+#include "Base/Place.h"
+#include "Base/Rated.h"
+#include "Base/RottenTomatoesScore.h"
+#include "Base/Runtime.h"
+#include "Base/Score.h"
+#include "Base/Similar.h"
+#include "Base/Type.h"
+#include "Base/Writer.h"
+#include "Base/OfficalSites.h"
+#include "Base/Boxing.h"
+#include "Base/Intro.h"
 
 BaseStrategy::BaseStrategy() {
 
-
 }
 
-//例如_name为IMDB_by_movies
-void BaseStrategy::initialTXT(std::string _filename, std::string _name){
-    filename=_filename+".txt";
-    std::ofstream out(_filename,ios::app);
-    out << _name ; //输入name
-}
-
-void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    //create a txt
-    initialTXT("IMDB_by_movies",_name);
-
-
+void Imdb_movies_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new IMDB_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
-    std::string name,born_info,jobs,main_movies,temp;
-    readfile>>name;
-    do{
-        readfile>>temp;
-
-        //分割 然后push进vector里
-
-
-    }while(temp!="Born:");
-    do{
-        readfile>>temp;
-        born_info+=temp;
-
-    }while(temp!="job:");
-    readfile>>jobs;
+    std::string name,rating,actors,info,sites,country,language,related_movies,
+            directors,runtime,date,boxing,temp;
     readfile>>temp;
     do{
         readfile>>temp;
-        main_movies+=temp;
-    }while(!EOF);
-    fclose(fopen("IMDB_by_people.txt","w"));
-    delete bas;
+        name+=temp;
+    }while(temp!="rating:");
 
+    readfile>>rating;
+    readfile>>temp;
+    do{
+        readfile>>temp;
+        directors+=temp;
+
+    }while(temp!="actor:");
+
+    do{
+        readfile>>temp;
+        actors+=temp;
+    }while(temp!="releasedate:");
+    do{
+        readfile>>temp;
+        date+=temp;
+
+    }while(temp!="related:");
+    readfile>>temp;
+
+    do{
+        readfile>>temp;
+        related_movies+=temp;
+    }while(temp!="Tagline:");
+
+    do{
+        readfile>>temp;
+    }while(temp!="Sites:");
+    do{
+        readfile>>temp;
+        sites+=temp;
+    }while(temp!="See");
+    do{
+        readfile>>temp;
+
+    }while(temp!="Country:");
+    readfile>>country;
+    readfile>>temp;
+    readfile>>language;
+    do{
+        readfile>>temp;
+
+    }while(temp!="Budget:");
+    boxing+=temp;
+    do{
+        readfile>>temp;
+        boxing+=temp;
+
+    }while(temp!="See");
+    do{
+        readfile>>temp;
+    }while(temp!="Runtime:");
+    readfile>>runtime;
+    readfile.close();
+    fclose(fopen("IMDB_by_movies.txt","w"));
+    delete bas;
+    Input* in =new stdInput;
+    Input* ins= new IMDBSInput;
+    BaseData* _name=new MovieName();
+    BaseData* _rating=new Rated();
+    BaseData*_actors=new LeadingActor();
+    BaseData*_info=new Intro();
+    BaseData*_sites=new OfficialSites();
+    BaseData*_country=new FilmMakingArea();
+    BaseData*_language=new Language();
+    BaseData*_related_movies=new SimilarMovie();
+    BaseData*_directors=new Director();
+    BaseData*_runtime=new Runtime();
+    BaseData*_date=new ReleaseDate();
+    BaseData*_boxing=new Boxing();
+    _name->setData(name,in);
+    _rating->setData(rating,ins);
+    _actors->setData(actors,in);
+    _info->setData(info,in);
+    _sites->setData(sites,in);
+    _country->setData(country,in);
+    _language->setData(language,in);
+    _related_movies->setData(related_movies,in);
+    _directors->setData(directors,in);
+    _runtime->setData(runtime,in);
+    _date->setData(date,in);
+    _boxing->setData(boxing,in);
+
+
+    complexData.push_back(_directors);
+    complexData.push_back(_actors);
+    complexData.push_back(_related_movies);
+    simpleData.push_back(_name);
+    simpleData.push_back(_rating);
+    simpleData.push_back(_info);
+    simpleData.push_back(_sites);
+    simpleData.push_back(_country);
+    simpleData.push_back(_language);
+    simpleData.push_back(_runtime);
+    simpleData.push_back(_date);
+    simpleData.push_back(_boxing);
 
 }
 
-void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("Douban_by_movies",_name);
-
+void Douban_movies_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new Douban_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -98,9 +177,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     delete bas;
 }
 
-void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("RottenTomatoes_by_movies",_name);
-
+void Tomato_movies_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new RottenTomatoes_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -143,9 +220,7 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 
 }
 
-void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("IMDB_by_TV",_name);
-
+void Imdb_TV_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new IMDB_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -215,9 +290,7 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
 
 }
 
-void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("Douban_by_TV",_name);
-
+void Douban_TV_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new Douban_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -264,9 +337,7 @@ void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 
 }
 
-void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("RottenTomatoes_by_TV",_name);
-
+void Tomato_TV_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new RottenTomatoes_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -312,9 +383,7 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 
 }
 
-void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("IMDB_by_people",_name);
-
+void Imdb_people_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas =new IMDB_by_people();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -337,9 +406,7 @@ void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     fclose(fopen("IMDB_by_people.txt","w"));
 }
 
-void Douban_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("Douban_by_people",_name);
-
+void Douban_people_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new Douban_by_people();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -386,9 +453,7 @@ void Douban_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 
 }
 
-void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("RottenTomatoes_by_people",_name);
-
+void Tomato_people_Strategy::exec(std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     bas=new RottenTomatoes_by_people();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
