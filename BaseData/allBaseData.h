@@ -32,6 +32,13 @@
 #include "Similar.h"
 #include "Type.h"
 #include "Writer.h"
+#include "Sex.h"
+#include "Family.h"
+#include "Constellation.h"
+#include "Season.h"
+#include "Studio.h"
+#include "OfficialSites.h"
+#include "Job.h"
 
 
 
