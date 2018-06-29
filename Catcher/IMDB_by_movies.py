@@ -52,7 +52,8 @@ def get_movie_all(html):     #通过soup提取到每个电影的全部信息，�
     movie_6 = soup.find_all('div', class_="rec-title")
     movie_7=soup.find_all('div', class_="txt-block")
     movie_8 = soup.find_all('div', class_="article" ,id="titleImageStrip")
-    movie_str=str(movie_1[0])+str(movie_2[0])+str(movie_3[0])+str(movie_8[0])
+    movie_9=soup.find_all('link', rel='image_src')
+    movie_str=str(movie_1[0])+str(movie_2[0])+str(movie_3[0])+str(movie_8[0])+str(movie_9[0])
     for it in movie_4:
         movie_str=movie_str+str(it)
     for it in movie_5:
@@ -120,6 +121,11 @@ def get_movie_one(movie):
             result_str=result_str+line+" "
 
     os.chdir(os.path.join(os.getcwd(), 'photos'))
+    post  = soup_all.find_all('link', rel='image_src')
+    pic_name = str(0) + '.jpg'
+    link=post[0].get('href')
+    urllib.urlretrieve(link, pic_name)
+
     t = 1  # 记录张数
     src = soup_all.find_all('div', class_="article" ,id="titleImageStrip")
     for myimg in src:
@@ -171,7 +177,7 @@ def work():
             text = text +'\n'+'\t'
             save_file(text, 'IMDB_by_movies.txt')
 
-        get_all_photos(url)
+        #get_all_photos(url)
 
 if __name__=='__main__':
    work()
