@@ -14,6 +14,8 @@ protected:
     std::string type;       //Movie/TV/Person
     std::vector<BaseData*> complexData;       //可以点击的复杂数据    ,show secondly
     std::vector<BaseData*> simpleData;        //不可以点击的简单数据  ,show firstly
+    bool hasScore; //是否有评分 由派生类决定 movie tv有  person没有
+    //如果有 评分在simplevector最后一个  使用其他数据 num-1
 public:
     BaseObject(std::string _name,BaseStrategy* _strategy,std::string _type); //type由派生类默认值给出
 

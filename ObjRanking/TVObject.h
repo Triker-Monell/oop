@@ -10,7 +10,7 @@
 
 class TVObject : public BaseObject{
 public:
-    TVObject(std::string _data, BaseStrategy* _strategy,std::string _type = "TV"){};
+    TVObject(std::string _data, BaseStrategy* _strategy,std::string _type = "TV"):BaseObject(_name,_strategy,_type),hasScore(false){};
     ~TVObject(){};
 };
 
