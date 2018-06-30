@@ -74,10 +74,10 @@ def get_movie_one(movie):
     rating=soup_all.find_all('strong', class_="ll rating_num", property="v:average")
     soup_rating = BeautifulSoup(str(rating[0]),"html.parser")
     for line in soup_rating.stripped_strings:
-        result_str=result_str+"评分: "+line+" / "
+        result_str=result_str+" 评分: "+line+" / "
 
 
-    result_str=result_str+"星级： "
+    result_str=result_str+" 星级： "
     starlevel = soup_all.find_all('div' ,class_="ratings-on-weight")
     for it in starlevel:
         soup_starlevel = BeautifulSoup(str(it),"html.parser")
