@@ -1,7 +1,7 @@
 #include "Strategies.h"
-#include "BaseData/allBaseData.h"
+#include "allBaseData.h"
 #include "allObj.h"
-#include "Catcher/allCatcher.h"
+#include "allCatcher.h"
 BaseStrategy::BaseStrategy() {
 
 }
@@ -108,6 +108,7 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     _moviename->setData(name,in);
     _rating->setData(rating,ins);
     _actors->setData(actors,in);
+    _info->setData(info,in);
     _sites->setData(sites,in);
     _country->setData(country,in);
     _language->setData(language,in);
@@ -132,7 +133,7 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     simpleData.push_back(_rating);
 
 }
-/*
+
 void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("Douban_by_movies.txt",_name);
 
@@ -603,21 +604,25 @@ void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
     std::string name,born_info,jobs,main_movies,temp;
-    readfile>>name;
-    do{
+    readfile>>temp;
+    while(temp!="Born:"){
+        name+=temp;
+        name+=" ";
         readfile>>temp;
-    }while(temp!="Born:");
-    do{
-        readfile>>temp;
+    }
+    readfile>>temp;
+    while(temp!="job:"){
         born_info+=temp;
-
-    }while(temp!="job:");
+        born_info+=" ";
+        readfile>>temp;
+    }
     readfile>>jobs;
     readfile>>temp;
-    do{
+    while(readfile>>temp){
         readfile>>temp;
         main_movies+=temp;
-    }while(!EOF);
+        main_movies+=" ";
+    }
     fclose(fopen("IMDB_by_people.txt","w"));
 
     Input* in=new stdInput;
@@ -771,4 +776,4 @@ void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     simpleData.push_back(_main_info);
 
     delete bas;
-}*/
+}
