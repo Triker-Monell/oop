@@ -77,7 +77,7 @@ def get_movie_one(movie):
     grade = soup_all.find_all('span', itemprop="ratingValue")
     soup_grade = BeautifulSoup(str(grade[0]),"html.parser")
     for line in soup_grade.stripped_strings:
-        result_str=result_str+"rating："+line
+        result_str=result_str+" rating: "+line
 
 
     director = soup_all.find_all('span', itemprop="director")
@@ -88,7 +88,7 @@ def get_movie_one(movie):
         for it in soup_director.stripped_strings:
             result_str = result_str  +it+" "
 
-    result_str = result_str+"actor:"
+    result_str = result_str+" actor: "
 
     actor = soup_all.find_all('span', itemprop="actors")
     for _actor in actor:
@@ -96,7 +96,7 @@ def get_movie_one(movie):
         actor_str = soup_actor.find_all('span',itemprop="name")
         soup_actor = BeautifulSoup(str(actor_str[0]),"html.parser")
         for line in soup_actor.stripped_strings:
-            result_str = result_str + line + "  "
+            result_str = result_str + line + " / "
 
     releasedate=soup_all.find_all('a',title="See more release dates")
     soup_releasedate=BeautifulSoup(str(releasedate[0]),"html.parser")
@@ -104,12 +104,12 @@ def get_movie_one(movie):
         result_str=result_str +" releasedate: " +line
 
 
-    result_str=result_str+" related TVs: "
+    result_str=result_str+" relatedTVs: "
     rec_movies=soup_all.find_all('b')
     for it_rec in rec_movies:
         soup_rec_movies=BeautifulSoup(str(it_rec),"html.parser")
         for line in soup_rec_movies.stripped_strings:
-            result_str=result_str+line
+            result_str=result_str+line+" / "
 
 
     result_str=result_str+" "
@@ -167,7 +167,7 @@ def work():
                 text=text+ str(it)
             text = text +'\n'+'\t'
             save_file(text, 'IMDB_by_TV.txt')
-        get_all_photos(url)
+        #get_all_photos(url)
 
 if __name__=='__main__':
    work()
