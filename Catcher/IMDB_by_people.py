@@ -77,11 +77,11 @@ def get_movie_one(movie):
         result_str = result_str + line
 
     result_str = result_str + " movies: "
-    movies = soup_all.find_all('span', class_="knownfor-ellipsis")
+    movies = soup_all.find_all('a', class_="knownfor-ellipsis")
     for it in movies:
-        soup_movies = BeautifulSoup(str(it),"html.parser")
-        for line in soup_movies.stripped_strings:  # 对获取到的<span>里的内容进行提取
-            result_str = result_str + line+" "
+        soup_movies =it.get('title')
+
+        result_str = result_str + soup_movies+" / "
     os.chdir(os.path.join(os.getcwd(), 'photos'))
     t = 1  # 记录张数
     src = soup_all.find_all('div',class_="mediastrip")
