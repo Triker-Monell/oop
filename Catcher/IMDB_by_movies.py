@@ -78,18 +78,18 @@ def get_movie_one(movie):
     grade = soup_all.find_all('span', itemprop="ratingValue")
     soup_grade = BeautifulSoup(str(grade[0]),"html.parser")
     for line in soup_grade.stripped_strings:
-        result_str=result_str+" rating："+line
+        result_str=result_str+" rating: "+line
 
-    result_str=result_str+" director:"
+    result_str=result_str+" director: "
     director = soup_all.find_all('span', itemprop="director")
     for line in director:
         soup_director = BeautifulSoup(str(line),"html.parser")
         director_str = soup_director.find_all('span',itemprop="name")
         soup_director = BeautifulSoup(str(director_str[0]),"html.parser")
         for it in soup_director.stripped_strings:
-            result_str = result_str  +it+" "
+            result_str = result_str  +it+"/"
 
-    result_str = result_str+"actor:"
+    result_str = result_str+" actor: "
 
     actor = soup_all.find_all('span', itemprop="actors")
     for _actor in actor:
@@ -102,16 +102,15 @@ def get_movie_one(movie):
     releasedate=soup_all.find_all('a',title="See more release dates")
     soup_releasedate=BeautifulSoup(str(releasedate[0]),"html.parser")
     for line in soup_releasedate.stripped_strings:
-        result_str=result_str +" releasedate:" +line
+        result_str=result_str +" releasedate: " +line
 
 
-    result_str=result_str+" related movies:"
+    result_str=result_str+" relatedmovies: "
     rec_movies=soup_all.find_all('b')
     for it_rec in rec_movies:
         soup_rec_movies=BeautifulSoup(str(it_rec),"html.parser")
         for line in soup_rec_movies.stripped_strings:
-            result_str=result_str+line+"/"
-
+            result_str=result_str+line+" / "
 
     result_str=result_str+" "
     boxoffice=soup_all.find_all('div' ,class_="txt-block")
