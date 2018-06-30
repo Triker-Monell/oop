@@ -334,7 +334,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 
 
 }
-/*
+
 void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("RottenTomatoes_by_movies.txt",_name);
 
@@ -345,42 +345,71 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     std::string name,rating,actors,info,gnere,director,
             writter,runtime,studio,temp;
     readfile>>temp;
-    readfile>>name;
-    do{
+    readfile>>temp;
+    while (temp!="|"){
+        name+=temp;
+        name+=" ";
         readfile>>temp;
+    }
+    while(temp!="Actor:"){
         rating+=temp;
-    }while(temp!="Actor:");
+        rating+=" ";
+        readfile>>temp;
+    }
 
     readfile>>temp;
-    do{
-        readfile>>temp;
+    while(temp!="View"){
         actors+=temp;
-    }while(temp!="View");
-    readfile>>temp;
-    readfile>>temp;
-    do{
+        actors+=" ";
         readfile>>temp;
+    }
+    readfile>>temp;
+    readfile>>temp;
+    readfile>>temp;
+    while(temp!="Genre:"){
         info+=temp;
-    }while(temp!="Genre:");
-    do{
+        info+=" ";
         readfile>>temp;
-        gnere+=temp;
 
-    }while(temp!="Directed");
+    }
     readfile>>temp;
-    do{
+    while(temp!="Directed"){
+        gnere+=temp;
+        gnere+=" ";
         readfile>>temp;
+
+    }
+    readfile>>temp;
+    readfile>>temp;
+    while(temp!="Written"){
         director+=temp;
-    }while(temp!="Written");
-    readfile>>temp;
-    do{
+        director+=" ";
         readfile>>temp;
-        writter+=temp;
-    }while(temp!="Runtime:");
-    readfile>>runtime;
+
+    }
     readfile>>temp;
-    readfile>>studio;
+    readfile>>temp;
+    while(temp!="On"){
+        writter+=temp;
+        writter+=" ";
+        readfile>>temp;
+    }
+    while(temp!="Runtime:"){
+        readfile>>temp;
+    }
+    readfile>>temp;
+    while(temp!="Studio:"){
+        runtime+=temp;
+        runtime+=" ";
+        readfile>>temp;
+    }
+    while(readfile>>temp){
+        studio+=temp;
+        studio+=" ";
+    }
+
     readfile.close();
+    
     fclose(fopen("RottenTomatoes_by_movies.txt","w"));
     delete bas;
     Input* in=new stdInput;
@@ -578,7 +607,7 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
     simpleData.push_back(_runtime);
 
 }
-
+/*
 void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("Douban_by_TV.txt",_name);
 
@@ -745,7 +774,8 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 
 
 }
-
+ 
+*/
 void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("IMDB_by_people.txt",_name);
 
@@ -791,7 +821,7 @@ void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     simpleData.push_back(_jobs);
 
 }
-
+/*
 void Douban_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
 
     initialTXT("Douban_by_people.txt",_name);
