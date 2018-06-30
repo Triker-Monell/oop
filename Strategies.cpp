@@ -3,6 +3,7 @@
 #include "allObj.h"
 #include "Catcher/allCatcher.h"
 BaseStrategy::BaseStrategy() {
+    
 
 }
 
