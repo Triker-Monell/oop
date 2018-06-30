@@ -14,8 +14,7 @@ void Runtime::setData(std::string data, Input *in) {
 }
 
 std::string Runtime::showData(Output *out) const {
-    std::string str= out->output(datas);
-    return str+"min";
+    return out->output(datas);
 }
 
 bool Runtime::operator<(Runtime &right) {

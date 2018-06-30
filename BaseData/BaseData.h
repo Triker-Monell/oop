@@ -11,13 +11,13 @@ class BaseData{
 protected:
     std::vector<std::string> datas;
 public:
-    BaseData(std::string _type):type(_type){};
+    BaseData(std::string _type):type(_type){}
     virtual void setData(std::string data,Input* in) =0;
     virtual std::string showData(Output* out) const =0;
     int num()const{
         return datas.size();
     }
-    std::string showSingle(int num){
+    std::string showSingle(int num)const{
         if(num>=datas.size()) return "";
         return datas[num];
     }

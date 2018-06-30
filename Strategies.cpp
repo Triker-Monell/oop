@@ -449,7 +449,7 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 
 
 }
-
+/*
 void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("IMDB_by_TV.txt",_name);
 
@@ -775,7 +775,7 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 
 }
  
-*/
+*//*
 void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("IMDB_by_people.txt",_name);
 
@@ -820,7 +820,7 @@ void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     simpleData.push_back(_born_info);
     simpleData.push_back(_jobs);
 
-}
+}*/
 /*
 void Douban_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
 

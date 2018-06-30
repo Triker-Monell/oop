@@ -15,7 +15,7 @@ class DouBanScore:public Score{
     double points[MaxStar+1];
 
 public:
-    DouBanScore():Score("豆瓣评分"){datas.resize(MaxStar+1);};
+    DouBanScore():Score("豆瓣评分"){datas.resize(MaxStar+1);}
 
     //注意这里不用stdInput 和stdOutput
     //而是用DBSinput和DBSoutput
