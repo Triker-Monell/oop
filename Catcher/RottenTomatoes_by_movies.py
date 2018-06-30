@@ -26,12 +26,12 @@ def get_movie_one(movie):
     soup_title = BeautifulSoup(str(title[0]),"html.parser")
     for line in soup_title.stripped_strings:  # 对获取到的<a>里的内容进行提取
         result.append(line)
-    result_str=" | Fresh:"
+    result_str=" | Fresh: "
 
     fresh=soup_all.find_all('span', class_="tMeterScore cfp-item-score")
     soup_fresh=BeautifulSoup(str(fresh[0]),"html.parser")
     for line in soup_fresh.stripped_strings:
-        result_str=result_str+line+" |"
+        result_str=result_str+line+" | "
 
     rating=soup_all.find_all('div', class_="superPageFontColor")
     soup_rating=BeautifulSoup(str(rating[0]),"html.parser")
@@ -43,7 +43,7 @@ def get_movie_one(movie):
     for it_actor in actor:
         soup_actor = BeautifulSoup(str(it_actor),"html.parser")
         for line in soup_actor.stripped_strings:
-            result_str = result_str + line + " "
+            result_str = result_str + line + " / "
 
     info=soup_all.find_all('li' ,class_="meta-row clearfix")
     for it_info in info:
@@ -82,7 +82,7 @@ def work():
         movie_list = get_movie_all(html)
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie)
-            text = '' + 'movie：' + str(result[0])  + str(result[1]) + '\n' + '\t'
+            text = '' + 'movie: ' + str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, 'RottenTomatoes_by_movies.txt')
 
 
