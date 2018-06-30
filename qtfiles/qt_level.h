@@ -6,6 +6,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QDebug>
+#include "BaseData/allBaseData.h"
+#include "Catcher/allCatcher.h"
 //#include "qt_config.h"
 
 
@@ -13,7 +15,7 @@ class Level : public QWidget
 {
     Q_OBJECT
 public:
-    Level(QWidget* _central,QWidget *parent);
+    Level(QWidget* _central,QWidget *parent,bool action_enable=true);
     virtual void show()=0; //show all
     virtual void hide()=0; //hide all
     virtual ~Level();

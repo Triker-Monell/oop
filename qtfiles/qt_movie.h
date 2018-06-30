@@ -9,7 +9,7 @@ class Movie : public Details
 {
     Q_OBJECT
 public:
-    Movie(QWidget* _central,QWidget* parent);
+    Movie(QString _name,QWidget* _central,QWidget* parent);
     ~Movie();
 public slots:
     //slots is the diffence

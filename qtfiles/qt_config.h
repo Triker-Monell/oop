@@ -7,6 +7,8 @@
 #include "qt_mainwindow.h"
 #include "qt_movie.h"
 #include "qt_dbswidget.h"
+#include "qt_imdbswidget.h"
+#include "ObjRanking/allObj.h"
 class Config : public QObject
 {
     Q_OBJECT
@@ -30,9 +32,13 @@ public:
 
     QString getSearchTitle(QWidget *mwin);
 
-    Details* getDetails(QWidget *_central,QWidget* _mwin);
+    Details* getDetails(QString _name,QWidget *_central,QWidget* _mwin);
 
     ScoreWidget* getScoreWidget(QWidget* mwin);
+
+    BaseStrategy* getStrategy(QWidget* mwin, bool isPeople=false);
+
+    void setAction(QWidget* mwin,bool bl); //set all action cant be triggered or can
 signals:
 
 public slots:

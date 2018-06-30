@@ -12,7 +12,7 @@ public slots:
     //slot is the difference
     //when more introduction pushed down
 public:
-    Person(QWidget* _central,QWidget* parent);
+    Person(QString _name, QWidget *_central, QWidget *parent);
 };
 
 #endif // PERSON_H

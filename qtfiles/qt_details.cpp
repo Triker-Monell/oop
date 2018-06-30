@@ -1,53 +1,31 @@
 #include "qt_details.h"
 #include "qt_config.h"
-Details::Details(QWidget *_central, QWidget *parent, bool _isScore):Level(_central,parent),isScore(_isScore)
+Details::Details(QWidget *_central, QWidget *parent, bool _isScore):Level(_central,parent,false),isScore(_isScore)
 {
-    //object initial
-
-
-    //image
-    /*
-    QDir dir("./images");
-    if(!dir.exists()){
-        qDebug() << "wrong dir" ;
-    }
-    */
-    poster=new QLabel(parent);
-    QImage image(":/test.jpg");
-    poster->setPixmap(QPixmap::fromImage(image));
-    poster->resize(image.width(),image.height());
-
-    moreimage=new QPushButton("more images",parent);
-    moreintro=nullptr; //this is movie
-
-
-    //input data
-    inputdata();
-
-    //intial score if has
-    if(isScore){
-        score=Config::instance().getScoreWidget(window);
-         //score need obj info and init
-    }
-    else score=nullptr;
-
-
-    //size and position
-    pushlayout();
 
 }
 
 void Details::inputdata(){
     //input
 
-    //test
-    int simplenum=4;
-    /*
-    for(int i=0;i<simplenum;i++){
+    Output* out=new stdOutput;
+
+    int simplenum=obj->getSimpleSize();
+    int simple_true_num=simplenum;
+    if(isScore==true)  //has Score
+        simple_true_num--;
+    for(int i=0;i<simple_true_num;i++){
         simple t;
-        t.data=new QLabel(tr("num"),window);
+        const BaseData* bd=obj->func_not_clicked(i);
+        std::string _text=bd->showType()+": "+bd->showData(out);
+
+        qDebug() <<QString::fromStdString(_text);
+
+        t.data=new QLabel(window);
+        t.data->setText(QString::fromStdString(_text));
         spvec.push_back(t);
-    }*/
+    }
+    /*  // test
     simple t;
     t.data=new QLabel(tr("MovieName: Jurassic World: Fallen Kingdom"),window);
     spvec.push_back(t);
@@ -61,24 +39,37 @@ void Details::inputdata(){
     spvec.push_back(t);
     t.data=new QLabel(tr("OfficialWeb: www.xxxxx.com"),window);
     spvec.push_back(t);
+    */
 
 
 
-    /*
-    int complexnum=4;
+    int complexnum=obj->getComplexSize();
     for(int i=0;i<complexnum;i++){
         complex t;
-        t.type=new QLabel(tr("type"),window);
-        for(int j=0;j<6;j++){
+        const BaseData* bd=obj->func_clicked(i);
+        std::string temptype=bd->showType()+ ":";
+
+        qDebug() << QString::fromStdString(temptype);
+
+        t.type=new QLabel(QString::fromStdString(temptype),window);
+        for(int j=0;j<6&&j<bd->num();j++){
             Label* single=new Label(window);
-            single->setText(tr("single"));
+            std::string tempdata=bd->showSingle(j);
+
+            qDebug() << QString::fromStdString(tempdata);
+
+            single->setText(QString::fromStdString(tempdata));
             t.data.push_back(single);
         }
-        t.more=new QPushButton(tr("more"),window);
+        if(bd->num()>6){
+            t.more=new QPushButton(tr("more"),window);
+            //connect!!!
+        }
+        else t.more=nullptr;
         cpvec.push_back(t);
     }
 
-    */
+    /*
     complex tc;
     Label* single;
     tc.type=new QLabel(tr("LeadingActor:"),window);
@@ -113,6 +104,7 @@ void Details::inputdata(){
     tc.more=new QPushButton(tr("more"),window);
     cpvec.push_back(tc);
     tc.data.clear();
+    */
 }
 
 void Details::pushlayout(){
@@ -160,7 +152,8 @@ void Details::show(){
             cpvec[i].data[j]->show();
 
         //judge
-        cpvec[i].more->show();
+        if(cpvec[i].more!=nullptr)
+            cpvec[i].more->show();
     }
 
     poster->show();
@@ -179,7 +172,8 @@ void Details::hide(){
             cpvec[i].data[j]->hide();
 
         //judge
-        cpvec[i].more->hide();
+        if(cpvec[i].more!=nullptr)
+            cpvec[i].more->hide();
     }
 
     poster->hide();

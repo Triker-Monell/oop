@@ -9,6 +9,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include "qt_action.h"
+#include <QLabel>
 class MainWindow;
 class LevelSearch : public Level
 {
@@ -18,6 +19,8 @@ private:
     QPushButton* personname;
     QLineEdit* searchline;
     QPushButton* confirmbtn;
+    QLabel* tips; //error tips
+
     QHBoxLayout* hlayout;
     QVBoxLayout* vlayout;
     void pushlayout(); //set layout and size

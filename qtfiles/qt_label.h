@@ -16,8 +16,8 @@ signals:
     void triggered(QString text);//when clicked
 protected:
     void mousePressEvent(QMouseEvent* ev); //click
-    //void mouseReleaseEvent(QMouseEvent* ev);
-    void mouseMoveEvent(QMouseEvent* ev);
+    void mouseReleaseEvent(QMouseEvent* ev);
+    //void mouseMoveEvent(QMouseEvent* ev);
 };
 
 #endif // LABEL_H

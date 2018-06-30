@@ -79,7 +79,7 @@ void LevelRank::show(){
     typecombobox->show();
     typelabel->show();
     list->show();
-    //imagelabel->show(); //!!!
+    imagelabel->show(); //!!!
 }
 
 void LevelRank::hide(){
@@ -88,7 +88,7 @@ void LevelRank::hide(){
     typecombobox->hide();
     typelabel->hide();
     list->hide();
-    //imagelabel->hide();
+    imagelabel->hide();
 }
 
 LevelRank::~LevelRank(){

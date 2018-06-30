@@ -1,5 +1,6 @@
 #include "qt_mainwindow.h"
 #include <QIcon>
+class Details;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -121,6 +122,7 @@ void MainWindow::addLevel(Level *level){
     for(unsigned int i=0;i<stack.size()-1;i++){
         stack[i]->hide();
     }
+
 }
 
 void MainWindow::on_action(Action *checkedone){

@@ -1,15 +1,11 @@
-#include "qt_movie.h"
-#include <QDebug>
-#include <QDir>
+#include "qt_tv.h"
 #include "qt_config.h"
-#include "ObjRanking/MovieObject.h"
-#include <string>
-Movie::Movie(QString _name, QWidget *_central, QWidget *parent):Details(_central,parent,true)
+Tv::Tv(QString _name,QWidget* _central,QWidget* parent):Details(_central,parent,true)
 {
     //object initial
     BaseStrategy* _strategy=Config::instance().getStrategy(parent);
     std::string str_name=_name.toStdString();
-    obj=new MovieObject(str_name,_strategy);
+    obj=new TVObject(str_name,_strategy);
 
 
 
@@ -29,6 +25,7 @@ Movie::Movie(QString _name, QWidget *_central, QWidget *parent):Details(_central
     poster->setPixmap(temppix);
     poster->resize(image.width(),image.height());
 
+
     moreimage=new QPushButton("more images",parent);
     moreintro=nullptr; //this is movie
 
@@ -37,17 +34,14 @@ Movie::Movie(QString _name, QWidget *_central, QWidget *parent):Details(_central
     inputdata();
 
     //intial score if has
-    if(isScore){
-        score=Config::instance().getScoreWidget(window);
-         //score need obj info and init
-    }
-    else score=nullptr;
+    score=Config::instance().getScoreWidget(window);
+    //score need obj info and init
 
 
     //size and position(base class)
     pushlayout();
 }
 
-Movie::~Movie(){
+Tv::~Tv(){
 
 }

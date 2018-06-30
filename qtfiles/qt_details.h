@@ -12,9 +12,9 @@
 #include <QImage>
 #include <QGridLayout>
 #include "qt_dbswidget.h"
+#include "ObjRanking/allObj.h"
 struct simple{  //simple data    cannot click
     QLabel* data;
-    //score;
 };
 
 struct complex{ //complex data   can click
@@ -25,13 +25,9 @@ struct complex{ //complex data   can click
 class Details : public Level
 {
     Q_OBJECT
-private:
-    bool isScore; //have Score Module?
-
-    void inputdata(); //put data into widgets
-    void pushlayout();
 protected:
     //object
+    BaseObject* obj;
 
     ScoreWidget* score; //if isScore!=true then score=nullptr
 
@@ -45,6 +41,9 @@ protected:
 
     QGridLayout* glayout;
 
+    bool isScore; //have Score Module?
+    void inputdata(); //put data into widgets
+    void pushlayout();
 public:
     Details(QWidget* _central,QWidget* parent,bool _isScore);  //have Score Module?
     void show()final;
