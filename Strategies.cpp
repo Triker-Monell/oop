@@ -504,7 +504,7 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
         while(temp!="Taglines:"&&i!=5){
             related_movies+=temp;
             related_movies+=" ";
-            
+
             readfile>>temp;
             if(temp=="/")++i;
     }
@@ -827,6 +827,7 @@ void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
         main_movies+=temp;
         main_movies+=" ";
     }
+    readfile.close();
     fclose(fopen("IMDB_by_people.txt","w"));
 
     Input* in=new stdInput;
