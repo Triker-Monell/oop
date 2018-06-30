@@ -7,7 +7,7 @@
 #include "BaseCatcher.h"
 class RottenTomatoes_by_TV:public BaseCatcher{
 public:
-    RottenTomatoes_by_TV();
+    RottenTomatoes_by_TV(){}
     void SetParameter();
 
     void  SetBaseData();

@@ -1,4 +1,4 @@
-#include "Format/RTSio.h"
+#include "RTSio.h"
 #include <sstream>
 
 void RTSinput::input(std::vector<std::string> &vec, std::string data) {

@@ -5,6 +5,6 @@ void Constellation::setData(std::string data, Input *in) {
 }
 
 
-std::String Constellation::showData(Output *out) const {
+std::string Constellation::showData(Output *out) const {
     return out->output(datas);
 }

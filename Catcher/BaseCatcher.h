@@ -4,7 +4,7 @@
 #include <iostream>
 #include <math.h>
 #include <fstream>
-#include <C:\Python27\include\Python.h>
+#include "python2.7/Python.h"
 class BaseObject;
 class BaseCatcher{
     BaseObject* base_object;

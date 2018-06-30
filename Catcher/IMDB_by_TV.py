@@ -20,7 +20,7 @@ def get_movie_url(url):
     return url
 def get_all_photos(url):
     t = 1  # 记录张数
-    os.chdir(os.path.join(os.getcwd(), 'allphotos'))
+    os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/allphotos'))
     for i in range(1, 10, 1):
         url_min = str(url)[:-17]
         photos_url = url_min + '/mediaindex?page=' + str(i) + '&ref_=tt_pv_mi_sm'
@@ -40,7 +40,7 @@ def get_all_photos(url):
                 urllib.urlretrieve(img_src, pic_name)
                 t += 1
 
-    os.chdir(r'D:\PyCharm 2017.3.4\untitled')
+    os.chdir(r'/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/')
 def get_movie_all(html):     #通过soup提取到每个电影的全部信息，以list返回
     soup = BeautifulSoup(html,"html.parser")
     movie_1 = soup.find_all('h1',itemprop="name" ,class_="")
@@ -96,7 +96,7 @@ def get_movie_one(movie):
         actor_str = soup_actor.find_all('span',itemprop="name")
         soup_actor = BeautifulSoup(str(actor_str[0]),"html.parser")
         for line in soup_actor.stripped_strings:
-            result_str = result_str + line + " / "
+            result_str = result_str + line + "  "
 
     releasedate=soup_all.find_all('a',title="See more release dates")
     soup_releasedate=BeautifulSoup(str(releasedate[0]),"html.parser")
@@ -120,7 +120,7 @@ def get_movie_one(movie):
             result_str=result_str+line+" "
     result.append(result_str)
 
-    os.chdir(os.path.join(os.getcwd(), 'photos'))
+    os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/photos'))
     t = 1  # 记录张数
     src = soup_all.find_all('div', class_="article", id="titleImageStrip")
     for myimg in src:
@@ -133,7 +133,7 @@ def get_movie_one(movie):
             urllib.urlretrieve(img_src, pic_name)
             t += 1
 
-    os.chdir(r'D:\PyCharm 2017.3.4\untitled')
+    os.chdir(r'/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/')
 
     return result  #返回获取到的结果
 def save_file(text, filename):  #保存网页到文件
@@ -148,13 +148,13 @@ def read_file(filename):  #读取文件
 def work():
         text="TV: "
         try:
-            f = open('IMDB_by_TV.txt', 'r')
+            f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_TV.txt', 'r')
 
             name = f.read()
         finally:
             if f:
                 f.close()
-                w = open('IMDB_by_TV.txt', 'w')
+                w = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_TV.txt', 'w')
                 w.truncate()
                 w.close()
         preurl = 'https://www.imdb.com/find?q=' + name
@@ -166,7 +166,7 @@ def work():
             for it in result:
                 text=text+ str(it)
             text = text +'\n'+'\t'
-            save_file(text, 'IMDB_by_TV.txt')
+            save_file(text, '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_TV.txt')
         #get_all_photos(url)
 
 if __name__=='__main__':

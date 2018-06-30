@@ -1,4 +1,8 @@
 #include "IMDB_by_movies.h"
+IMDB_by_movies::IMDB_by_movies(){
+
+}
+
 void IMDB_by_movies::SetParameter() {
 
 }
@@ -7,7 +11,7 @@ void IMDB_by_movies::SetBaseData() {
 }
 std::ifstream IMDB_by_movies::SaveinBaseObject() {
     std::ifstream readfile;
-    readfile.open("IMDB_by_movies.txt",std::ios::in);
+    readfile.open("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_movies.txt",std::ios::in);
     return readfile;
 }
 void IMDB_by_movies::MakeCatcher() {
@@ -16,7 +20,7 @@ void IMDB_by_movies::MakeCatcher() {
     Py_Initialize();
 
     PyRun_SimpleString("import sys");
-    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/')");
+    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/Catcher')");
     //????????
 
     pModule = PyImport_ImportModule("IMDB_by_movies");

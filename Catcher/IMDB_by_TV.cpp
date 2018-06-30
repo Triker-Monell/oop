@@ -13,7 +13,7 @@ void IMDB_by_TV::MakeCatcher() {
     Py_Initialize();
 
     PyRun_SimpleString("import sys");
-    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/')");
+    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/Catcher/')");
     //????????
 
     pModule = PyImport_ImportModule("IMDB_by_TV");
@@ -23,87 +23,8 @@ void IMDB_by_TV::MakeCatcher() {
 }
 std::ifstream IMDB_by_TV::SaveinBaseObject() {
     std::ifstream readfile;
-    readfile.open("IMDB_by_TV.txt",std::ios::in);
-    std::string name,rating,actors,info,sites,country,language,year,othername,related_movies,
-            producers,date,temp;
-    readfile>>temp;
-    do{
-        readfile>>temp;
-        name+=temp;
-    }while(temp!="rating:");
-
-    readfile>>rating;
-    readfile>>temp;
-    do{
-        readfile>>temp;
-        actors+=temp;
-    }while(temp!="releasedate:");
-    do{
-        readfile>>temp;
-        year+=temp;
-
-    }while(temp!="related:");
-    readfile>>temp;
-
-    do{
-        readfile>>temp;
-        related_movies+=temp;
-    }while(temp!="The:");
-    readfile>>temp;
-    readfile>>temp;
-    do{
-        readfile>>temp;
-
-    }while(temp!="Official");
-
-    readfile>>temp;
-    do{
-        readfile>>temp;
-        sites+=temp;
-    }while(temp!="See");
-    do{
-        readfile>>temp;
-    }while(temp!="Country:");
-
-    do{
-        readfile>>temp;
-        country+=temp;
-    }while(temp!="Language:");
-    readfile>>language;
-    readfile>>temp;
-    readfile>>temp;
-    do{
-        readfile>>temp;
-        date+=temp;
-    }while(temp!="See");
-    readfile>>temp;
-    do{
-        readfile>>temp;
-
-    }while(temp!="As:");
-
-    do{
-        readfile>>temp;
-        othername+=temp;
-    }while(temp!="See");
-    do{
-        readfile>>temp;
-    }while(temp!="Co:");
-    do{
-        readfile>>temp;
-        producers+=temp;
-    }while(temp!="See");
-    do{
-        readfile>>temp;
-    }while(temp!="Runtime:");
-    do{
-        readfile>>temp;
-        info+=temp;
-    }while(!EOF);
-
-
-    readfile.close();
-    fclose(fopen("IMDB_by_TV.txt","w"));
+    readfile.open("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_TV.txt",std::ios::in);
+    return readfile;
 }
 void IMDB_by_TV::SetBaseData() {
 

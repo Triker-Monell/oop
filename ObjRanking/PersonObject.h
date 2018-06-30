@@ -5,13 +5,15 @@
 #include <vector>
 
 #include "BaseObject.h"
-#include "BaseData.h"
 #include "Strategies.h"
 
 class PersonObject : public BaseObject{
 public:
-    PersonObject(std::string _name, BaseStrategy* _strategy,std::string _type = "Person"):BaseObject(_name,_strategy,_type),hasScore(false){};
-    ~PersonObject(){};
+    PersonObject(std::string _name, BaseStrategy* _strategy,std::string _type = "Person")
+        :BaseObject(_name,_strategy,_type){
+        hasScore=false;
+    }
+    ~PersonObject(){}
 };
 
 #endif

@@ -7,7 +7,7 @@
 #include "BaseCatcher.h"
 class IMDB_by_TV:public BaseCatcher{
 public:
-    IMDB_by_TV();
+    IMDB_by_TV(){}
     void SetParameter();
 
     void  SetBaseData();

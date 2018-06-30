@@ -4,7 +4,7 @@
 //different ways to set imdb,douban & tomato
 #include<string>
 #include <vector>
-#include "BaseData.h"
+#include "../BaseData/BaseData.h"
 #include <iostream>
 #include <fstream>
 class BaseCatcher;
@@ -35,12 +35,12 @@ class Imdb_TV_Strategy: public BaseStrategy{
  public:
     void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData);
 };
-
+/*
 class Douban_TV_Strategy:public BaseStrategy{
  public:
     void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData);
 };
-
+*/
 class Tomato_TV_Strategy:public BaseStrategy{
  public:
     void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData);
@@ -49,12 +49,12 @@ class Imdb_people_Strategy: public BaseStrategy{
  public:
     void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData);
 };
-
+/*
 class Douban_people_Strategy:public BaseStrategy{
  public:
     void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData);
 };
-
+*/
 class Tomato_people_Strategy:public BaseStrategy{
 public:
     void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData);

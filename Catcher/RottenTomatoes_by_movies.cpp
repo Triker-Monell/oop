@@ -8,7 +8,7 @@ void RottenTomatoes_by_movies::MakeCatcher() {
     Py_Initialize();
 
     PyRun_SimpleString("import sys");
-    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/')");
+    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/Catcher')");
     //????????
 
     pModule = PyImport_ImportModule("RottenTomatoes_by_movies");
@@ -18,8 +18,7 @@ void RottenTomatoes_by_movies::MakeCatcher() {
 }
 std::ifstream RottenTomatoes_by_movies::SaveinBaseObject() {
     std::ifstream readfile;
-    readfile.open("RottenTomatoes_by_movies.txt",std::ios::in);
-    std::ofstream("RottenTomatoes_by_movies.txt",std::ios::trunc);
+    readfile.open("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_movies.txt",std::ios::in);
     return readfile;
 }
 void RottenTomatoes_by_movies::SetBaseData() {

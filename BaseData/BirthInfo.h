@@ -8,7 +8,7 @@
 //数据只在datas[0]
 class BirthInfo:public BaseData{
 public:
-    BirthInfo():BaseData("出生信息"){};
+    BirthInfo():BaseData("出生信息"){}
     void setData(std::string data,Input* in);
     std::string showData(Output* out)const;
 };

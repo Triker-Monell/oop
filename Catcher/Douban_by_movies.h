@@ -3,7 +3,7 @@
 #include "BaseCatcher.h"
 class Douban_by_movies:public BaseCatcher{
 public:
-    Douban_by_movies();
+    Douban_by_movies(){}
     void SetParameter();
 
     void  SetBaseData();

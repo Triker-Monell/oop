@@ -5,7 +5,7 @@
 #include<vector>
 
 BaseObject::BaseObject(std::string _name,BaseStrategy* _strategy,std::string _type):name(_name),type(_type){
-    _strategy->exec(complexData,simpleData);
+    _strategy->exec(_name,complexData,simpleData);
     delete _strategy;
 }
 
@@ -19,7 +19,7 @@ BaseObject::~BaseObject(){
     }
     complexData.clear();
     simpleData.clear();
-};
+}
 
 std::string BaseObject::getName(){
   return name;

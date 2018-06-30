@@ -7,7 +7,7 @@
 #include "BaseCatcher.h"
 class IMDB_by_people:public BaseCatcher{
 public:
-    IMDB_by_people();
+    IMDB_by_people(){}
 
 
     void SetParameter();

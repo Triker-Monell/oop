@@ -1,4 +1,4 @@
-#include "Format/IMDBSio.h"
+#include "IMDBSio.h"
 
 void IMDBSinput::input(std::vector<std::string> &vec, std::string data) {
     //标准输入格式

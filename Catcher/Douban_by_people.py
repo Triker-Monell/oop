@@ -96,7 +96,7 @@ def work():
         movie_list = get_movie_all(html)
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie)
-            text = '' + '人物名： ' + str(result[0])  + str(result[1]) +'\n'+str(result[2])+ '\n' + '\t'
+            text = '' + '人物名：' + str(result[0])  + str(result[1]) +'\n'+str(result[2])+ '\n' + '\t'
             save_file(text, 'Douban_by_people.txt')
 
 

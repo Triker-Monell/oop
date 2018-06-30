@@ -7,7 +7,7 @@
 #include "BaseCatcher.h"
 class Douban_by_TV:public BaseCatcher{
 public:
-    Douban_by_TV();
+    Douban_by_TV(){}
     void SetParameter();
 
     void  SetBaseData();

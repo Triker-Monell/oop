@@ -20,7 +20,7 @@ def get_movie_url(url):
 
 def get_all_photos(url):
     t = 1  # 记录张数
-    os.chdir(os.path.join(os.getcwd(), 'allphotos'))
+    os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/allphotos'))
     for i in range(0, 300, 30):
 
         photos_url = url+'/photos?type=S&start='+str(i)+'&sortby=like&size=a&subtype=a'
@@ -40,7 +40,7 @@ def get_all_photos(url):
                 urllib.urlretrieve(img_src, pic_name)
                 t += 1
 
-    os.chdir(r'/home/monell/code/testRT')
+    os.chdir(r'/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug')
 
 def get_movie_all(html):     #通过soup提取到每个电影的全部信息，以list返回
     soup = BeautifulSoup(html, "html.parser")
@@ -84,7 +84,7 @@ def get_movie_one(movie):
         for line in soup_starlevel.stripped_strings:
             result_str = result_str+line+ " "
 
-    os.chdir(os.path.join(os.getcwd(), 'photos'))
+    os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/photos'))
     t=1 #记录张数
     src=soup_all.find_all('ul' ,class_="related-pic-bd")
     for myimg in src:
@@ -99,7 +99,7 @@ def get_movie_one(movie):
 
 
 
-    os.chdir(r'/home/monell/code/testRT')
+    os.chdir(r'/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug')
     result.append(result_str)
 
     return result  #返回获取到的结果
@@ -114,14 +114,14 @@ def read_file(filename):  #读取文件
     return text
 def work():
     try:
-        f = open('Douban_by_movies.txt', 'r')
+        f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/Douban_by_movies.txt', 'r')
 
         name=f.read()
     finally:
         if f:
 
             f.close()
-            w = open('Douban_by_movies.txt', 'w')
+            w = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/Douban_by_movies.txt', 'w')
             w.truncate()
             w.close()
         preurl = 'https://www.douban.com/search?cat=1002&q='+str(name)
@@ -131,7 +131,7 @@ def work():
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie)
             text = '' + '电影名： ' + str(result[0])  + str(result[1]) + '\n' + '\t'
-            save_file(text, 'Douban_by_movies.txt')
+            save_file(text, '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/Douban_by_movies.txt')
         #get_all_photos(url)
 
 if __name__=='__main__':

@@ -13,7 +13,7 @@
  * (不推荐使用,而采用专门的接口)
  */
 
-const int MaxStar=5;
+const static int MaxStar=5;
 
 class DBSinput:public Input{
 public:

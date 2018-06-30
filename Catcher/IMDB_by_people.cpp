@@ -13,7 +13,7 @@ void IMDB_by_people::MakeCatcher() {
     Py_Initialize();
 
     PyRun_SimpleString("import sys");
-    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/')");
+    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/Catcher/')");
     //????????
 
     pModule = PyImport_ImportModule("IMDB_by_people");
@@ -23,7 +23,7 @@ void IMDB_by_people::MakeCatcher() {
 }
 std::ifstream IMDB_by_people::SaveinBaseObject() {
     std::ifstream readfile;
-    readfile.open("IMDB_by_people.txt",std::ios::in);
+    readfile.open("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_people.txt",std::ios::in);
     return readfile;
 
 }

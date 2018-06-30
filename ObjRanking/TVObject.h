@@ -5,13 +5,15 @@
 #include <vector>
 
 #include "BaseObject.h"
-#include "BaseData.h"
 #include "Strategies.h"
 
 class TVObject : public BaseObject{
 public:
-    TVObject(std::string _data, BaseStrategy* _strategy,std::string _type = "TV"):BaseObject(_name,_strategy,_type),hasScore(false){};
-    ~TVObject(){};
+    TVObject(std::string _name,BaseStrategy* _strategy,std::string _type = "TV")
+        :BaseObject(_name,_strategy,_type){
+        hasScore=true;
+    }
+    ~TVObject(){}
 };
 
 #endif

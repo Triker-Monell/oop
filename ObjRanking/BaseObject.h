@@ -3,10 +3,9 @@
 
 #include <string>
 #include <vector>
-#include "BaseData.h"
+#include "BaseData/allBaseData.h"
 #include "Strategies.h"
-#include "BaseCatcher.h"
-#include "Date.h"
+#include "Catcher/allCatcher.h"
 
 class BaseObject{
 protected:
