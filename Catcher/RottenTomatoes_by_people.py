@@ -24,7 +24,7 @@ def get_movie_one(movie):
     soup_name = BeautifulSoup(str(name[0]),"html.parser")
     for line in soup_name.stripped_strings:  # 对获取到的<a>里的内容进行提取
         result.append(line)
-    result_str=" | info:"
+    result_str=" | info: "
 
 
     info=soup_all.find_all('div', class_="celeb_bio_row")
@@ -32,7 +32,7 @@ def get_movie_one(movie):
         soup_info=BeautifulSoup(str(it_info),"html.parser")
         for line in soup_info.stripped_strings:
             result_str=result_str+line+" "
-    result_str=result_str+" movies:"
+    result_str=result_str+" movies: "
     movies=soup_all.find_all('tbody')
     for it_movies in movies:
         soup_movies = BeautifulSoup(str(it_movies),"html.parser")
@@ -70,7 +70,7 @@ def work():
         movie_list = get_movie_all(html)
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie)
-            text = '' + 'name：' + str(result[0])  + str(result[1]) + '\n' + '\t'
+            text = '' + 'name: ' + str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, 'RottenTomatoes_by_people.txt')
 
 
