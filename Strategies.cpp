@@ -22,46 +22,52 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     std::string name,rating,actors,info,sites,country,language,related_movies,
             directors,runtime,date,boxing,temp;
     readfile>>temp;
-    do{
-        readfile>>temp;
+    readfile>>temp;
+    while(temp!="rating:"){
         name+=temp;
-    }while(temp!="rating:");
+        readfile>>temp;
+    }
 
     readfile>>rating;
     readfile>>temp;
-    do{
-        readfile>>temp;
+    readfile>>temp;
+    while(temp!="actor:"){
         directors+=temp;
-
-    }while(temp!="actor:");
-
-    do{
         readfile>>temp;
+    }
+    readfile>>temp;
+    while(temp!="releasedate:"){
         actors+=temp;
-    }while(temp!="releasedate:");
-    do{
+        actors+=" ";
         readfile>>temp;
+    }
+    readfile>>temp;
+    while(temp!="relatedmovies:"){
         date+=temp;
-
-    }while(temp!="related:");
+        date+=" ";
+        readfile>>temp;
+    }
     readfile>>temp;
 
-    do{
-        readfile>>temp;
+    while(temp!="Taglines:"){
         related_movies+=temp;
-    }while(temp!="Tagline:");
+        related_movies+=" ";
+        readfile>>temp;
+    }
 
-    do{
+    while(temp!="Sites:"){
         readfile>>temp;
-    }while(temp!="Sites:");
-    do{
-        readfile>>temp;
+    }
+    readfile>>temp;
+    while(temp!="See"){
         sites+=temp;
-    }while(temp!="See");
-    do{
+        sites+=" ";
         readfile>>temp;
+    }
 
-    }while(temp!="Country:");
+    while(temp!="Country:"){
+        readfile>>temp;
+    }
     readfile>>country;
     readfile>>temp;
     readfile>>language;
@@ -69,12 +75,14 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
         readfile>>temp;
 
     }while(temp!="Budget:");
-    boxing+=temp;
-    do{
-        readfile>>temp;
-        boxing+=temp;
 
-    }while(temp!="See");
+    boxing+=temp;
+    while(temp!="See"){
+        boxing+=temp;
+        boxing+=" ";
+        readfile>>temp;
+
+    };
     do{
         readfile>>temp;
     }while(temp!="Runtime:");
