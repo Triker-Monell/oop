@@ -467,162 +467,163 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 
     delete bas;
 }
-/*
+
 void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("IMDB_by_TV.txt",_name);
 
     bas=new IMDB_by_TV();
-bas->MakeCatcher();
-std::ifstream readfile=bas->SaveinBaseObject();
-std::string name,rating,actors,info,sites,country,language,year,othername,related_movies,
+    bas->MakeCatcher();
+    std::ifstream readfile=bas->SaveinBaseObject();
+    std::string name,rating,actors,info,sites,country,language,year,othername,related_movies,
         producers,date,temp,runtime;
-readfile>>temp;
-readfile>>temp;
-while(temp!="rating:"){
-name+=temp;
-name+=" ";
-readfile>>temp;
-}
+    readfile>>temp;
+    readfile>>temp;
+    while(temp!="rating:"){
+        name+=temp;
+        name+=" ";
+        readfile>>temp;
+    }
 
-readfile>>rating;
-readfile>>temp;
-readfile>>temp;
-while(temp!="releasedate:"){
-actors+=temp;
-actors+=" ";
-readfile>>temp;
-}
-readfile>>temp;
-while(temp!="relatedTVs:"){
-year+=temp;
-readfile>>temp;
+    readfile>>rating;
+    readfile>>temp;
+    readfile>>temp;
+    while(temp!="releasedate:"){
+        actors+=temp;
+        actors+=" ";
+        readfile>>temp;
+    }
+    readfile>>temp;
+    while(temp!="relatedTVs:"){
+        year+=temp;
+        readfile>>temp;
 
-}
-readfile>>temp;
+    }
+    readfile>>temp;
 
-int i=0;
-while(temp!="Taglines:"&&i!=5){
-related_movies+=temp;
-related_movies+=" ";
-readfile>>temp;
-if(temp=="/")++i;
-}
-readfile>>temp;
-readfile>>temp;
-do{
-readfile>>temp;
+    int i=0;
+        while(temp!="Taglines:"&&i!=5){
+            related_movies+=temp;
+            related_movies+=" ";
+            
+            readfile>>temp;
+            if(temp=="/")++i;
+    }
+    readfile>>temp;
+    readfile>>temp;
+    do{
+    readfile>>temp;
 
-}while(temp!="Official");
+    }while(temp!="Official");
 
-readfile>>temp;
-readfile>>temp;
-
-
-while(temp!="See"){
-sites+=temp;
-sites+=" ";
-readfile>>temp;
-}
-do{
-readfile>>temp;
-}while(temp!="Country:");
-
-readfile>>temp;
-while(temp!="Language:"){
-country+=temp;
-country+=" ";
-readfile>>temp;
-
-}
-readfile>>language;
-readfile>>temp;
-readfile>>temp;
-readfile>>temp;
-while(temp!="See"){
-date+=temp;
-date+=" ";
-readfile>>temp;
-
-}
-readfile>>temp;
-do{
-readfile>>temp;
-
-}while(temp!="As:");
-
-readfile>>temp;
-while(temp!="See"){
-othername+=temp;
-othername+=" ";
-readfile>>temp;
-
-}
-do{
-readfile>>temp;
-}while(temp!="Co:");
-while(temp!="See"){
-producers+=temp;
-producers+=" ";
-readfile>>temp;
-}
-do{
-readfile>>temp;
-}while(temp!="Runtime:");
-readfile>>runtime;
-runtime+=" min";
-readfile>>temp;
-while(readfile>>temp){
-
-info+=temp;
-info+=" ";
-}
-
-readfile.close();
-fclose(fopen("IMDB_by_TV.txt","w"));
-delete bas;
-Input* in=new stdInput;
-Input* ins=new IMDBSinput;
-
-BaseData* _TVname=new TVplayName();
-BaseData* _rating=new IMDBScore();
-BaseData* _actor=new LeadingActor();
-BaseData* _info=new Intro();
-BaseData* _sites=new OfficialSites();
-BaseData* _country=new FilmMakingArea();
-BaseData* _language=new Language();
-BaseData* _year=new ReleaseDate();
-BaseData* _related_movies=new SimilarMovie();
-BaseData* _producers=new Director();
-BaseData* _date=new ReleaseDate();
-BaseData* _runtime=new Runtime();
+    readfile>>temp;
+    readfile>>temp;
 
 
-_TVname->setData(name,in);
-_TVname->setData(othername,in);
-_rating->setData(rating,ins);
-_actor->setData(actors,in);
-_info->setData(info,in);
-_sites->setData(sites,in);
-_country->setData(country,in);
-_language->setData(language,in);
-_year->setData(year,in);
-_related_movies->setData(related_movies,in);
-_producers->setData(producers,in);
-_date->setData(date,in);
-_runtime->setData(runtime,in);
+    while(temp!="See"){
+        sites+=temp;
+        sites+=" ";
+        readfile>>temp;
+    }
+    do{
+        readfile>>temp;
+    }while(temp!="Country:");
 
-complexData.push_back(_actor);
-complexData.push_back(_producers);
-complexData.push_back(_related_movies);
-simpleData.push_back(_TVname);
-simpleData.push_back(_info);
-simpleData.push_back(_sites);
-simpleData.push_back(_country);
-simpleData.push_back(_language);
-simpleData.push_back(_year);
-simpleData.push_back(_date);
-simpleData.push_back(_rating);
-simpleData.push_back(_runtime);
+    readfile>>temp;
+    while(temp!="Language:"){
+        country+=temp;
+        country+=" ";
+        readfile>>temp;
+
+    }
+    readfile>>language;
+    readfile>>temp;
+    readfile>>temp;
+    readfile>>temp;
+    while(temp!="See"){
+        date+=temp;
+        date+=" ";
+        readfile>>temp;
+
+    }
+    readfile>>temp;
+    do{
+        readfile>>temp;
+
+    }while(temp!="As:");
+
+    readfile>>temp;
+    while(temp!="See"){
+        othername+=temp;
+        othername+=" ";
+        readfile>>temp;
+
+    }
+    do{
+        readfile>>temp;
+    }while(temp!="Co:");
+    while(temp!="See"){
+        producers+=temp;
+        producers+=" ";
+        readfile>>temp;
+    }
+    do{
+    readfile>>temp;
+    }while(temp!="Runtime:");
+    readfile>>runtime;
+    runtime+=" min";
+    readfile>>temp;
+    while(readfile>>temp){
+
+        info+=temp;
+        info+=" ";
+    }
+
+    readfile.close();
+    fclose(fopen("IMDB_by_TV.txt","w"));
+    delete bas;
+    Input* in=new stdInput;
+    Input* ins=new IMDBSinput;
+
+    BaseData* _TVname=new TVplayName();
+    BaseData* _rating=new IMDBScore();
+    BaseData* _actor=new LeadingActor();
+    BaseData* _info=new Intro();
+    BaseData* _sites=new OfficialSites();
+    BaseData* _country=new FilmMakingArea();
+    BaseData* _language=new Language();
+    BaseData* _year=new ReleaseDate();
+    BaseData* _related_movies=new SimilarMovie();
+    BaseData* _producers=new Director();
+    BaseData* _date=new ReleaseDate();
+    BaseData* _runtime=new Runtime();
+
+
+    _TVname->setData(name,in);
+    _TVname->setData(othername,in);
+    _rating->setData(rating,ins);
+    _actor->setData(actors,in);
+    _info->setData(info,in);
+    _sites->setData(sites,in);
+    _country->setData(country,in);
+    _language->setData(language,in);
+    _year->setData(year,in);
+    _related_movies->setData(related_movies,in);
+    _producers->setData(producers,in);
+    _date->setData(date,in);
+    _runtime->setData(runtime,in);
+
+    complexData.push_back(_actor);
+    complexData.push_back(_producers);
+    complexData.push_back(_related_movies);
+    simpleData.push_back(_TVname);
+    simpleData.push_back(_info);
+    simpleData.push_back(_sites);
+    simpleData.push_back(_country);
+    simpleData.push_back(_language);
+    simpleData.push_back(_year);
+    simpleData.push_back(_date);
+    simpleData.push_back(_rating);
+    simpleData.push_back(_runtime);
 }
 
 void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
@@ -715,7 +716,9 @@ void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 
 void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("RottenTomatoes_by_TV.txt",_name);
-
+    bas =new RottenTomatoes_by_TV();
+    bas->MakeCatcher();
+    std::ifstream readfile=bas->SaveinBaseObject();
     std::string name,rating,actors, genre,network, date,temp;
     readfile>>temp;
     while(temp!="|"){
@@ -772,32 +775,32 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
     BaseData*_actors=new Intro();
     BaseData*_genre=new Type();
     BaseData*_network=new Studio();
-    BaseData*_producers=new Director();
+
     BaseData*_date=new ReleaseDate();
-    BaseData*_info=new Intro();
+
 
     _TVname->setData(name,in);
     _rating->setData(rating,in);
     _actors->setData(actors,in);
     _genre->setData(genre,in);
     _network->setData(network,in);
-    _producers->setData(producers,in);
+
     _date->setData(date,in);
-    _info->setData(info,in);
+
 
     complexData.push_back(_actors);
-    complexData.push_back(_producers);
+
     simpleData.push_back(_TVname);
     simpleData.push_back(_network);
     simpleData.push_back(_date);
-    simpleData.push_back(_info);
+
     simpleData.push_back(_genre);
     simpleData.push_back(_rating);
 
 
 }
  
-*/
+
 void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("IMDB_by_people.txt",_name);
 
