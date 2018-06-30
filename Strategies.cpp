@@ -136,6 +136,7 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
 }
 
 void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
+
     initialTXT("Douban_by_movies.txt",_name);
 
     bas=new Douban_by_movies();
@@ -178,16 +179,14 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     readfile>>temp;readfile>>temp;readfile>>temp; //*3
 
     readfile>>actor;
+    actor += '/';
     readfile>>temp;
-    delim = (temp == "/");
     while(temp != "类型:"){
-        if(! (delim && (temp == "/"))){
-            actor += temp;
+        if(temp!="/"){
+            actor = actor+temp+'/';
         }
         readfile>>temp;
-        delim = (temp == "/");
     } // 类型: 跳出
-
 
     readfile>>grene;
     readfile>>temp;
@@ -310,6 +309,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     BaseData* _runtime=new Runtime();
 
     _moviename->setData(name+othername,in);
+
     _rating->setData(rating,ins);
     _director->setData(director,in);
     _writter->setData(writter,in);
@@ -330,6 +330,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     simpleData.push_back(_date);
     simpleData.push_back(_runtime);
     simpleData.push_back(_rating);
+
 
 
 }
