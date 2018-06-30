@@ -140,8 +140,147 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     bas=new Douban_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
-    std::string name,rating,director,writter,actor,grene,
+    std::string name,rating,director,writter,actor,grene,   //grene 类型  //area国家地区
             area,language,temp,date,runtime,othername;
+
+    //new version : begin from here!
+    bool delim = false;  //上个字符是 ‘/’   因为只能录入连续的一个‘/’
+
+    readfile>>temp;   //"电影名"
+    readfile>>name;   //名称
+    readfile>>temp;readfile>>temp;readfile>>temp;readfile>>temp;readfile>>temp;readfile>>temp; //temp*6
+
+    readfile>>director;
+    readfile>>temp;
+    delim = (temp == "/");
+    while(temp != "编剧"){
+        if(! (delim && (temp == "/")){
+            director += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // 编剧 跳出
+
+    readfile>>temp;readfile>>temp;readfile>>temp;  //*3
+
+    readfile>>writter;
+    readfile>>temp;
+    delim = (temp == "/");
+    while(temp != "主演"){
+        if(! (delim && (temp == "/")){
+            writter += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // 主演 跳出
+
+    readfile>>temp;readfile>>temp;readfile>>temp; //*3
+
+    readfile>>actor;
+    readfile>>temp;
+    delim = (temp == "/");
+    while(temp != "类型:"){
+        if(! (delim && (temp == "/")){
+            writter += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // 类型: 跳出
+
+    readfile>>temp;
+    readfile>>grene;
+    readfile>>temp;
+    delim = (temp == "/");
+    while(temp != "制片国家/地区:"){
+        if(! (delim && (temp == "/")){
+            writter += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // 制片国家/地区: 跳出
+
+    readfile>>temp;
+    readfile>>area;
+    readfile>>temp;
+    delim = (temp == "/");
+    while(temp != "语言:"){
+        if(! (delim && (temp == "/")){
+            writter += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // 语言: 跳出
+
+    readfile>>temp;
+    readfile>>language;
+    readfile>>temp;
+    delim = (temp == "/");
+    while(temp != "上映日期:"){
+        if(! (delim && (temp == "/")){
+            writter += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // 上映日期: 跳出
+
+    readfile>>temp;
+    readfile>>date;   //上映日期
+    readfile>>temp;
+    delim = (temp == "/");
+    while(temp != "片长:"){
+        if(! (delim && (temp == "/")){
+            writter += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // 片长: 跳出
+
+    readfile>>temp;
+    readfile>>runtime;
+    readfile>>temp;
+    delim = (temp == "/");
+    while(temp != "又名:"){
+        if(! (delim && (temp == "/")){
+            writter += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // 又名: 跳出
+
+    readfile>>othername;
+    readfile>>temp;
+    runtime += temp;   //又名前面加了个 ‘/’
+    delim = (temp == "/");
+    while(temp != "IMDb链接:"){
+        if(! (delim && (temp == "/")){
+            writter += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // IMDb链接: 跳出
+
+    do{
+        readfile>>temp;
+    }while(temp != "评分:")   //py得改一下。
+    readfile>>rating;
+
+    readfile>>temp;readfile>>temp;readfile>>temp;
+    readfile>>temp;
+    rating = rating+' '+temp;  //5star
+
+    readfile>>temp;readfile>>temp;
+    rating = rating+' '+temp;
+
+    readfile>>temp;readfile>>temp;
+    rating = rating+' '+temp;
+
+    readfile>>temp;readfile>>temp;
+    rating = rating+' '+temp;
+
+    readfile>>temp;readfile>>temp;
+    rating = rating+' '+temp;    //1star
+
+    /*
     readfile>>temp;
     readfile>>name;
     readfile>>temp;
@@ -172,6 +311,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
         readfile>>temp;
         othername+=temp;
     }while(temp!="IMDB链接：");
+    */
     readfile.close();
     fclose(fopen("Douban_by_movies.txt","w"));
     delete bas;
