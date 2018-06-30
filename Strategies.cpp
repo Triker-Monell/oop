@@ -3,6 +3,7 @@
 #include "allObj.h"
 #include "Catcher/allCatcher.h"
 BaseStrategy::BaseStrategy() {
+    
 
 }
 
@@ -409,7 +410,7 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     }
 
     readfile.close();
-    
+
     fclose(fopen("RottenTomatoes_by_movies.txt","w"));
     delete bas;
     Input* in=new stdInput;
@@ -774,8 +775,13 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 
 
 }
+<<<<<<< HEAD
  
 *//*
+=======
+
+*/
+>>>>>>> 68d491049a8c18590e7a8f9a9dd8ebcb53b45052
 void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("IMDB_by_people.txt",_name);
 
@@ -905,6 +911,7 @@ void Douban_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 
 
 }
+*/
 
 void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("RottenTomatoes_by_people.txt", _name);
@@ -912,47 +919,61 @@ void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     bas = new RottenTomatoes_by_people();
     bas->MakeCatcher();
     std::ifstream readfile = bas->SaveinBaseObject();
-    std::string name, born_info, jobs, main_info, temp, main_movies;
+    std::string name, birthday,birthplace, jobs, main_info, temp;
     readfile >> temp;
-    readfile >> name;
-    do {
-        readfile >> temp;
+    readfile>>temp;
+    while(temp!="|"){
+        name+=temp;
+        name+=" ";
+        readfile>>temp;
+    }
+    readfile>>temp;
+    readfile>>temp;
+    while (temp != "Birthday:"){
+
         main_info += temp;
-    } while (temp != "Birthday:");
-
-    readfile >> temp;
-    do {
+        main_info+=" ";
         readfile >> temp;
-        born_info += temp;
-    } while (temp != "movies:");
+    }
+    readfile>>temp;
 
-    do {
+    while (temp != "Birthplace:"){
+        birthday += temp;
+        birthday +=" ";
         readfile >> temp;
-        main_movies += temp;
 
-    } while (!EOF);
+    }
+    readfile>>temp;
+    while(temp!="movies:"){
+        birthplace+=temp;
+        birthplace+=" ";
+        readfile>>temp;
+    }
+
     readfile.close();
     fclose(fopen("RottenTomatoes_by_people.txt", "w"));
 
     Input *in = new stdInput;
 
     BaseData *_peoplename = new PersonName();
-    BaseData *_born_info = new BirthPlace();
+    BaseData *_birthday = new BirthDate();
+    BaseData* _birthplace=new BirthPlace();
     BaseData *_jobs = new Job();
     BaseData *_main_info = new Intro();
-    BaseData *_main_movies = new MovieName();
+    
 
     _peoplename->setData(name, in);
-    _born_info->setData(born_info, in);
+    _birthday->setData(birthday, in);
+    _birthplace->setData(birthplace,in);
     _jobs->setData(jobs, in);
     _main_info->setData(main_info, in);
-    _main_movies->setData(main_movies, in);
-
-    complexData.push_back(_main_movies);
+     
+ 
     simpleData.push_back(_peoplename);
-    simpleData.push_back(_born_info);
+    simpleData.push_back(_birthday);
+    simpleData.push_back(_birthplace);
     simpleData.push_back(_jobs);
     simpleData.push_back(_main_info);
 
     delete bas;
-}*/
+}
