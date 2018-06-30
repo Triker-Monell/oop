@@ -40,7 +40,7 @@ def get_all_photos(url):
                 urllib.urlretrieve(img_src, pic_name)
                 t += 1
 
-    os.chdir(r'D:\PyCharm 2017.3.4\untitled')
+    os.chdir(r'/home/monell/code/testRT')
 
 def get_movie_all(html):     #通过soup提取到每个电影的全部信息，以list返回
     soup = BeautifulSoup(html, "html.parser")
@@ -68,13 +68,13 @@ def get_movie_one(movie):
     for it in info:
         soup_info = BeautifulSoup(str(it), "html.parser")
         for line in soup_info.stripped_strings:
-            result_str = result_str + line+" "
+            result_str = result_str +' / ' +line
 
 
     rating=soup_all.find_all('strong', class_="ll rating_num", property="v:average")
     soup_rating = BeautifulSoup(str(rating[0]),"html.parser")
     for line in soup_rating.stripped_strings:
-        result_str=result_str+"评分: "+line+" "
+        result_str=result_str+"评分: "+line+" / "
 
 
     result_str=result_str+"星级： "
@@ -99,7 +99,7 @@ def get_movie_one(movie):
 
 
 
-    os.chdir(r'D:\PyCharm 2017.3.4\untitled')
+    os.chdir(r'/home/monell/code/testRT')
     result.append(result_str)
 
     return result  #返回获取到的结果
@@ -132,7 +132,7 @@ def work():
             result = get_movie_one(movie)
             text = '' + '电影名：' + str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, 'Douban_by_movies.txt')
-        get_all_photos(url)
+        #get_all_photos(url)
 
 if __name__=='__main__':
    work()
