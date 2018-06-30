@@ -48,11 +48,12 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
         readfile>>temp;
     }
     readfile>>temp;
-
-    while(temp!="Taglines:"){
+    int i=0;
+    while(temp!="Taglines:"&&i!=5){
         related_movies+=temp;
         related_movies+=" ";
         readfile>>temp;
+        if(temp=="/")++i;
     }
 
     while(temp!="Sites:"){
@@ -473,10 +474,12 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
     }
     readfile>>temp;
 
-    while(temp!="Taglines:"){
+    int i=0;
+    while(temp!="Taglines:"&&i!=5){
         related_movies+=temp;
         related_movies+=" ";
         readfile>>temp;
+        if(temp=="/")++i;
     }
     readfile>>temp;
     readfile>>temp;
