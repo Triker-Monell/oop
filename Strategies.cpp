@@ -1,7 +1,7 @@
 #include "Strategies.h"
-#include "allBaseData.h"
+#include "BaseData/allBaseData.h"
 #include "allObj.h"
-#include "allCatcher.h"
+#include "Catcher/allCatcher.h"
 BaseStrategy::BaseStrategy() {
 
 }
@@ -182,82 +182,61 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     delim = (temp == "/");
     while(temp != "类型:"){
         if(! (delim && (temp == "/"))){
-            writter += temp;
+            actor += temp;
         }
         readfile>>temp;
         delim = (temp == "/");
     } // 类型: 跳出
 
-    readfile>>temp;
+
     readfile>>grene;
     readfile>>temp;
-    delim = (temp == "/");
+
     while(temp != "制片国家/地区:"){
-        if(! (delim && (temp == "/"))){
-            writter += temp;
-        }
+        grene+= temp;
         readfile>>temp;
-        delim = (temp == "/");
     } // 制片国家/地区: 跳出
 
-    readfile>>temp;
+
     readfile>>area;
     readfile>>temp;
-    delim = (temp == "/");
     while(temp != "语言:"){
-        if(! (delim && (temp == "/"))){
-            writter += temp;
-        }
+        area += temp;
         readfile>>temp;
-        delim = (temp == "/");
     } // 语言: 跳出
 
-    readfile>>temp;
+
     readfile>>language;
     readfile>>temp;
-    delim = (temp == "/");
     while(temp != "上映日期:"){
-        if(! (delim && (temp == "/"))){
-            writter += temp;
-        }
+        language += temp;
         readfile>>temp;
-        delim = (temp == "/");
     } // 上映日期: 跳出
 
-    readfile>>temp;
+
     readfile>>date;   //上映日期
     readfile>>temp;
     delim = (temp == "/");
     while(temp != "片长:"){
         if(! (delim && (temp == "/"))){
-            writter += temp;
+            date += temp;
         }
         readfile>>temp;
         delim = (temp == "/");
     } // 片长: 跳出
 
-    readfile>>temp;
     readfile>>runtime;
     readfile>>temp;
-    delim = (temp == "/");
     while(temp != "又名:"){
-        if(! (delim && (temp == "/"))){
-            writter += temp;
-        }
+        runtime += temp;
         readfile>>temp;
-        delim = (temp == "/");
     } // 又名: 跳出
 
     readfile>>othername;
     readfile>>temp;
-    runtime += temp;   //又名前面加了个 ‘/’
-    delim = (temp == "/");
     while(temp != "IMDb链接:"){
-        if(! (delim && (temp == "/"))){
-            writter += temp;
-        }
+        othername += temp;
         readfile>>temp;
-        delim = (temp == "/");
     } // IMDb链接: 跳出
 
     do{
@@ -330,8 +309,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     BaseData* _date=new ReleaseDate();
     BaseData* _runtime=new Runtime();
 
-    _moviename->setData(name,in);
-    _moviename->setData(othername,in);
+    _moviename->setData(name+othername,in);
     _rating->setData(rating,ins);
     _director->setData(director,in);
     _writter->setData(writter,in);
@@ -355,7 +333,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 
 
 }
-
+/*
 void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("RottenTomatoes_by_movies.txt",_name);
 
@@ -946,4 +924,4 @@ void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     simpleData.push_back(_main_info);
 
     delete bas;
-}
+}*/
