@@ -42,6 +42,7 @@
 #include "Studio.h"
 #include "OfficialSites.h"
 #include "Job.h"
+#include "BirthInfo.h"
 
 
 
