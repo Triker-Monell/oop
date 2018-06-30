@@ -133,223 +133,223 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     simpleData.push_back(_boxing);
     simpleData.push_back(_rating);
 
-        delete bas;
+    delete bas;
 }
 
 void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("Douban_by_movies.txt",_name);
 
-     bas=new Douban_by_movies();
-     bas->MakeCatcher();
-     std::ifstream readfile=bas->SaveinBaseObject();
-     std::string name,rating,director,writter,actor,grene,   //grene 类型  //area国家地区
-             area,language,temp,date,runtime,othername;
+    bas=new Douban_by_movies();
+    bas->MakeCatcher();
+    std::ifstream readfile=bas->SaveinBaseObject();
+    std::string name,rating,director,writter,actor,grene,   //grene 类型  //area国家地区
+            area,language,temp,date,runtime,othername;
 
-     //new version : begin from here!
-     bool delim = false;  //上个字符是 ‘/’   因为只能录入连续的一个‘/’
+    //new version : begin from here!
+    bool delim = false;  //上个字符是 ‘/’   因为只能录入连续的一个‘/’
 
-     readfile>>temp;   //"电影名"
-     readfile>>name;   //名称
-     readfile>>temp;readfile>>temp;readfile>>temp;readfile>>temp;readfile>>temp;readfile>>temp; //temp*6
+    readfile>>temp;   //"电影名"
+    readfile>>name;   //名称
+    readfile>>temp;readfile>>temp;readfile>>temp;readfile>>temp;readfile>>temp;readfile>>temp; //temp*6
 
-     readfile>>director;
-     readfile>>temp;
-     delim = (temp == "/");
-     while(temp != "编剧"){
-       if(! (delim && (temp == "/"))){
-         director += temp;
-       }
-       readfile>>temp;
-       delim = (temp == "/");
-     } // 编剧 跳出
+    readfile>>director;
+    readfile>>temp;
+    delim = (temp == "/");
+    while(temp != "编剧"){
+        if(! (delim && (temp == "/"))){
+            director += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // 编剧 跳出
 
-     readfile>>temp;readfile>>temp;readfile>>temp;  //*3
+    readfile>>temp;readfile>>temp;readfile>>temp;  //*3
 
-     readfile>>writter;
-     readfile>>temp;
-     delim = (temp == "/");
-     while(temp != "主演"){
-       if(! (delim && (temp == "/"))){
-         writter += temp;
-       }
-       readfile>>temp;
-       delim = (temp == "/");
-     } // 主演 跳出
+    readfile>>writter;
+    readfile>>temp;
+    delim = (temp == "/");
+    while(temp != "主演"){
+        if(! (delim && (temp == "/"))){
+            writter += temp;
+        }
+        readfile>>temp;
+        delim = (temp == "/");
+    } // 主演 跳出
 
-     readfile>>temp;readfile>>temp;readfile>>temp; //*3
+    readfile>>temp;readfile>>temp;readfile>>temp; //*3
 
-     readfile>>actor;
-     actor += '/';
-     readfile>>temp;
-     while(temp != "类型:"){
-       if(temp!="/"){
-         actor = actor+temp+'/';
-       }
-       readfile>>temp;
-     } // 类型: 跳出
+    readfile>>actor;
+    actor += '/';
+    readfile>>temp;
+    while(temp != "类型:"){
+        if(temp!="/"){
+            actor = actor+temp+'/';
+        }
+        readfile>>temp;
+    } // 类型: 跳出
 
-     readfile>>grene;
-     grene += '/';
-     readfile>>temp;
+    readfile>>grene;
+    grene += '/';
+    readfile>>temp;
 
-     while(temp != "制片国家/地区:" && temp != "官方网站:"){
-       if(temp!="/"){
-         grene = grene + temp +'/';
-       }
-       readfile>>temp;
-     } // 制片国家/地区:  或者  官方网站:  跳出
+    while(temp != "制片国家/地区:" && temp != "官方网站:"){
+        if(temp!="/"){
+            grene = grene + temp +'/';
+        }
+        readfile>>temp;
+    } // 制片国家/地区:  或者  官方网站:  跳出
 
-     if( temp == "官方网站:"){
-       readfile>>temp; readfile>>temp;
-       readfile>>temp;
-     }
+    if( temp == "官方网站:"){
+        readfile>>temp; readfile>>temp;
+        readfile>>temp;
+    }
 
-     readfile>>area;
-     area += '/';
-     readfile>>temp;
-     while(temp != "语言:"){
-       if(temp!="/"){
-         area = area + temp +'/';
-       }
-       readfile>>temp;
-     } // 语言: 跳出
-
-
-     readfile>>language;
-     language += '/';
-     readfile>>temp;
-     while(temp != "上映日期:"){
-       if(temp!="/"){
-         language = language + temp + '/';
-       }
-       readfile>>temp;
-     } // 上映日期: 跳出
+    readfile>>area;
+    area += '/';
+    readfile>>temp;
+    while(temp != "语言:"){
+        if(temp!="/"){
+            area = area + temp +'/';
+        }
+        readfile>>temp;
+    } // 语言: 跳出
 
 
-     readfile>>date;   //上映日期
-     date += '/';
-     readfile>>temp;
-     while(temp != "片长:"){
-       if(temp!="/"){
-         date = date + temp +'/';
-       }
-       readfile>>temp;
-     } // 片长: 跳出
+    readfile>>language;
+    language += '/';
+    readfile>>temp;
+    while(temp != "上映日期:"){
+        if(temp!="/"){
+            language = language + temp + '/';
+        }
+        readfile>>temp;
+    } // 上映日期: 跳出
 
-     readfile>>runtime;
-     runtime += '/';
-     readfile>>temp;
-     while(temp != "又名:"){
-       if(temp!="/"){
-         runtime += runtime + temp +'/';
-       }
-       readfile>>temp;
-     } // 又名: 跳出
 
-     readfile>>othername;
-     othername += '/';
-     readfile>>temp;
-     while(temp != "IMDb链接:"){
-       if(temp != "/"){
-         othername = othername + temp + '/';
-       }
-       readfile>>temp;
-     } // IMDb链接: 跳出
+    readfile>>date;   //上映日期
+    date += '/';
+    readfile>>temp;
+    while(temp != "片长:"){
+        if(temp!="/"){
+            date = date + temp +'/';
+        }
+        readfile>>temp;
+    } // 片长: 跳出
 
-     do{
-       readfile>>temp;
-     }while(temp != "评分:");
-     readfile>>rating;
+    readfile>>runtime;
+    runtime += '/';
+    readfile>>temp;
+    while(temp != "又名:"){
+        if(temp!="/"){
+            runtime += runtime + temp +'/';
+        }
+        readfile>>temp;
+    } // 又名: 跳出
 
-     readfile>>temp;readfile>>temp;readfile>>temp;
-     readfile>>temp;
-     rating = rating+' '+temp;  //5star
+    readfile>>othername;
+    othername += '/';
+    readfile>>temp;
+    while(temp != "IMDb链接:"){
+        if(temp != "/"){
+            othername = othername + temp + '/';
+        }
+        readfile>>temp;
+    } // IMDb链接: 跳出
 
-     readfile>>temp;readfile>>temp;
-     rating = rating+' '+temp;
+    do{
+        readfile>>temp;
+    }while(temp != "评分:");
+    readfile>>rating;
 
-     readfile>>temp;readfile>>temp;
-     rating = rating+' '+temp;
+    readfile>>temp;readfile>>temp;readfile>>temp;
+    readfile>>temp;
+    rating = rating+' '+temp;  //5star
 
-     readfile>>temp;readfile>>temp;
-     rating = rating+' '+temp;
+    readfile>>temp;readfile>>temp;
+    rating = rating+' '+temp;
 
-     readfile>>temp;readfile>>temp;
-     rating = rating+' '+temp;    //1star
+    readfile>>temp;readfile>>temp;
+    rating = rating+' '+temp;
 
-     /*
-     readfile>>temp;
-     readfile>>name;
-     readfile>>temp;
-     readfile>>temp;
-     readfile>>director;
-     readfile>>temp;
-     readfile>>temp;
-     readfile>>writter;
-     readfile>>temp;
-     readfile>>temp;
-     do{
-         readfile>>temp;
-         actor+=temp;
-     }while(temp!="类型：");
-     do{
-         readfile>>temp;
-         grene+=temp;
-     }while(temp!="制片国家/地区：");
-     readfile>>area;
-     readfile>>temp;
-     readfile>>language;
-     readfile>>temp;
-     readfile>>date;
-     readfile>>temp;
-     readfile>>runtime;
-     readfile>>temp;
-     do{
-         readfile>>temp;
-         othername+=temp;
-     }while(temp!="IMDB链接：");
-     */
-     readfile.close();
-     fclose(fopen("Douban_by_movies.txt","w"));
+    readfile>>temp;readfile>>temp;
+    rating = rating+' '+temp;
 
-     Input* in=new stdInput;
-     Input* ins=new DBSinput;
+    readfile>>temp;readfile>>temp;
+    rating = rating+' '+temp;    //1star
 
-     BaseData* _moviename=new MovieName();
-     BaseData* _rating=new DouBanScore();
-     BaseData* _director=new Director();
-     BaseData* _writter=new Writer();
-     BaseData* _actor=new LeadingActor();
-     BaseData* _grene=new Type();
-     BaseData* _area=new FilmMakingArea();
-     BaseData* _language=new Language();
-     BaseData* _date=new ReleaseDate();
-     BaseData* _runtime=new Runtime();
+    /*
+    readfile>>temp;
+    readfile>>name;
+    readfile>>temp;
+    readfile>>temp;
+    readfile>>director;
+    readfile>>temp;
+    readfile>>temp;
+    readfile>>writter;
+    readfile>>temp;
+    readfile>>temp;
+    do{
+        readfile>>temp;
+        actor+=temp;
+    }while(temp!="类型：");
+    do{
+        readfile>>temp;
+        grene+=temp;
+    }while(temp!="制片国家/地区：");
+    readfile>>area;
+    readfile>>temp;
+    readfile>>language;
+    readfile>>temp;
+    readfile>>date;
+    readfile>>temp;
+    readfile>>runtime;
+    readfile>>temp;
+    do{
+        readfile>>temp;
+        othername+=temp;
+    }while(temp!="IMDB链接：");
+    */
+    readfile.close();
+    fclose(fopen("Douban_by_movies.txt","w"));
 
-     _moviename->setData(name+othername,in);
+    Input* in=new stdInput;
+    Input* ins=new DBSinput;
 
-     _rating->setData(rating,ins);
-     _director->setData(director,in);
-     _writter->setData(writter,in);
-     _actor->setData(actor,in);
-     _grene->setData(grene,in);
-     _area->setData(area,in);
-     _language->setData(language,in);
-     _date->setData(date,in);
-     _runtime->setData(runtime,in);
+    BaseData* _moviename=new MovieName();
+    BaseData* _rating=new DouBanScore();
+    BaseData* _director=new Director();
+    BaseData* _writter=new Writer();
+    BaseData* _actor=new LeadingActor();
+    BaseData* _grene=new Type();
+    BaseData* _area=new FilmMakingArea();
+    BaseData* _language=new Language();
+    BaseData* _date=new ReleaseDate();
+    BaseData* _runtime=new Runtime();
 
-     complexData.push_back(_director);
-     complexData.push_back(_actor);
-     complexData.push_back(_writter);
-     simpleData.push_back(_moviename);
-     simpleData.push_back(_grene);
-     simpleData.push_back(_area);
-     simpleData.push_back(_language);
-     simpleData.push_back(_date);
-     simpleData.push_back(_runtime);
-     simpleData.push_back(_rating);
+    _moviename->setData(name+othername,in);
 
-     delete bas;
+    _rating->setData(rating,ins);
+    _director->setData(director,in);
+    _writter->setData(writter,in);
+    _actor->setData(actor,in);
+    _grene->setData(grene,in);
+    _area->setData(area,in);
+    _language->setData(language,in);
+    _date->setData(date,in);
+    _runtime->setData(runtime,in);
+
+    complexData.push_back(_director);
+    complexData.push_back(_actor);
+    complexData.push_back(_writter);
+    simpleData.push_back(_moviename);
+    simpleData.push_back(_grene);
+    simpleData.push_back(_area);
+    simpleData.push_back(_language);
+    simpleData.push_back(_date);
+    simpleData.push_back(_runtime);
+    simpleData.push_back(_rating);
+
+    delete bas;
 
 }
 
@@ -427,7 +427,7 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     }
 
     readfile.close();
-    
+
     fclose(fopen("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_movies.txt","w"));
 
     Input* in=new stdInput;
@@ -472,160 +472,159 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
     initialTXT("IMDB_by_TV.txt",_name);
 
     bas=new IMDB_by_TV();
-    bas->MakeCatcher();
-    std::ifstream readfile=bas->SaveinBaseObject();
-    std::string name,rating,actors,info,sites,country,language,year,othername,related_movies,
-            producers,date,temp,runtime;
-    readfile>>temp;
-    readfile>>temp;
-    while(temp!="rating:"){
-        name+=temp;
-        name+=" ";
-        readfile>>temp;
-    }
+bas->MakeCatcher();
+std::ifstream readfile=bas->SaveinBaseObject();
+std::string name,rating,actors,info,sites,country,language,year,othername,related_movies,
+        producers,date,temp,runtime;
+readfile>>temp;
+readfile>>temp;
+while(temp!="rating:"){
+name+=temp;
+name+=" ";
+readfile>>temp;
+}
 
-    readfile>>rating;
-    readfile>>temp;
-    readfile>>temp;
-    while(temp!="releasedate:"){
-        actors+=temp;
-        actors+=" ";
-        readfile>>temp;
-    }
-    readfile>>temp;
-    while(temp!="relatedTVs:"){
-        year+=temp;
-        readfile>>temp;
-
-    }
-    readfile>>temp;
-
-    int i=0;
-    while(temp!="Taglines:"&&i!=5){
-        related_movies+=temp;
-        related_movies+=" ";
-        readfile>>temp;
-        if(temp=="/")++i;
-    }
-    readfile>>temp;
-    readfile>>temp;
-    do{
-        readfile>>temp;
-
-    }while(temp!="Official");
-
-    readfile>>temp;
-    readfile>>temp;
-
-
-    while(temp!="See"){
-        sites+=temp;
-        sites+=" ";
-        readfile>>temp;
-    }
-    do{
-        readfile>>temp;
-    }while(temp!="Country:");
-
-    readfile>>temp;
-    while(temp!="Language:"){
-        country+=temp;
-        country+=" ";
-        readfile>>temp;
-
-    }
-    readfile>>language;
-    readfile>>temp;
-    readfile>>temp;
-    readfile>>temp;
-    while(temp!="See"){
-        date+=temp;
-        date+=" ";
-        readfile>>temp;
-
-    }
-    readfile>>temp;
-    do{
-        readfile>>temp;
-
-    }while(temp!="As:");
-
-    readfile>>temp;
-    while(temp!="See"){
-        othername+=temp;
-        othername+=" ";
-        readfile>>temp;
-
-    }
-    do{
-        readfile>>temp;
-    }while(temp!="Co:");
-    while(temp!="See"){
-        producers+=temp;
-        producers+=" ";
-        readfile>>temp;
-    }
-    do{
-        readfile>>temp;
-    }while(temp!="Runtime:");
-    readfile>>runtime;
-    runtime+=" min";
-    readfile>>temp;
-    while(readfile>>temp){
-
-        info+=temp;
-        info+=" ";
-    }
-
-    readfile.close();
-    fclose(fopen("IMDB_by_TV.txt","w"));
-    delete bas;
-    Input* in=new stdInput;
-    Input* ins=new IMDBSinput;
-
-    BaseData* _TVname=new TVplayName();
-    BaseData* _rating=new IMDBScore();
-    BaseData* _actor=new LeadingActor();
-    BaseData* _info=new Intro();
-    BaseData* _sites=new OfficialSites();
-    BaseData* _country=new FilmMakingArea();
-    BaseData* _language=new Language();
-    BaseData* _year=new ReleaseDate();
-    BaseData* _related_movies=new SimilarMovie();
-    BaseData* _producers=new Director();
-    BaseData* _date=new ReleaseDate();
-    BaseData* _runtime=new Runtime();
-
-
-    _TVname->setData(name,in);
-    _TVname->setData(othername,in);
-    _rating->setData(rating,ins);
-    _actor->setData(actors,in);
-    _info->setData(info,in);
-    _sites->setData(sites,in);
-    _country->setData(country,in);
-    _language->setData(language,in);
-    _year->setData(year,in);
-    _related_movies->setData(related_movies,in);
-    _producers->setData(producers,in);
-    _date->setData(date,in);
-    _runtime->setData(runtime,in);
-
-    complexData.push_back(_actor);
-    complexData.push_back(_producers);
-    complexData.push_back(_related_movies);
-    simpleData.push_back(_TVname);
-    simpleData.push_back(_info);
-    simpleData.push_back(_sites);
-    simpleData.push_back(_country);
-    simpleData.push_back(_language);
-    simpleData.push_back(_year);
-    simpleData.push_back(_date);
-    simpleData.push_back(_rating);
-    simpleData.push_back(_runtime);
+readfile>>rating;
+readfile>>temp;
+readfile>>temp;
+while(temp!="releasedate:"){
+actors+=temp;
+actors+=" ";
+readfile>>temp;
+}
+readfile>>temp;
+while(temp!="relatedTVs:"){
+year+=temp;
+readfile>>temp;
 
 }
-/*
+readfile>>temp;
+
+int i=0;
+while(temp!="Taglines:"&&i!=5){
+related_movies+=temp;
+related_movies+=" ";
+readfile>>temp;
+if(temp=="/")++i;
+}
+readfile>>temp;
+readfile>>temp;
+do{
+readfile>>temp;
+
+}while(temp!="Official");
+
+readfile>>temp;
+readfile>>temp;
+
+
+while(temp!="See"){
+sites+=temp;
+sites+=" ";
+readfile>>temp;
+}
+do{
+readfile>>temp;
+}while(temp!="Country:");
+
+readfile>>temp;
+while(temp!="Language:"){
+country+=temp;
+country+=" ";
+readfile>>temp;
+
+}
+readfile>>language;
+readfile>>temp;
+readfile>>temp;
+readfile>>temp;
+while(temp!="See"){
+date+=temp;
+date+=" ";
+readfile>>temp;
+
+}
+readfile>>temp;
+do{
+readfile>>temp;
+
+}while(temp!="As:");
+
+readfile>>temp;
+while(temp!="See"){
+othername+=temp;
+othername+=" ";
+readfile>>temp;
+
+}
+do{
+readfile>>temp;
+}while(temp!="Co:");
+while(temp!="See"){
+producers+=temp;
+producers+=" ";
+readfile>>temp;
+}
+do{
+readfile>>temp;
+}while(temp!="Runtime:");
+readfile>>runtime;
+runtime+=" min";
+readfile>>temp;
+while(readfile>>temp){
+
+info+=temp;
+info+=" ";
+}
+
+readfile.close();
+fclose(fopen("IMDB_by_TV.txt","w"));
+delete bas;
+Input* in=new stdInput;
+Input* ins=new IMDBSinput;
+
+BaseData* _TVname=new TVplayName();
+BaseData* _rating=new IMDBScore();
+BaseData* _actor=new LeadingActor();
+BaseData* _info=new Intro();
+BaseData* _sites=new OfficialSites();
+BaseData* _country=new FilmMakingArea();
+BaseData* _language=new Language();
+BaseData* _year=new ReleaseDate();
+BaseData* _related_movies=new SimilarMovie();
+BaseData* _producers=new Director();
+BaseData* _date=new ReleaseDate();
+BaseData* _runtime=new Runtime();
+
+
+_TVname->setData(name,in);
+_TVname->setData(othername,in);
+_rating->setData(rating,ins);
+_actor->setData(actors,in);
+_info->setData(info,in);
+_sites->setData(sites,in);
+_country->setData(country,in);
+_language->setData(language,in);
+_year->setData(year,in);
+_related_movies->setData(related_movies,in);
+_producers->setData(producers,in);
+_date->setData(date,in);
+_runtime->setData(runtime,in);
+
+complexData.push_back(_actor);
+complexData.push_back(_producers);
+complexData.push_back(_related_movies);
+simpleData.push_back(_TVname);
+simpleData.push_back(_info);
+simpleData.push_back(_sites);
+simpleData.push_back(_country);
+simpleData.push_back(_language);
+simpleData.push_back(_year);
+simpleData.push_back(_date);
+simpleData.push_back(_rating);
+simpleData.push_back(_runtime);
+}
+
 void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("Douban_by_TV.txt",_name);
 
@@ -717,45 +716,50 @@ void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("RottenTomatoes_by_TV.txt",_name);
 
-    bas=new RottenTomatoes_by_TV();
-    bas->MakeCatcher();
-    std::ifstream readfile=bas->SaveinBaseObject();
-    std::string name,rating,actors,info,genre,network,
-            producers,date,temp;
+    std::string name,rating,actors, genre,network, date,temp;
     readfile>>temp;
-    readfile>>name;
-    do{
+    while(temp!="|"){
+        name+=temp;
+        name+=" ";
         readfile>>temp;
+    }
+
+    while(temp!="Actor:"){
         rating+=temp;
-    }while(temp!="Actor:");
+        rating+=" ";
+        readfile>>temp;
+
+    }
 
     readfile>>temp;
-    do{
-        readfile>>temp;
+    while(temp!="Genre:"){
         actors+=temp;
-    }while(temp!="View");
-    readfile>>temp;
-    readfile>>temp;
-    do{
+        actors+=" ";
         readfile>>temp;
-        info+=temp;
-    }while(temp!="Genre:");
-    do{
-        readfile>>temp;
+
+    }
+    readfile>>temp;
+    while(temp!="Network:"){
         genre+=temp;
+        genre+=" ";
+        readfile>>temp;
 
-    }while(temp!="Network:");
-    readfile>>network;
+    }
     readfile>>temp;
-    do{
+    while(temp!="Premiere"){
+        network+=temp;
+        network+=" ";
         readfile>>temp;
+    }
+    readfile>>temp;
+    readfile>>temp;
+    while(temp!="Premiere"){
         date+=temp;
-    }while(temp!="Producers:");
-
-    do{
+        date+=" ";
         readfile>>temp;
-        producers+=temp;
-    }while(temp!="Premiere:");
+    }
+
+
     readfile.close();
     fclose(fopen("RottenTomatoes_by_TV.txt","w"));
     delete bas;
@@ -930,64 +934,64 @@ void Douban_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("RottenTomatoes_by_people.txt", _name);
 
-     bas = new RottenTomatoes_by_people();
-     bas->MakeCatcher();
-     std::ifstream readfile = bas->SaveinBaseObject();
-     std::string name, birthday,birthplace, jobs, main_info, temp;
-     readfile >> temp;
-     readfile>>temp;
-     while(temp!="|"){
-         name+=temp;
-         name+=" ";
-         readfile>>temp;
-     }
-     readfile>>temp;
-     readfile>>temp;
-     while (temp != "Birthday:"){
+    bas = new RottenTomatoes_by_people();
+    bas->MakeCatcher();
+    std::ifstream readfile = bas->SaveinBaseObject();
+    std::string name, birthday,birthplace, jobs, main_info, temp;
+    readfile >> temp;
+    readfile>>temp;
+    while(temp!="|"){
+        name+=temp;
+        name+=" ";
+        readfile>>temp;
+    }
+    readfile>>temp;
+    readfile>>temp;
+    while (temp != "Birthday:"){
 
-         main_info += temp;
-         main_info+=" ";
-         readfile >> temp;
-     }
-     readfile>>temp;
+        main_info += temp;
+        main_info+=" ";
+        readfile >> temp;
+    }
+    readfile>>temp;
 
-     while (temp != "Birthplace:"){
-         birthday += temp;
-         birthday +=" ";
-         readfile >> temp;
+    while (temp != "Birthplace:"){
+        birthday += temp;
+        birthday +=" ";
+        readfile >> temp;
 
-     }
-     readfile>>temp;
-     while(temp!="movies:"){
-         birthplace+=temp;
-         birthplace+=" ";
-         readfile>>temp;
-     }
+    }
+    readfile>>temp;
+    while(temp!="movies:"){
+        birthplace+=temp;
+        birthplace+=" ";
+        readfile>>temp;
+    }
 
-     readfile.close();
-     fclose(fopen("RottenTomatoes_by_people.txt", "w"));
+    readfile.close();
+    fclose(fopen("RottenTomatoes_by_people.txt", "w"));
 
-     Input *in = new stdInput;
+    Input *in = new stdInput;
 
-     BaseData *_peoplename = new PersonName();
-     BaseData *_birthday = new BirthDate();
-     BaseData* _birthplace=new BirthPlace();
-     BaseData *_jobs = new Job();
-     BaseData *_main_info = new Intro();
-
-
-     _peoplename->setData(name, in);
-     _birthday->setData(birthday, in);
-     _birthplace->setData(birthplace,in);
-     _jobs->setData(jobs, in);
-     _main_info->setData(main_info, in);
+    BaseData *_peoplename = new PersonName();
+    BaseData *_birthday = new BirthDate();
+    BaseData* _birthplace=new BirthPlace();
+    BaseData *_jobs = new Job();
+    BaseData *_main_info = new Intro();
 
 
-     simpleData.push_back(_peoplename);
-     simpleData.push_back(_birthday);
-     simpleData.push_back(_birthplace);
-     simpleData.push_back(_jobs);
-     simpleData.push_back(_main_info);
+    _peoplename->setData(name, in);
+    _birthday->setData(birthday, in);
+    _birthplace->setData(birthplace,in);
+    _jobs->setData(jobs, in);
+    _main_info->setData(main_info, in);
 
-     delete bas;
+
+    simpleData.push_back(_peoplename);
+    simpleData.push_back(_birthday);
+    simpleData.push_back(_birthplace);
+    simpleData.push_back(_jobs);
+    simpleData.push_back(_main_info);
+
+    delete bas;
 }
