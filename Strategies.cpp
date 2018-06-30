@@ -937,7 +937,7 @@ void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     bas = new RottenTomatoes_by_people();
     bas->MakeCatcher();
     std::ifstream readfile = bas->SaveinBaseObject();
-    std::string name, birthday,birthplace, jobs, main_info, temp;
+    std::string name, birthday,birthplace, main_info, temp;
     readfile >> temp;
     readfile>>temp;
     while(temp!="|"){
@@ -976,21 +976,21 @@ void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     BaseData *_peoplename = new PersonName();
     BaseData *_birthday = new BirthDate();
     BaseData* _birthplace=new BirthPlace();
-    BaseData *_jobs = new Job();
+
     BaseData *_main_info = new Intro();
 
 
     _peoplename->setData(name, in);
     _birthday->setData(birthday, in);
     _birthplace->setData(birthplace,in);
-    _jobs->setData(jobs, in);
+
     _main_info->setData(main_info, in);
 
 
     simpleData.push_back(_peoplename);
     simpleData.push_back(_birthday);
     simpleData.push_back(_birthplace);
-    simpleData.push_back(_jobs);
+
     simpleData.push_back(_main_info);
 
     delete bas;
