@@ -154,7 +154,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     readfile>>temp;
     delim = (temp == "/");
     while(temp != "编剧"){
-        if(! (delim && (temp == "/")){
+        if(! (delim && (temp == "/"))){
             director += temp;
         }
         readfile>>temp;
@@ -167,7 +167,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     readfile>>temp;
     delim = (temp == "/");
     while(temp != "主演"){
-        if(! (delim && (temp == "/")){
+        if(! (delim && (temp == "/"))){
             writter += temp;
         }
         readfile>>temp;
@@ -180,7 +180,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     readfile>>temp;
     delim = (temp == "/");
     while(temp != "类型:"){
-        if(! (delim && (temp == "/")){
+        if(! (delim && (temp == "/"))){
             writter += temp;
         }
         readfile>>temp;
@@ -192,7 +192,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     readfile>>temp;
     delim = (temp == "/");
     while(temp != "制片国家/地区:"){
-        if(! (delim && (temp == "/")){
+        if(! (delim && (temp == "/"))){
             writter += temp;
         }
         readfile>>temp;
@@ -204,7 +204,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     readfile>>temp;
     delim = (temp == "/");
     while(temp != "语言:"){
-        if(! (delim && (temp == "/")){
+        if(! (delim && (temp == "/"))){
             writter += temp;
         }
         readfile>>temp;
@@ -216,7 +216,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     readfile>>temp;
     delim = (temp == "/");
     while(temp != "上映日期:"){
-        if(! (delim && (temp == "/")){
+        if(! (delim && (temp == "/"))){
             writter += temp;
         }
         readfile>>temp;
@@ -228,7 +228,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     readfile>>temp;
     delim = (temp == "/");
     while(temp != "片长:"){
-        if(! (delim && (temp == "/")){
+        if(! (delim && (temp == "/"))){
             writter += temp;
         }
         readfile>>temp;
@@ -240,7 +240,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     readfile>>temp;
     delim = (temp == "/");
     while(temp != "又名:"){
-        if(! (delim && (temp == "/")){
+        if(! (delim && (temp == "/"))){
             writter += temp;
         }
         readfile>>temp;
@@ -252,7 +252,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     runtime += temp;   //又名前面加了个 ‘/’
     delim = (temp == "/");
     while(temp != "IMDb链接:"){
-        if(! (delim && (temp == "/")){
+        if(! (delim && (temp == "/"))){
             writter += temp;
         }
         readfile>>temp;
@@ -261,7 +261,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 
     do{
         readfile>>temp;
-    }while(temp != "评分:")   //py得改一下。
+    }while(temp != "评分:");   //py得改一下。
     readfile>>rating;
 
     readfile>>temp;readfile>>temp;readfile>>temp;
