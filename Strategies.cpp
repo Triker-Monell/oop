@@ -1,7 +1,7 @@
 #include "Strategies.h"
-#include "allBaseData.h"
+#include "BaseData/allBaseData.h"
 #include "allObj.h"
-#include "allCatcher.h"
+#include "Catcher/allCatcher.h"
 BaseStrategy::BaseStrategy() {
 
 }
@@ -108,7 +108,6 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     _moviename->setData(name,in);
     _rating->setData(rating,ins);
     _actors->setData(actors,in);
-    _info->setData(info,in);
     _sites->setData(sites,in);
     _country->setData(country,in);
     _language->setData(language,in);
@@ -133,7 +132,7 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     simpleData.push_back(_rating);
 
 }
-
+/*
 void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     initialTXT("Douban_by_movies.txt",_name);
 
@@ -772,4 +771,4 @@ void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     simpleData.push_back(_main_info);
 
     delete bas;
-}
+}*/
