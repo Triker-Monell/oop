@@ -70,18 +70,18 @@ def get_movie_one(movie):
     for line in soup_info.stripped_strings:  # 对获取到的<a>里的内容进行提取
         result_str=result_str+" "+line
 
-    result_str=result_str+" job:"
+    result_str=result_str+" job: "
     job= soup_all.find_all('div' ,class_="infobar", id="name-job-categories")
-    for it in job:
-        soup_job = BeautifulSoup(str(it),"html.parser")
-        for line in soup_job.stripped_strings:  # 对获取到的<span>里的内容进行提取
-            result_str = result_str + line
-    result_str = result_str + " movies:"
+    soup_job = BeautifulSoup(str(job[0]),"html.parser")
+    for line in soup_job.stripped_strings:  # 对获取到的<span>里的内容进行提取
+        result_str = result_str + line
+
+    result_str = result_str + " movies: "
     movies = soup_all.find_all('span', class_="knownfor-ellipsis")
     for it in movies:
         soup_movies = BeautifulSoup(str(it),"html.parser")
         for line in soup_movies.stripped_strings:  # 对获取到的<span>里的内容进行提取
-            result_str = result_str + line
+            result_str = result_str + line+" "
     os.chdir(os.path.join(os.getcwd(), 'photos'))
     t = 1  # 记录张数
     src = soup_all.find_all('div',class_="mediastrip")
@@ -129,7 +129,7 @@ def work():
             result = get_movie_one(movie)
             text = str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, 'IMDB_by_people.txt')
-        get_all_photos(url)
+        #get_all_photos(url)
 
 if __name__=='__main__':
    work()
