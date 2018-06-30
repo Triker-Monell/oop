@@ -48,11 +48,12 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
         readfile>>temp;
     }
     readfile>>temp;
-
-    while(temp!="Taglines:"){
+    int i=0;
+    while(temp!="Taglines:"&&i!=5){
         related_movies+=temp;
         related_movies+=" ";
         readfile>>temp;
+        if(temp=="/")++i;
     }
 
     while(temp!="Sites:"){
@@ -448,30 +449,38 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
     std::string name,rating,actors,info,sites,country,language,year,othername,related_movies,
-            producers,date,temp;
+            producers,date,temp,runtime;
     readfile>>temp;
-    do{
-        readfile>>temp;
+    readfile>>temp;
+    while(temp!="rating:"){
         name+=temp;
-    }while(temp!="rating:");
+        name+=" ";
+        readfile>>temp;
+    }
 
     readfile>>rating;
     readfile>>temp;
-    do{
-        readfile>>temp;
+    readfile>>temp;
+    while(temp!="releasedate:"){
         actors+=temp;
-    }while(temp!="releasedate:");
-    do{
+        actors+=" ";
         readfile>>temp;
+    }
+    readfile>>temp;
+    while(temp!="relatedTVs:"){
         year+=temp;
+        readfile>>temp;
 
-    }while(temp!="related:");
+    }
     readfile>>temp;
 
-    do{
-        readfile>>temp;
+    int i=0;
+    while(temp!="Taglines:"&&i!=5){
         related_movies+=temp;
-    }while(temp!="The:");
+        related_movies+=" ";
+        readfile>>temp;
+        if(temp=="/")++i;
+    }
     readfile>>temp;
     readfile>>temp;
     do{
@@ -480,50 +489,67 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
     }while(temp!="Official");
 
     readfile>>temp;
-    do{
-        readfile>>temp;
+    readfile>>temp;
+
+
+    while(temp!="See"){
         sites+=temp;
-    }while(temp!="See");
+        sites+=" ";
+        readfile>>temp;
+    }
     do{
         readfile>>temp;
     }while(temp!="Country:");
 
-    do{
-        readfile>>temp;
+    readfile>>temp;
+    while(temp!="Language:"){
         country+=temp;
-    }while(temp!="Language:");
+        country+=" ";
+        readfile>>temp;
+
+    }
     readfile>>language;
     readfile>>temp;
     readfile>>temp;
-    do{
-        readfile>>temp;
+    readfile>>temp;
+    while(temp!="See"){
         date+=temp;
-    }while(temp!="See");
+        date+=" ";
+        readfile>>temp;
+
+    }
     readfile>>temp;
     do{
         readfile>>temp;
 
     }while(temp!="As:");
 
-    do{
-        readfile>>temp;
+    readfile>>temp;
+    while(temp!="See"){
         othername+=temp;
-    }while(temp!="See");
+        othername+=" ";
+        readfile>>temp;
+
+    }
     do{
         readfile>>temp;
     }while(temp!="Co:");
-    do{
-        readfile>>temp;
+    while(temp!="See"){
         producers+=temp;
-    }while(temp!="See");
+        producers+=" ";
+        readfile>>temp;
+    }
     do{
         readfile>>temp;
     }while(temp!="Runtime:");
-    do{
-        readfile>>temp;
-        info+=temp;
-    }while(!EOF);
+    readfile>>runtime;
+    runtime+=" min";
+    readfile>>temp;
+    while(readfile>>temp){
 
+        info+=temp;
+        info+=" ";
+    }
 
     readfile.close();
     fclose(fopen("IMDB_by_TV.txt","w"));
@@ -542,6 +568,8 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
     BaseData* _related_movies=new SimilarMovie();
     BaseData* _producers=new Director();
     BaseData* _date=new ReleaseDate();
+    BaseData* _runtime=new Runtime();
+
 
     _TVname->setData(name,in);
     _TVname->setData(othername,in);
@@ -555,6 +583,7 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
     _related_movies->setData(related_movies,in);
     _producers->setData(producers,in);
     _date->setData(date,in);
+    _runtime->setData(runtime,in);
 
     complexData.push_back(_actor);
     complexData.push_back(_producers);
@@ -567,6 +596,7 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
     simpleData.push_back(_year);
     simpleData.push_back(_date);
     simpleData.push_back(_rating);
+    simpleData.push_back(_runtime);
 
 }
 
