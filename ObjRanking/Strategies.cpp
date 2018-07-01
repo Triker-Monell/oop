@@ -96,7 +96,6 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     BaseData* _moviename=new MovieName();
     BaseData* _rating=new IMDBScore();
     BaseData*_actors=new LeadingActor();
-    BaseData*_info=new Intro();
     BaseData*_sites=new OfficialSites();
     BaseData*_country=new FilmMakingArea();
     BaseData*_language=new Language();
@@ -109,7 +108,6 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     _moviename->setData(name,in);
     _rating->setData(rating,ins);
     _actors->setData(actors,in);
-    _info->setData(info,in);
     _sites->setData(sites,in);
     _country->setData(country,in);
     _language->setData(language,in);
@@ -124,7 +122,6 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     complexData.push_back(_actors);
     complexData.push_back(_related_movies);
     simpleData.push_back(_moviename);
-    simpleData.push_back(_info);
     simpleData.push_back(_sites);
     simpleData.push_back(_country);
     simpleData.push_back(_language);
