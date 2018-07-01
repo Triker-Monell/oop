@@ -57,7 +57,7 @@ def get_movie_one(movie,name):
     t = 0
     post = soup_all.find('img', class_="posterImage")
     if (post != None):
-        pic_name = name + str(0) + '.jpg'
+        pic_name = name.rstrip() + str(0) + '.jpg'
         link = post.get('src')
 
         urllib.urlretrieve(link, pic_name)
