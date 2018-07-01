@@ -25,7 +25,8 @@ def get_movie_all(html):     #通过soup提取到每个电影的全部信息，�
     movie_3 = soup.find_all('div', class_="rating_self clearfix", typeof="v:Rating")
     movie_4 = soup.find_all('div', id="mainpic", class_="")
     movie_5 = soup.find_all('ul', class_="related-pic-bd")
-    movie_str=str(movie_1[0])+str(movie_2[0])+str(movie_3[0])+str(movie_4[0])+str(movie_5[0])
+    movie_6 = soup.find_all('div', class_="ratings-on-weight")
+    movie_str=str(movie_1[0])+str(movie_2[0])+str(movie_3[0])+str(movie_4[0])+str(movie_5[0])+
     movie=[movie_str]
     return movie
 def get_movie_one(movie,name):
@@ -43,6 +44,13 @@ def get_movie_one(movie,name):
     soup_rating =BeautifulSoup(str(rating[0]),"html.parser")
     for line in soup_rating.stripped_strings:
         result_str=result_str+line+" "
+        
+    result_str+=" 星级: "
+    star = soup_all.find_all('div', class_="ratings-on-weight")
+    soup_star=BeautifulSoup(str(star[0]),"html.parser")
+    for line in soup_star.stripped_strings:
+        result_str = result_str + line + " "
+
         
     info=soup_all.find_all('div', id='info')
     for it in info:
