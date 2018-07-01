@@ -3,6 +3,7 @@
 //math.h在某一个toplist中会用到
 //由于按助教的ppt一开始写出的该基类，但是后期作者考虑多种因素，将很多功能移除出BaseCatcher，也就是说
 //真正有用的两个函数为MakeCatcher，SaveinBaseObject
+//详细请看Catcher说明文档
 #include <iostream>
 #include <math.h>
 #include <fstream>
