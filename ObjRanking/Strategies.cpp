@@ -56,11 +56,11 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
         if(temp=="/")++i;
     }
 
-    while(temp!="Sites:"&&temp!="Country:"){
+    while(temp!="Sites:"){
         readfile>>temp;
     }
     readfile>>temp;
-    while(temp!="See"){
+    while(temp!="See"&&temp!="Country:"){
         sites+=temp;
         sites+=" ";
         readfile>>temp;
@@ -75,9 +75,10 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     do{
         readfile>>temp;
 
-    }while(temp!="Budget:");
+    }while(temp!="Worldwide");
 
-    boxing+=temp;
+    readfile>>temp;
+    readfile>>temp;
     while(temp!="See"){
         boxing+=temp;
         boxing+=" ";
