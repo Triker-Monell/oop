@@ -11,7 +11,8 @@ class BaseCatcher;
 class BaseStrategy{
 protected:
     BaseCatcher* bas;
-    void initialTXT(std::string _filename,std::string _name);
+    
+    void initialTXT(std::string _filename,std::string _name);//这个用来初始化文档，即
 public:
     BaseStrategy();
     virtual void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData)=0;
