@@ -37,7 +37,7 @@ def get_movie_one(movie,name):
         result.append(line)
 
 
-    result_str=""
+    result_str=" "
     info=soup_all.find_all('div', id='info')
     for it in info:
         soup_info=BeautifulSoup(str(it),"html.parser")
