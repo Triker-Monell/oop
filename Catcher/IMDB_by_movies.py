@@ -9,7 +9,7 @@ sys.setdefaultencoding('utf-8')
 def get_html(url):  #通过url获取网页内容
     result = urllib.urlopen(url)
     return result.read()
-    # save_file(result.read(), 'thefile.txt')
+    
 def get_movie_url(url):
     html=get_html(url)
     soup_url=BeautifulSoup(html,"html.parser")
@@ -18,6 +18,7 @@ def get_movie_url(url):
     the_url=soup_name.find('a')
     url='https://www.imdb.com'+the_url.get('href')
     return url
+#这个是获取全部照片的函数，可以选择性单独调用
 def get_all_photos(url):
     t = 1  # 记录张数
     os.chdir(os.path.join(os.getcwd(), '/tmp/infocollection/data/allphotos'))
@@ -70,7 +71,7 @@ def get_movie_one(movie,name):
     soup_all = BeautifulSoup(str(movie),"html.parser")
     title = soup_all.find_all('h1')
     soup_title = BeautifulSoup(str(title[0]),"html.parser")
-    for line in soup_title.stripped_strings:  # 对获取到的<a>里的内容进行提取
+    for line in soup_title.stripped_strings:  
         result.append(line)
 
     result_str=""
@@ -169,7 +170,7 @@ def work():
 
         html = get_html(url)
         movie_list = get_movie_all(html)
-        for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
+        for movie in movie_list:   
             result = get_movie_one(movie,name)
             for it in result:
                 text=text+ str(it)
