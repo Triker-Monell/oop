@@ -63,7 +63,7 @@ def get_movie_one(movie,name):
     post = soup_all.find_all('div', id="mainpic", class_="")
     for it in post:
         goal = it.find('img')
-        pic_name = unicode(name=name.replace(' ','_') + str(t) + '.jpg', 'utf-8')
+        pic_name = unicode(name.replace(' ','_') + str(t) + '.jpg', 'utf-8')
         img_src = goal.get('src')
         urllib.urlretrieve(img_src, pic_name)
     t = 1  # 记录张数
@@ -73,7 +73,7 @@ def get_movie_one(movie,name):
         the_img_src = myimg.find_all('img')
 
         for the_img_src_it in the_img_src:
-            pic_name = unicode(name=name.replace(' ','_') + str(t) + '.jpg', 'utf-8')
+            pic_name = unicode(name.replace(' ','_') + str(t) + '.jpg', 'utf-8')
             img_src = the_img_src_it.get('src')
             urllib.urlretrieve(img_src, pic_name)
             t += 1
