@@ -51,7 +51,8 @@ def get_movie_all(html):     #通过soup提取到每个电影的全部信息，�
     movie_6 = soup.find_all('div', class_="rec-title")
     movie_7=soup.find_all('div', class_="txt-block")
     movie_8 = soup.find_all('div', class_="article", id="titleImageStrip")
-    movie_str=str(movie_1[0])+str(movie_2[0])+str(movie_3[0])+str(movie_8[0])
+    movie_9=soup.find_all('div', class_="poster")
+    movie_str=str(movie_1[0])+str(movie_2[0])+str(movie_3[0])+str(movie_8[0])+str(movie_9[0])
     for it in movie_4:
         movie_str=movie_str+str(it)
     for it in movie_5:
@@ -63,7 +64,7 @@ def get_movie_all(html):     #通过soup提取到每个电影的全部信息，�
 
     movie=[movie_str]
     return movie
-def get_movie_one(movie):
+def get_movie_one(movie,name):
     result = []  # 用于存储提取出来的电影信息
     soup_all = BeautifulSoup(str(movie),"html.parser")
     title = soup_all.find_all('h1')
@@ -121,14 +122,25 @@ def get_movie_one(movie):
     result.append(result_str)
 
     os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/photos'))
+    t=0
+    post = soup_all.find_all('div', class_="poster")
+
+    thepost =post[0].find('img')
+
+
+    pic_name = name+str(0) + '.jpg'
+    link = thepost.get('src')
+
+    urllib.urlretrieve(link, pic_name)
     t = 1  # 记录张数
+
     src = soup_all.find_all('div', class_="article", id="titleImageStrip")
     for myimg in src:
 
         the_img_src = myimg.find_all('img')
 
         for the_img_src_it in the_img_src:
-            pic_name = str(t) + '.jpg'
+            pic_name = name+str(t) + '.jpg'
             img_src = the_img_src_it.get('loadlate')
             urllib.urlretrieve(img_src, pic_name)
             t += 1
@@ -162,7 +174,7 @@ def work():
         html = get_html(url)
         movie_list = get_movie_all(html)
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
-            result = get_movie_one(movie)
+            result = get_movie_one(movie,name)
             for it in result:
                 text=text+ str(it)
             text = text +'\n'+'\t'
