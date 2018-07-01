@@ -16,10 +16,11 @@ def get_movie_all(html):     #通过soup提取到每个电影的全部信息，�
     movie_3=soup.find_all('div', class_="castSection ")
     movie_4=soup.find_all('div', id="scoreStats" ,class_="hidden-xs")
     movie_5=soup.find_all('span', class_="tMeterScore cfp-item-score")
-    movie_str=str(movie_1[0])+str(movie_2[0])+str(movie_3[0])+str(movie_4[0])+str(movie_5[0])
+    movie_6=soup.find_all('img',class_="posterImage")
+    movie_str=str(movie_1[0])+str(movie_2[0])+str(movie_3[0])+str(movie_4[0])+str(movie_5[0])+str(movie_6[0])
     movie=[movie_str]
     return movie
-def get_movie_one(movie):
+def get_movie_one(movie,name):
     result = []  # 用于存储提取出来的电影信息
     soup_all = BeautifulSoup(str(movie),"html.parser")
     title = soup_all.find_all('title')
@@ -51,7 +52,16 @@ def get_movie_one(movie):
         for line in soup_info.stripped_strings:
             result_str=result_str+line+" "
 
+    os.chdir(os.path.join(os.getcwd(), '留给你的'))
+    t = 0
+    post = soup_all.find('img', class_="posterImage")
+    if (post != None):
+        pic_name = name.replace('_', '') + str(0) + '.jpg'
+        link = post.get('src')
 
+        urllib.urlretrieve(link, pic_name)
+
+    os.chdir(r'留给你的')
     result.append(result_str)
 
 
@@ -81,7 +91,7 @@ def work():
         html = get_html(url)
         movie_list = get_movie_all(html)
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
-            result = get_movie_one(movie)
+            result = get_movie_one(movie，)
             text = '' + 'movie: ' + str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_movies.txt')
 
