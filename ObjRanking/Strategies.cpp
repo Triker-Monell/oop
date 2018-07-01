@@ -338,10 +338,10 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
      _date->setData(date,in);
      _runtime->setData(runtime,in);
 
+     simpleData.push_back(_moviename);
      simpleData.push_back(_director);
      simpleData.push_back(_actor);
      simpleData.push_back(_writter);
-     simpleData.push_back(_moviename);
      simpleData.push_back(_grene);
      simpleData.push_back(_area);
      simpleData.push_back(_language);
