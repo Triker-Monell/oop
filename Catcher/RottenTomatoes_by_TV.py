@@ -57,7 +57,7 @@ def get_movie_one(movie,name):
     t = 0
     post = soup_all.find('img',class_="posterImage")
     if(post!=None):
-        pic_name = name.replace('_','') + str(0) + '.jpg'
+        pic_name = name + str(0) + '.jpg'
         link = post.get('src')
 
         urllib.urlretrieve(link, pic_name)
@@ -84,6 +84,7 @@ def work():
         f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt', 'r')
 
         name = f.read()
+        name=name.replace(' ','_')
     finally:
         if f:
             f.close()
