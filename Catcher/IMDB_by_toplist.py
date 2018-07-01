@@ -148,9 +148,9 @@ def work():
     for i in range(2,10):
         getin_one( 'http://www.imdb.cn/imdb250/'+str(i) , i )
     #将已有内容清空
-    with open('/home/tmp/infocollection/data/IMDB_by_toplist.txt','w') as x:
+    with open('/tmp/infocollection/data/IMDB_by_toplist.txt','w') as x:
         pass
-    with open('/home/tmp/infocollection/data/IMDB_by_toplist.txt','a') as x:
+    with open('/tmp/infocollection/data/IMDB_by_toplist.txt','a') as x:
         for i in All_txt:
             x.write(i)
     Analyze_some_infor()
