@@ -28,7 +28,7 @@ def get_movie_one(movie,name):
     soup_title = BeautifulSoup(str(title[0]),"html.parser")
     for line in soup_title.stripped_strings:  # 对获取到的<a>里的内容进行提取
         result.append(line)
-    result_str=" | Fresh:"
+    result_str=" | Fresh: "
 
     fresh=soup_all.find_all('span', class_="meter-value superPageFontColor")
     soup_fresh=BeautifulSoup(str(fresh[0]),"html.parser")
@@ -39,7 +39,7 @@ def get_movie_one(movie,name):
     soup_rating=BeautifulSoup(str(rating[0]),"html.parser")
     for line in soup_rating.stripped_strings:
         result_str=result_str+line
-    result_str=result_str+" | Actor:"
+    result_str=result_str+" | Actor: "
 
     actor=soup_all.find_all('a', class_="unstyled articleLink")
     for it_actor in actor:
@@ -57,7 +57,7 @@ def get_movie_one(movie,name):
     
     post = soup_all.find('img',class_="posterImage")
     if(post!=None):
-        pic_name = name.rstrip() + str(0) + '.jpg'
+        pic_name = name.replace(' ','_') + str(0) + '.jpg'
         link = post.get('src')
 
         urllib.urlretrieve(link, pic_name)
