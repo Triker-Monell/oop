@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding=utf-8 -*-
 import sys
-import os
 import urllib
+import os
 from bs4 import BeautifulSoup
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -33,7 +33,7 @@ def get_movie_one(movie,name):
     fresh=soup_all.find_all('span', class_="meter-value superPageFontColor")
     soup_fresh=BeautifulSoup(str(fresh[0]),"html.parser")
     for line in soup_fresh.stripped_strings:
-        result_str=result_str+line
+        result_str=result_str+line+" "
 
     rating=soup_all.find_all('div', class_="superPageFontColor")
     soup_rating=BeautifulSoup(str(rating[0]),"html.parser")
@@ -53,8 +53,8 @@ def get_movie_one(movie,name):
         for line in soup_info.stripped_strings:
             result_str=result_str+line+" "
 
-    os.chdir(os.path.join(os.getcwd(), '改路径'))
-    
+    os.chdir(os.path.join(os.getcwd(), 'photos'))
+
     post = soup_all.find('img',class_="posterImage")
     if(post!=None):
         pic_name = name.replace(' ','_') + str(0) + '.jpg'
@@ -64,12 +64,13 @@ def get_movie_one(movie,name):
 
 
 
-    os.chdir(r'改路径啊！！！')
+    os.chdir(r'D:\PyCharm 2017.3.4\untitled')
     result.append(result_str)
 
 
 
     return result  #返回获取到的结果
+
 def save_file(text, filename):  #保存网页到文件
     f= open(filename,'ab')
     f.write(bytes(text))
@@ -81,8 +82,7 @@ def read_file(filename):  #读取文件
     return text
 def work():
     try:
-        f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt', 'r')
-
+        f = open('RottenTomatoes_by_TV.txt', 'r')
         content=f.read()
         name=content[0:-1]
         name=name.rstrip().replace(' ','_')
@@ -90,7 +90,7 @@ def work():
     finally:
         if f:
             f.close()
-            w = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt', 'w')
+            w = open('RottenTomatoes_by_TV.txt', 'w')
             w.truncate()
             w.close()
         url = 'https://www.rottentomatoes.com/tv/'+name+'/s0'+str(i)
@@ -98,8 +98,8 @@ def work():
         movie_list = get_movie_all(html)
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie,name)
-            text = '' + 'TV：' + str(result[0])  + str(result[1]) + '\n' + '\t'
-            save_file(text, '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt')
+            text = '' + 'TV: ' + str(result[0])  + str(result[1]) + '\n' + '\t'
+            save_file(text, 'RottenTomatoes_by_TV.txt')
 
 
 if __name__=='__main__':
