@@ -97,7 +97,7 @@ def work():
         url = 'https://www.rottentomatoes.com/tv/'+name+'/s0'+str(i)
         html = get_html(url)
         movie_list = get_movie_all(html)
-        for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
+        for movie in movie_list:   
             result = get_movie_one(movie,name)
             text = '' + 'TV: ' + str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, '/home/tmp/infocollection/data/RottenTomatoes_by_TV.txt')
