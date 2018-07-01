@@ -180,6 +180,7 @@ def work():
             text = text +'\n'+'\t'
             save_file(text, '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_TV.txt')
         #get_all_photos(url)
+        
 
 if __name__=='__main__':
    work()
