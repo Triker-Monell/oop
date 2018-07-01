@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from bs4 import BeautifulSoup
 reload(sys)
 sys.setdefaultencoding('utf-8')
+#这个功能较为复杂，也需要用到num.py，可以实现统计电影年份分布，但是很慢
 num = 1 #电影计数
 All_txt = [] #全部电影的信息
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0'}#浏览器代理
@@ -87,10 +88,10 @@ def get_all_information(url,page):
     #Save_all_information
     All_txt.append('第'+str(num)+'部'+'\n')
     All_txt.append( Cname+'\n' )
-    All_txt.append( '【英文名】'+Ename+'\n' )
-    All_txt.append( '【评分】'+Score+'\n' )
-    All_txt.append( '【导演】'+Actor+'\n' )
-    All_txt.append( '【主演】'+Starring+'\n' )
+    All_txt.append( '英文名'+Ename+'\n' )
+    All_txt.append( '评分'+Score+'\n' )
+    All_txt.append( '导演'+Actor+'\n' )
+    All_txt.append( '主演'+Starring+'\n' )
     All_txt.append( Infor+'\n' )
     All_txt.append( title+'\n'+content_1+'\n' )
     All_txt.append('\n')
