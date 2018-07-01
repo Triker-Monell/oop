@@ -24,7 +24,7 @@ def get_movie_one(movie,peoplename):
     soup_all = BeautifulSoup(str(movie),"html.parser")
     name = soup_all.find_all('h1', class_="bottom_divider" ,style="margin-top:0")
     soup_name = BeautifulSoup(str(name[0]),"html.parser")
-    for line in soup_name.stripped_strings:  # 对获取到的<a>里的内容进行提取
+    for line in soup_name.stripped_strings:   
         result.append(line)
     result_str=" | info: "
 
@@ -80,7 +80,7 @@ def work():
         url = 'https://www.rottentomatoes.com/celebrity/'+people_name
         html = get_html(url)
         movie_list = get_movie_all(html)
-        for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
+        for movie in movie_list:   
             result = get_movie_one(movie,people_name)
             text = '' + 'name：' + str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, '/home/tmp/infocollection/data/RottenTomatoes_by_people.txt')
