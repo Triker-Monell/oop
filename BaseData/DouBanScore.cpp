@@ -6,7 +6,7 @@ void DouBanScore::setData(std::string data, Input *in) {
     points[0]=std::stod(datas[0]);
     for(int i=1;i<=MaxStar;i++){
         std::string tmp;
-        for(int k=0;k<datas[i].size()&&datas[i][k]>='0'&&datas[i][k]<='9';k++){
+        for(int k=0;k<datas[i].size()&&(datas[i][k]>='0'&&datas[i][k]<='9'||datas[i][k]=='.');k++){
             tmp+=datas[i][k];
         }
         points[i]=std::stod(tmp)/100.0;
