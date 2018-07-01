@@ -20,7 +20,7 @@ def get_movie_url(url):
     return url
 def get_all_photos(url):
     t = 1  # 记录张数
-    os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/allphotos'))
+    os.chdir(os.path.join(os.getcwd(), '/home/tmp/infocollection/data/allphotos'))
     for i in range(1, 10, 1):
         url_min = str(url)[:-17]
         photos_url = url_min + '/mediaindex?page=' + str(i) + '&ref_=tt_pv_mi_sm'
@@ -40,7 +40,7 @@ def get_all_photos(url):
                 urllib.urlretrieve(img_src, pic_name)
                 t += 1
 
-    os.chdir(r'/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/')
+    os.chdir(r'/home/tmp/infocollection/data/')
 def get_movie_all(html):     #通过soup提取到每个电影的全部信息，以list返回
     soup = BeautifulSoup(html,"html.parser")
     movie_1 = soup.find_all('h1',itemprop="name" ,class_="")
@@ -121,7 +121,7 @@ def get_movie_one(movie,name):
             result_str=result_str+line+" "
     result.append(result_str)
 
-    os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/photos'))
+    os.chdir(os.path.join(os.getcwd(), '/home/tmp/infocollection/data/photos'))
     t=0
     post = soup_all.find_all('div', class_="poster")
 
@@ -145,7 +145,7 @@ def get_movie_one(movie,name):
             urllib.urlretrieve(img_src, pic_name)
             t += 1
 
-    os.chdir(r'/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/')
+    os.chdir(r'/home/tmp/infocollection/data/')
 
     return result  #返回获取到的结果
 def save_file(text, filename):  #保存网页到文件
@@ -160,13 +160,13 @@ def read_file(filename):  #读取文件
 def work():
         text="TV: "
         try:
-            f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_TV.txt', 'r')
+            f = open('/home/tmp/infocollection/data/IMDB_by_TV.txt', 'r')
 
             name = f.read()
         finally:
             if f:
                 f.close()
-                w = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_TV.txt', 'w')
+                w = open('/home/tmp/infocollection/data/IMDB_by_TV.txt', 'w')
                 w.truncate()
                 w.close()
         preurl = 'https://www.imdb.com/find?q=' + name
@@ -178,7 +178,7 @@ def work():
             for it in result:
                 text=text+ str(it)
             text = text +'\n'+'\t'
-            save_file(text, '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_TV.txt')
+            save_file(text, '/home/tmp/infocollection/data/IMDB_by_TV.txt')
         #get_all_photos(url)
         
 

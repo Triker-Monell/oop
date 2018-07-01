@@ -53,7 +53,7 @@ def get_movie_one(movie,name):
         for line in soup_info.stripped_strings:
             result_str=result_str+line+" "
 
-    os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/photos'))
+    os.chdir(os.path.join(os.getcwd(), '/home/tmp/infocollection/data/photos'))
     t = 0
     post = soup_all.find('img', class_="posterImage")
     if (post != None):
@@ -62,7 +62,7 @@ def get_movie_one(movie,name):
 
         urllib.urlretrieve(link, pic_name)
 
-    os.chdir(r'/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/')
+    os.chdir(r'/home/tmp/infocollection/data/')
     result.append(result_str)
 
 
@@ -79,14 +79,14 @@ def read_file(filename):  #读取文件
     return text
 def work():
     try:
-        f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_movies.txt', 'r')
+        f = open('/home/tmp/infocollection/data/RottenTomatoes_by_movies.txt', 'r')
 
         name = f.read()
         name=name.replace(' ','_')
     finally:
         if f:
             f.close()
-            w = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_movies.txt', 'w')
+            w = open('/home/tmp/infocollection/data/RottenTomatoes_by_movies.txt', 'w')
             w.truncate()
             w.close()
         url = 'https://www.rottentomatoes.com/m/'+name
@@ -95,7 +95,7 @@ def work():
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie,name)
             text = '' + 'movie: ' + str(result[0])  + str(result[1]) + '\n' + '\t'
-            save_file(text, '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_movies.txt')
+            save_file(text, '/home/tmp/infocollection/data/RottenTomatoes_by_movies.txt')
 
 
 if __name__=='__main__':

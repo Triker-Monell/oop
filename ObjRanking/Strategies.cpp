@@ -2,20 +2,22 @@
 #include "BaseData/allBaseData.h"
 #include "allObj.h"
 #include "Catcher/allCatcher.h"
+#include <QDebug>
 BaseStrategy::BaseStrategy() {
 
 }
 
 void BaseStrategy::initialTXT(std::string _filename, std::string _name) {
     std::ofstream outf;
-    outf.open(_filename);
+    outf.open(_filename.c_str());
     outf<<_name<<std::endl;
     outf.close();
 }
 
 void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
 
-    initialTXT("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_movies.txt",_name);
+    std::string path=PATH+"IMDB_by_movies.txt";
+    initialTXT(path,_name);
     bas=new IMDB_by_movies();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
@@ -90,7 +92,7 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     }while(temp!="Runtime:");
     readfile>>runtime;
     readfile.close();
-    fclose(fopen("IMDB_by_movies.txt","w"));
+    fclose(fopen(path.c_str(),"w"));
 
     Input* in =new stdInput;
     Input* ins= new IMDBSinput;
@@ -135,7 +137,10 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
 }
 
 void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/Douban_by_movies.txt",_name);
+    //样例ok
+
+    std::string path=PATH+"Douban_by_movies.txt";
+    initialTXT(path,_name);
 
      bas=new Douban_by_movies();
      bas->MakeCatcher();
@@ -308,7 +313,7 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
      }while(temp!="IMDB链接：");
      */
      readfile.close();
-     fclose(fopen("Douban_by_movies.txt","w"));
+     fclose(fopen(path.c_str(),"w"));
      delete bas;
      Input* in=new stdInput;
      Input* ins=new DBSinput;
@@ -352,7 +357,9 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 }
 
 void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_movies.txt",_name);
+    std::string path=PATH+"RottenTomatoes_by_movies.txt";
+
+    initialTXT(path,_name);
 
     bas=new RottenTomatoes_by_movies();
     bas->MakeCatcher();
@@ -378,7 +385,6 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     readfile>>temp;
     rating+=" ";
     rating+=temp;
-    readfile>>temp;
     readfile>>temp;
     readfile>>temp;
     while(temp!="View"){
@@ -432,8 +438,8 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     }
 
     readfile.close();
-    
-    fclose(fopen("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_movies.txt","w"));
+
+    fclose(fopen(path.c_str(),"w"));
 
     Input* in=new stdInput;
     Input* ins=new RTSinput;
@@ -471,12 +477,13 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 
 
     delete bas;
+
 }
 
 void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     //样例ok！！！
-
-    initialTXT("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_TV.txt",_name);
+    std::string path=PATH+"IMDB_by_TV.txt";
+    initialTXT(path,_name);
 
     bas=new IMDB_by_TV();
     bas->MakeCatcher();
@@ -585,7 +592,7 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
     }
 
     readfile.close();
-    fclose(fopen("IMDB_by_TV.txt","w"));
+    fclose(fopen(path.c_str(),"w"));
     delete bas;
     Input* in=new stdInput;
     Input* ins=new IMDBSinput;
@@ -633,52 +640,126 @@ void Imdb_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexDat
     simpleData.push_back(_rating);//!!score
 
 }
-/*
+
 void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    initialTXT("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/Douban_by_TV.txt",_name);
+    //样例ok
+    std::string path=PATH+"Douban_by_TV.txt";
+    initialTXT(path,_name);
 
     bas=new Douban_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
     std::string name,rating,director,actor,writter,grene,
-            area,language,temp,date,runtime;
-    int episode=0,season=1;
+            area,language,temp,date,runtime,episode;
+    int season=-1;
+
+    readfile>>temp;    //电视名：
+    readfile>>name;    //名字
+    readfile>>temp;    //二十一季
+
+    while(temp!="评分:"){
+        readfile>>temp;   //rubbish
+    }
+
+    readfile>>rating;    //6 nums 空格隔开
     readfile>>temp;
-    readfile>>name;
+    while(temp!="5星"){
+        readfile>>temp;   //rubbish
+    }
+
+    readfile>>temp;   //5
+    rating = rating + ' ' + temp;
+
+    readfile>>temp;  readfile>>temp;
+    rating = rating + ' ' + temp;   //4
+
+    readfile>>temp;  readfile>>temp;
+    rating = rating + ' ' + temp;  //3
+
+    readfile>>temp;  readfile>>temp;
+    rating = rating + ' ' + temp; //2
+
+    readfile>>temp;  readfile>>temp;
+    rating = rating + ' ' + temp; //1
+
     readfile>>temp;
+    while(temp!="导演"){
+        readfile>>temp;
+    }
     readfile>>temp;
+
     readfile>>director;
     readfile>>temp;
+    while(temp!="编剧"){
+        director += temp;
+        readfile>>temp;
+    }
     readfile>>temp;
+
     readfile>>writter;
     readfile>>temp;
+    while(temp!="主演"){
+        writter += temp;
+        readfile>>temp;
+    }
     readfile>>temp;
-    do{
+
+    readfile>>actor;
+    readfile>>temp;
+    while(temp!="类型:"){
+        actor += temp;
         readfile>>temp;
-        actor+=temp;
-    }while(temp!="类型：");
-    do{
+    }
+
+    readfile>>grene;
+    readfile>>temp;
+    while(temp!="制片国家/地区:"){
+        grene += temp;
         readfile>>temp;
-        grene+=temp;
-    }while(temp!="制片国家/地区：");
+    }
+
     readfile>>area;
     readfile>>temp;
+    while(temp!="语言:"){
+        area += temp;
+        readfile>>temp;
+    }
+
     readfile>>language;
     readfile>>temp;
+    while(temp!="首播:"){
+        language += temp;
+        readfile>>temp;
+    }
+
     readfile>>date;
     readfile>>temp;
-    readfile>>runtime;
-    readfile>>temp;
+    while(temp!="季数:"){
+        date += temp;
+        readfile>>temp;
+    }
+
     do{
         readfile>>temp;
         season++;
     }while(temp!="集数:");
-    season--;
+
     readfile>>episode;
     readfile>>temp;
+    while(temp != "单集片长:"){
+        episode += temp;
+        readfile>>temp;
+    }
+
     readfile>>runtime;
+    readfile>>temp;
+    while(temp != "IMDb链接:"){
+        runtime += temp;
+        readfile>>temp;
+    }
+
     readfile.close();
-    fclose(fopen("Douban_by_TV.txt","w"));
+    fclose(fopen(path.c_str(),"w"));
     delete bas;
     Input* in=new stdInput;
     Input* ins=new DBSinput;
@@ -706,12 +787,10 @@ void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
     _language->setData(language,in);
     _date->setData(date,in);
     _runtime->setData(runtime,in);
-    _episode->setData(static_cast<char*>(episode),in);
-    _season->setData(static_cast<char*>(season),in);
+    _episode->setData(episode,in);
+    _season->setData(std::to_string(season),in);
 
-    simpleData.push_back(_actor);
-    simpleData.push_back(_writter);
-    simpleData.push_back(_director);
+
     simpleData.push_back(_TVname);
     simpleData.push_back(_grene);
     simpleData.push_back(_area);
@@ -720,11 +799,16 @@ void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
     simpleData.push_back(_runtime);
     simpleData.push_back(_episode);
     simpleData.push_back(_season);
+    simpleData.push_back(_actor);
+    simpleData.push_back(_writter);
+    simpleData.push_back(_director);
+    simpleData.push_back(_rating);
 }
-*/
+
 void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    //产生空文件！！！ bug！！
-    initialTXT("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt",_name);
+    std::string path=PATH+"RottenTomatoes_by_TV.txt";
+
+    initialTXT(path,_name);
 
     bas=new RottenTomatoes_by_TV();
     bas->MakeCatcher();
@@ -780,7 +864,7 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 
 
     readfile.close();
-    fclose(fopen("RottenTomatoes_by_TV.txt","w"));
+    fclose(fopen(path.c_str(),"w"));
     delete bas;
 
 
@@ -812,16 +896,16 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
 
     simpleData.push_back(_genre);
     simpleData.push_back(_rating);
-    
- 
 
 
 }
- 
+
 
 void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    
-    initialTXT("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_people.txt",_name);
+     //样例ok
+
+    std::string path=PATH+"IMDB_by_people.txt";
+    initialTXT(path,_name);
 
     bas =new IMDB_by_people();
     bas->MakeCatcher();
@@ -842,11 +926,11 @@ void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     readfile>>jobs;
     readfile>>temp;
     while(readfile>>temp){
-         
+
         main_movies+=temp;
         main_movies+=" ";
     }
-    fclose(fopen("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_people.txt","w"));
+    fclose(fopen(path.c_str(),"w"));
 
     Input* in=new stdInput;
     BaseData*_peoplename =new PersonName();
@@ -955,7 +1039,9 @@ void Douban_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
 */
 void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
     //样例ok!!
-    initialTXT("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_people.txt", _name);
+
+    std::string path=PATH+"RottenTomatoes_by_people.txt";
+    initialTXT(path, _name);
 
      bas = new RottenTomatoes_by_people();
      bas->MakeCatcher();
@@ -992,7 +1078,7 @@ void Tomato_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
      }
 
      readfile.close();
-     fclose(fopen("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_people.txt", "w"));
+     fclose(fopen(path.c_str(), "w"));
 
      Input *in = new stdInput;
 

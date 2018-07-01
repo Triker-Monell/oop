@@ -54,7 +54,7 @@ def work():
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie)
             text = '' + '电影名：' + str(result[0]) + ' | 评分：' + str(result[1]) + ' | ' + str(result[2]) + '\n' + '\t'
-            save_file(text, 'Douban_by_toplist.txt')
+            save_file(text, '/home/tmp/infocollection/data/Douban_by_toplist.txt')
         time.sleep(5)  # 每隔5秒抓取一页的信
 
 if __name__=='__main__':

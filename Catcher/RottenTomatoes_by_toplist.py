@@ -45,7 +45,7 @@ def work():
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie)
             text = ''+str(result[0])+'\t'
-            save_file(text, 'RottenTomatoes_by_toplist.txt')
+            save_file(text, '/home/tmp/infocollection/data/RottenTomatoes_by_toplist.txt')
 
 
 if __name__=='__main__':

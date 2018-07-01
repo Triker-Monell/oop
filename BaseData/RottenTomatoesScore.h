@@ -15,7 +15,7 @@ public:
     //这里将不使用stdInput和stdOutput  而是RTSinput 和RTSoutput
     /*
      * RTSinput格式
-     *  85% Rating:7.6/10
+     *  85% 7.6/10
      *
      * RTSoutput格式
      *  85%(Fresh) 7.6/10(AverageRating)

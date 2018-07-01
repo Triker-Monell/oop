@@ -6,7 +6,7 @@
 #include "BaseData/allBaseData.h"
 #include "Strategies.h"
 #include "Catcher/allCatcher.h"
-
+#include "qt_level.h"
 class BaseObject{
 protected:
     std::string name;       //名字

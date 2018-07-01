@@ -78,7 +78,7 @@ def get_movie_one(movie,name):
             urllib.urlretrieve(img_src, pic_name)
             t += 1
 
-    os.chdir(r'/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/')
+    os.chdir(r'/home/tmp/infocollection/data/')
     result.append(result_str)
 
 
@@ -95,14 +95,14 @@ def read_file(filename):  #读取文件
     return text
 def work():
     try:
-        f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/Douban_by_TV.txt', 'r')
+        f = open('/home/tmp/infocollection/data/Douban_by_TV.txt', 'r')
 
         name = f.read()
         
     finally:
         if f:
             f.close()
-            w = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/Douban_by_TV.txt', 'w')
+            w = open('/home/tmp/infocollection/data/Douban_by_TV.txt', 'w')
             w.truncate()
             w.close()
         preurl = 'https://www.douban.com/search?q=' + str(name)
@@ -112,7 +112,7 @@ def work():
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie,name)
             text = '' + '电视名: ' + str(result[0])  + str(result[1]) + '\n' + '\t'
-            save_file(text, '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/Douban_by_TV.txt')
+            save_file(text, '/home/tmp/infocollection/data/Douban_by_TV.txt')
 
 
 if __name__=='__main__':

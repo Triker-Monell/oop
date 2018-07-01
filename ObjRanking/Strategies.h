@@ -35,12 +35,12 @@ class Imdb_TV_Strategy: public BaseStrategy{
  public:
     void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData);
 };
-/*
+
 class Douban_TV_Strategy:public BaseStrategy{
  public:
     void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData);
 };
-*/
+
 class Tomato_TV_Strategy:public BaseStrategy{
  public:
     void exec(std::string _name,std::vector<BaseData*>& complexData,std::vector<BaseData*>& simpleData);

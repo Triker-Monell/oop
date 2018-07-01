@@ -3,20 +3,22 @@
 //
 
 #include "IMDB_by_people.h"
-
+#include "BaseData/path.h"
 void IMDB_by_people::ExporttoDatabase() {
 
 }
 void IMDB_by_people::MakeCatcher() {
-    //该部分为使用C++中的python指针调用py工作
-    //每个函数只有在PyImport_ImportModule时不同，每个去调用名称对应的xxx.py
     PyObject * pModule = nullptr,*pFunc = nullptr;
     PyObject * pArgs = nullptr,*pValue = nullptr;
     Py_Initialize();
 
     PyRun_SimpleString("import sys");
-    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/Catcher/')");
-    
+
+    std::string cmd="sys.path.append('"+WORKPATH+"')";
+    qDebug() << QString::fromStdString(cmd);
+
+    PyRun_SimpleString(cmd.c_str());
+    //????????
 
     pModule = PyImport_ImportModule("IMDB_by_people");
     pFunc = PyObject_GetAttrString(pModule, "work");
@@ -25,7 +27,10 @@ void IMDB_by_people::MakeCatcher() {
 }
 std::ifstream IMDB_by_people::SaveinBaseObject() {
     std::ifstream readfile;
-    readfile.open("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_people.txt",std::ios::in);
+
+    std::string path=PATH+"IMDB_by_people.txt";
+
+    readfile.open(path.c_str(),std::ios::in);
     return readfile;
 
 }
