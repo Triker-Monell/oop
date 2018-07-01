@@ -121,7 +121,7 @@ def get_movie_one(movie,name):
 
     os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/photos'))
     post  = soup_all.find_all('link', rel='image_src')
-    pic_name = name.replace(' ','_')+str(0) + '.jpg'
+    pic_name = name.replace(' ','_').rstrip()+str(0) + '.jpg'
     link=post[0].get('href')
     urllib.urlretrieve(link, pic_name)
 
@@ -132,7 +132,7 @@ def get_movie_one(movie,name):
         the_img_src = myimg.find_all('img')
 
         for the_img_src_it in the_img_src:
-            pic_name = name+str(t) + '.jpg'
+            pic_name = name.rstrip()+str(t) + '.jpg'
             img_src = the_img_src_it.get('loadlate')
             urllib.urlretrieve(img_src, pic_name)
             t += 1
