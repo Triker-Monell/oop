@@ -728,42 +728,53 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
     bas=new RottenTomatoes_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
-    std::string name,rating,actors,info,genre,network,
-            producers,date,temp;
+    std::string name,rating,actors, genre,network, date,temp;
     readfile>>temp;
-    readfile>>name;
-    do{
+    while(temp!="|"){
+        name+=temp;
+        name+=" ";
         readfile>>temp;
-        rating+=temp;
-    }while(temp!="Actor:");
+    }
 
-    readfile>>temp;
-    do{
+    while(temp!="Fresh:"){
         readfile>>temp;
+    }
+    readfile>>rating;
+    while(temp!="Average"){
+
+        readfile>>temp;
+    }
+    readfile>>temp;
+    rating+="% ";
+    rating+=temp;
+    while(temp!="Genre:"){
         actors+=temp;
-    }while(temp!="View");
-    readfile>>temp;
-    readfile>>temp;
-    do{
+        actors+=" ";
         readfile>>temp;
-        info+=temp;
-    }while(temp!="Genre:");
-    do{
-        readfile>>temp;
+
+    }
+    readfile>>temp;
+    while(temp!="Network:"){
         genre+=temp;
+        genre+=" ";
+        readfile>>temp;
 
-    }while(temp!="Network:");
-    readfile>>network;
+    }
     readfile>>temp;
-    do{
+    while(temp!="Premiere"){
+        network+=temp;
+        network+=" ";
         readfile>>temp;
+    }
+    readfile>>temp;
+    readfile>>temp;
+    while(temp!="Premiere"){
         date+=temp;
-    }while(temp!="Producers:");
-
-    do{
+        date+=" ";
         readfile>>temp;
-        producers+=temp;
-    }while(temp!="Premiere:");
+    }
+
+
     readfile.close();
     fclose(fopen("RottenTomatoes_by_TV.txt","w"));
     delete bas;
