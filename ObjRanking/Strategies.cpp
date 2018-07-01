@@ -380,6 +380,7 @@ void Tomato_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
     rating+=temp;
     readfile>>temp;
     readfile>>temp;
+    readfile>>temp;
     while(temp!="View"){
         actors+=temp;
         actors+=" ";
