@@ -54,7 +54,7 @@ def work():
         for movie in movie_list:   
             result = get_movie_one(movie)
             text = '' + '电影名：' + str(result[0]) + ' | 评分：' + str(result[1]) + ' | ' + str(result[2]) + '\n' + '\t'
-            save_file(text, '/home/tmp/infocollection/data/Douban_by_toplist.txt')
+            save_file(text, '/tmp/infocollection/data/Douban_by_toplist.txt')
         time.sleep(5)  # 每隔5秒抓取一页的信
 
 if __name__=='__main__':
