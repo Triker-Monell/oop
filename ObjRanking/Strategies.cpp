@@ -338,9 +338,9 @@ void Douban_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comp
      _date->setData(date,in);
      _runtime->setData(runtime,in);
 
-     complexData.push_back(_director);
-     complexData.push_back(_actor);
-     complexData.push_back(_writter);
+     simpleData.push_back(_director);
+     simpleData.push_back(_actor);
+     simpleData.push_back(_writter);
      simpleData.push_back(_moviename);
      simpleData.push_back(_grene);
      simpleData.push_back(_area);
@@ -704,9 +704,9 @@ void Douban_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
     _episode->setData(static_cast<char*>(episode),in);
     _season->setData(static_cast<char*>(season),in);
 
-    complexData.push_back(_actor);
-    complexData.push_back(_writter);
-    complexData.push_back(_director);
+    simpleData.push_back(_actor);
+    simpleData.push_back(_writter);
+    simpleData.push_back(_director);
     simpleData.push_back(_TVname);
     simpleData.push_back(_grene);
     simpleData.push_back(_area);
