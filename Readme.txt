@@ -28,8 +28,8 @@ Project: Movie Information Collection system
   LIBS += -L/usr/lib/python2.7/config-x86_64-linux-gnu -L/usr/lib -lpython2.7 -lpthread ........
   
   += 后面的内容应当根据自身电脑设置
-  打开终端输入：/usr/bin/python3.5-config --cflags #得到INCLUDEPATH的内容
-  打开终端输入：/usr/bin/python3.5-config --ldflags #得到LIBS的内容
+  打开终端输入：/usr/bin/python2.7-config --cflags #得到INCLUDEPATH的内容
+  打开终端输入：/usr/bin/python2.7-config --ldflags #得到LIBS的内容
   
   参考资料:https://blog.csdn.net/qq_41800188/article/details/79709452
 3.推荐qtcreator5进行编译运行
