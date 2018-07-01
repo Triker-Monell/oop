@@ -140,7 +140,7 @@ def get_movie_one(movie,name):
         the_img_src = myimg.find_all('img')
 
         for the_img_src_it in the_img_src:
-            pic_name = name+str(t) + '.jpg'
+            pic_name = name.replace(' ','_')+str(t) + '.jpg'
             img_src = the_img_src_it.get('loadlate')
             urllib.urlretrieve(img_src, pic_name)
             t += 1
