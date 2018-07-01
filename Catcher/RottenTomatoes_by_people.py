@@ -40,7 +40,7 @@ def get_movie_one(movie,peoplename):
         soup_movies = BeautifulSoup(str(it_movies),"html.parser")
         for line in soup_movies.stripped_strings:
             result_str = result_str + line + "  "
-     os.chdir(os.path.join(os.getcwd(), '钟闰鑫写'))
+     os.chdir(os.path.join(os.getcwd(), '/tmp/infocollection/data/photos'))
     t = 0
     post = soup_all.find('link')
     if (post != None):
@@ -49,7 +49,7 @@ def get_movie_one(movie,peoplename):
 
         urllib.urlretrieve(link, pic_name)
 
-    os.chdir(r'/home/tmp/infocollection/data/')
+    os.chdir(r'/tmp/infocollection/data/')
 
     result.append(result_str)
 
@@ -67,14 +67,14 @@ def read_file(filename):  #读取文件
     return text
 def work():
     try:
-        f = open('/home/tmp/infocollection/data/RottenTomatoes_by_people.txt', 'r')
+        f = open('/tmp/infocollection/data/RottenTomatoes_by_people.txt', 'r')
 
         people_name= f.read()
         people_name=people_name.replace(' ','_')
     finally:
         if f:
             f.close()
-            w = open('/home/tmp/infocollection/data/RottenTomatoes_by_people.txt', 'w')
+            w = open('/tmp/infocollection/data/RottenTomatoes_by_people.txt', 'w')
             w.truncate()
             w.close()
         url = 'https://www.rottentomatoes.com/celebrity/'+people_name
@@ -83,7 +83,7 @@ def work():
         for movie in movie_list:   
             result = get_movie_one(movie,people_name)
             text = '' + 'name：' + str(result[0])  + str(result[1]) + '\n' + '\t'
-            save_file(text, '/home/tmp/infocollection/data/RottenTomatoes_by_people.txt')
+            save_file(text, '/tmp/infocollection/data/RottenTomatoes_by_people.txt')
 
 
 if __name__=='__main__':
