@@ -32,4 +32,4 @@ Project: Movie Information Collection system
   打开终端输入：/usr/bin/python2.7-config --ldflags #得到LIBS的内容
   
   参考资料:https://blog.csdn.net/qq_41800188/article/details/79709452
-3.推荐qtcreator5进行编译运行
+3.推荐qtcreator(qt5)进行编译运行
