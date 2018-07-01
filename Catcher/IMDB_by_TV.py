@@ -128,7 +128,7 @@ def get_movie_one(movie,name):
     thepost =post[0].find('img')
 
 
-    pic_name = name+str(0) + '.jpg'
+    pic_name = name.rstrip()+str(0) + '.jpg'
     link = thepost.get('src')
 
     urllib.urlretrieve(link, pic_name)
@@ -140,7 +140,7 @@ def get_movie_one(movie,name):
         the_img_src = myimg.find_all('img')
 
         for the_img_src_it in the_img_src:
-            pic_name = name.replace(' ','_')+str(t) + '.jpg'
+            pic_name = name.replace(' ','_').rstrip()+str(t) + '.jpg'
             img_src = the_img_src_it.get('loadlate')
             urllib.urlretrieve(img_src, pic_name)
             t += 1
