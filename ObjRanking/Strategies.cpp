@@ -7,13 +7,18 @@ BaseStrategy::BaseStrategy() {
 
 }
 
+//该函数用来实现：用户输入或希望调用的信息的名字（就是用户点击的东西）
 void BaseStrategy::initialTXT(std::string _filename, std::string _name) {
     std::ofstream outf;
     outf.open(_filename.c_str());
     outf<<_name<<std::endl;
     outf.close();
 }
-
+//以下是各种派生类实现的具体代码，中间部分主要是字符串处理，看似复杂，实际上只是完成了分割，将一串字符串分成需要的数据基类
+//temp是一个“垃圾桶”，专门用来除去无用信息
+//具体代码实现过程不详细赘述，大同小异
+//每个exec先爬（MakeCatcher），再读（SaveinObject），处理后通过BaseData指针存进两种vector
+//详见Strategy说明文档
 void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
 
     std::string path=PATH+"IMDB_by_movies.txt";
