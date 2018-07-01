@@ -11,10 +11,11 @@ void IMDB_by_TV::MakeCatcher() {
     PyObject * pModule = nullptr,*pFunc = nullptr;
     PyObject * pArgs = nullptr,*pValue = nullptr;
     Py_Initialize();
-
+    //该部分为使用C++中的python指针调用py工作
+    //每个函数只有在PyImport_ImportModule时不同，每个去调用名称对应的xxx.py
     PyRun_SimpleString("import sys");
     PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/Catcher/')");
-    //????????
+     
 
     pModule = PyImport_ImportModule("IMDB_by_TV");
     pFunc = PyObject_GetAttrString(pModule, "work");
