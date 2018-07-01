@@ -729,7 +729,7 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
     bas=new RottenTomatoes_by_TV();
     bas->MakeCatcher();
     std::ifstream readfile=bas->SaveinBaseObject();
-    std::string name,rating,actors, genre,network, date,temp;
+   std::string name,rating,actors, genre,network, date,temp;
     readfile>>temp;
     while(temp!="|"){
         name+=temp;
@@ -748,6 +748,9 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
     readfile>>temp;
     rating+="% ";
     rating+=temp;
+    readfile>>temp;
+    readfile>>temp;
+    readfile>>temp;
     while(temp!="Genre:"){
         actors+=temp;
         actors+=" ";
