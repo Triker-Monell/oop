@@ -19,7 +19,7 @@ def get_movie_one(movie):
     soup_all = BeautifulSoup(str(movie),"html.parser")
     title = soup_all.find_all('div', class_='title')
     soup_title = BeautifulSoup(str(title[0]),"html.parser")
-    for line in soup_title.stripped_strings:  # 对获取到的<a>里的内容进行提取
+    for line in soup_title.stripped_strings: 
         result.append(line)
 
     # num = soup_all.find_all('span', class_='rating_nums')
@@ -27,13 +27,13 @@ def get_movie_one(movie):
     result.append(num[1].contents[0])
 
     soup_num = BeautifulSoup(str(num[0]),"html.parser")
-    for line in soup_num.stripped_strings:  # 对获取到的<span>里的内容进行提取
+    for line in soup_num.stripped_strings:   
         result = result + line
 
     info = soup_all.find_all('div', class_='abstract')
     soup_info = BeautifulSoup(str(info[0]),"html.parser")
     result_str = ""
-    for line in soup_info.stripped_strings:  # 对获取到的<div>里的内容进行提取
+    for line in soup_info.stripped_strings:   
         result_str = result_str + line
     result.append(result_str)
     return result  #返回获取到的结果
@@ -51,7 +51,7 @@ def work():
         url = 'https://www.douban.com/doulist/3516235/?start=' + str(i) + '&sort=seq&sub_type='
         html = get_html(url)
         movie_list = get_movie_all(html)
-        for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
+        for movie in movie_list:   
             result = get_movie_one(movie)
             text = '' + '电影名：' + str(result[0]) + ' | 评分：' + str(result[1]) + ' | ' + str(result[2]) + '\n' + '\t'
             save_file(text, '/home/tmp/infocollection/data/Douban_by_toplist.txt')
