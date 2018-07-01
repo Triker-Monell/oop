@@ -84,14 +84,14 @@ def work():
         f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt', 'r')
 
         name = f.read()
-        name=name.replace(' ','_')
+        name=name.rstrip().replace(' ','_')
     finally:
         if f:
             f.close()
             w = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt', 'w')
             w.truncate()
             w.close()
-        url = 'https://www.rottentomatoes.com/tv/'+name
+        url = 'https://www.rottentomatoes.com/tv/'+name+'/s0'+str(i)
         html = get_html(url)
         movie_list = get_movie_all(html)
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
