@@ -57,7 +57,7 @@ def get_movie_one(movie,name):
     t = 0
     post = soup_all.find('img', class_="posterImage")
     if (post != None):
-        pic_name = name.replace('_', '') + str(0) + '.jpg'
+        pic_name = name + str(0) + '.jpg'
         link = post.get('src')
 
         urllib.urlretrieve(link, pic_name)
@@ -82,6 +82,7 @@ def work():
         f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_movies.txt', 'r')
 
         name = f.read()
+        name=name.replace(' ','_')
     finally:
         if f:
             f.close()
@@ -92,7 +93,7 @@ def work():
         html = get_html(url)
         movie_list = get_movie_all(html)
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
-            result = get_movie_one(movie，)
+            result = get_movie_one(movie,name)
             text = '' + 'movie: ' + str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_movies.txt')
 
