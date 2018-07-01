@@ -788,27 +788,29 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
     BaseData*_actors=new Intro();
     BaseData*_genre=new Type();
     BaseData*_network=new Studio();
-    BaseData*_producers=new Director();
+
     BaseData*_date=new ReleaseDate();
-    BaseData*_info=new Intro();
+
 
     _TVname->setData(name,in);
-    _rating->setData(rating,in);
+    _rating->setData(rating,ins);
     _actors->setData(actors,in);
     _genre->setData(genre,in);
     _network->setData(network,in);
-    _producers->setData(producers,in);
+
     _date->setData(date,in);
-    _info->setData(info,in);
+
 
     complexData.push_back(_actors);
-    complexData.push_back(_producers);
+
     simpleData.push_back(_TVname);
     simpleData.push_back(_network);
     simpleData.push_back(_date);
-    simpleData.push_back(_info);
+
     simpleData.push_back(_genre);
     simpleData.push_back(_rating);
+    
+ 
 
 
 }
