@@ -54,7 +54,7 @@ def get_movie_one(movie,name):
             result_str=result_str+line+" "
 
     os.chdir(os.path.join(os.getcwd(), '改路径'))
-    t = 0
+    
     post = soup_all.find('img',class_="posterImage")
     if(post!=None):
         pic_name = name.rstrip() + str(0) + '.jpg'
