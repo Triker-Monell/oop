@@ -24,7 +24,7 @@ public:
     const std::string showType() const{
         return type;
     }
-
+    virtual ~BaseData(){};
 };
 
 

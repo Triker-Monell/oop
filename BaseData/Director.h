@@ -9,6 +9,7 @@ public:
     Director():People("导演"){};
     void setData(std::string data,Input* in);
     std::string showData(Output* out)const;
+    ~Director(){};
 };
 
 #endif

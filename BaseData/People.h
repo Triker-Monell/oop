@@ -6,6 +6,7 @@
 class People:public BaseData{
 public:
     People(std::string _type):BaseData(_type){};
+    ~People(){};
 };
 
 #endif
