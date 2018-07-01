@@ -10,14 +10,14 @@ from bs4 import BeautifulSoup
 def get_html(url):  #通过url获取网页内容
     result = urllib.urlopen(url)
     return result.read()
-    # save_file(result.read(), 'thefile.txt')
+    
 def get_movie_url(url):
     html=get_html(url)
     soup=BeautifulSoup(html,"html.parser")
     name=soup.find('a', class_="nbg")
     url=name.get('href')
     return url
-
+#这个是获取全部照片的函数，可以选择性单独调用
 def get_all_photos(url):
     t = 1  # 记录张数
     os.chdir(os.path.join(os.getcwd(), '/home/tmp/infocollection/data/allphotos'))
@@ -58,7 +58,7 @@ def get_movie_one(movie,name):
     soup_all = BeautifulSoup(str(movie), "html.parser")
     title = soup_all.find_all('title')
     soup_title = BeautifulSoup(str(title[0]), "html.parser")
-    for line in soup_title.stripped_strings:  # 对获取到的<a>里的内容进行提取
+    for line in soup_title.stripped_strings:   
         result.append(line)
 
 
@@ -137,7 +137,7 @@ def work():
         url=get_movie_url(preurl)
         html = get_html(url)
         movie_list = get_movie_all(html)
-        for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
+        for movie in movie_list:   
             result = get_movie_one(movie,name)
             text = '' + '电影名： ' + str(result[0])  + str(result[1]) + '\n' + '\t'
             save_file(text, '/home/tmp/infocollection/data/Douban_by_movies.txt')
