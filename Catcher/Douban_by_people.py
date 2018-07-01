@@ -51,7 +51,7 @@ def get_movie_one(movie):
     for line in soup_intro.stripped_strings:
         result_str = result_str + line + " "
 
-    os.chdir(os.path.join(os.getcwd(), 'photos'))
+    os.chdir(os.path.join(os.getcwd(), '/tmp/infocollection/data/photos'))
     t = 1  # 记录张数
     src = soup_all.find_all('ul', class_="pic-col5")
     for myimg in src:
@@ -64,7 +64,7 @@ def get_movie_one(movie):
             urllib.urlretrieve(img_src, pic_name)
             t += 1
 
-    os.chdir(r'D:\PyCharm 2017.3.4\untitled')
+    os.chdir(r'/tmp/infocollection/data/')
     result.append(result_str)
 
 
@@ -81,13 +81,13 @@ def read_file(filename):  #读取文件
     return text
 def work():
     try:
-        f = open('Douban_by_people.txt', 'r')
+        f = open('/tmp/infocollection/data/Douban_by_people.txt', 'r')
 
         name = f.read()
     finally:
         if f:
             f.close()
-            w = open('Douban_by_people.txt', 'w')
+            w = open('/tmp/infocollection/data/Douban_by_people.txt', 'w')
             w.truncate()
             w.close()
         preurl = 'https://www.douban.com/search?cat=1005&q=' + str(name)
@@ -97,7 +97,7 @@ def work():
         for movie in movie_list:   
             result = get_movie_one(movie)
             text = '' + '人物名：' + str(result[0])  + str(result[1]) +'\n'+str(result[2])+ '\n' + '\t'
-            save_file(text, 'Douban_by_people.txt')
+            save_file(text, '/tmp/infocollection/data/Douban_by_people.txt')
 
 
 if __name__=='__main__':
