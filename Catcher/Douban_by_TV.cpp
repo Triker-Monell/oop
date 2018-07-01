@@ -13,7 +13,7 @@ void Douban_by_TV::MakeCatcher() {
     Py_Initialize();
 
     PyRun_SimpleString("import sys");
-    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/')");
+    PyRun_SimpleString("sys.path.append('/home/monell/qtcode/InfoCS/Catcher/')");
     //????????
 
     pModule = PyImport_ImportModule("Douban_by_TV");
@@ -23,7 +23,7 @@ void Douban_by_TV::MakeCatcher() {
 }
 std::ifstream Douban_by_TV::SaveinBaseObject() {
     std::ifstream readfile;
-    readfile.open("Douban_by_TV.txt",std::ios::in);
+    readfile.open("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/Douban_by_TV.txt",std::ios::in);
     return readfile;
 }
 void Douban_by_TV::SetBaseData() {

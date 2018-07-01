@@ -45,7 +45,7 @@ def get_movie_one(movie,name):
     for it_actor in actor:
         soup_actor = BeautifulSoup(str(it_actor),"html.parser")
         for line in soup_actor.stripped_strings:
-            result_str = result_str + line + " "
+            result_str = result_str + line + "/"
 
     info=soup_all.find_all('li' ,class_="meta-row clearfix")
     for it_info in info:
@@ -53,7 +53,7 @@ def get_movie_one(movie,name):
         for line in soup_info.stripped_strings:
             result_str=result_str+line+" "
 
-    os.chdir(os.path.join(os.getcwd(), 'photos'))
+    os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/photos'))
 
     post = soup_all.find('img',class_="posterImage")
     if(post!=None):
@@ -64,7 +64,7 @@ def get_movie_one(movie,name):
 
 
 
-    os.chdir(r'D:\PyCharm 2017.3.4\untitled')
+    os.chdir(r'/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/')
     result.append(result_str)
 
 
@@ -82,15 +82,16 @@ def read_file(filename):  #读取文件
     return text
 def work():
     try:
-        f = open('RottenTomatoes_by_TV.txt', 'r')
+        f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt', 'r')
         content=f.read()
-        name=content[0:-1]
+        name=content[0:-2]
         name=name.rstrip().replace(' ','_')
-        i=content[-1]
+        i=content[-2]
     finally:
+
         if f:
             f.close()
-            w = open('RottenTomatoes_by_TV.txt', 'w')
+            w = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt', 'w')
             w.truncate()
             w.close()
         url = 'https://www.rottentomatoes.com/tv/'+name+'/s0'+str(i)
@@ -99,7 +100,7 @@ def work():
         for movie in movie_list:  # 将每一页中的每个电影信息放入函数中提取
             result = get_movie_one(movie,name)
             text = '' + 'TV: ' + str(result[0])  + str(result[1]) + '\n' + '\t'
-            save_file(text, 'RottenTomatoes_by_TV.txt')
+            save_file(text, '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt')
 
 
 if __name__=='__main__':

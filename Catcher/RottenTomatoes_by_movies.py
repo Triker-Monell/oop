@@ -53,7 +53,7 @@ def get_movie_one(movie,name):
         for line in soup_info.stripped_strings:
             result_str=result_str+line+" "
 
-    os.chdir(os.path.join(os.getcwd(), '留给你的'))
+    os.chdir(os.path.join(os.getcwd(), '/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/photos'))
     t = 0
     post = soup_all.find('img', class_="posterImage")
     if (post != None):
@@ -62,7 +62,7 @@ def get_movie_one(movie,name):
 
         urllib.urlretrieve(link, pic_name)
 
-    os.chdir(r'留给你的')
+    os.chdir(r'/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/')
     result.append(result_str)
 
 
