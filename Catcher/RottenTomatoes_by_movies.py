@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding=utf-8 -*-
 import sys
+import os
 import urllib
 from bs4 import BeautifulSoup
 reload(sys)
