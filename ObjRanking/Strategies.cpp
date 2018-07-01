@@ -797,7 +797,7 @@ void Tomato_TV_Strategy::exec(std::string _name,std::vector<BaseData*> &complexD
  
 
 void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &complexData, std::vector<BaseData*> &simpleData) {
-    //电影名有bug!!!!!!!
+    
     initialTXT("/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/IMDB_by_people.txt",_name);
 
     bas =new IMDB_by_people();
@@ -819,7 +819,7 @@ void Imdb_people_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
     readfile>>jobs;
     readfile>>temp;
     while(readfile>>temp){
-        readfile>>temp;
+         
         main_movies+=temp;
         main_movies+=" ";
     }
