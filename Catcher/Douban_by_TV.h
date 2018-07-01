@@ -4,6 +4,8 @@
 
 #ifndef MICP_DOUBAN_BY_TV_H
 #define MICP_DOUBAN_BY_TV_H
+//类的具体含义详见Catcher说明文档
+//函数的功能如BaseCatcher中的说明所述
 #include "BaseCatcher.h"
 class Douban_by_TV:public BaseCatcher{
 public:
