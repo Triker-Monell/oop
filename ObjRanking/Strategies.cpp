@@ -56,7 +56,7 @@ void Imdb_movies_Strategy::exec(std::string _name,std::vector<BaseData*> &comple
         if(temp=="/")++i;
     }
 
-    while(temp!="Sites:"){
+    while(temp!="Sites:"&&temp!="Country:"){
         readfile>>temp;
     }
     readfile>>temp;
