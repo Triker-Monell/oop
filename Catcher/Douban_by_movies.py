@@ -20,7 +20,7 @@ def get_movie_url(url):
 #这个是获取全部照片的函数，可以选择性单独调用
 def get_all_photos(url):
     t = 1  # 记录张数
-    os.chdir(os.path.join(os.getcwd(), '/home/tmp/infocollection/data/allphotos'))
+    os.chdir(os.path.join(os.getcwd(), '/tmp/infocollection/data/allphotos'))
     for i in range(0, 300, 30):
 
         photos_url = url+'/photos?type=S&start='+str(i)+'&sortby=like&size=a&subtype=a'
@@ -40,7 +40,7 @@ def get_all_photos(url):
                 urllib.urlretrieve(img_src, pic_name)
                 t += 1
 
-    os.chdir(r'/home/tmp/infocollection/data/')
+    os.chdir(r'/tmp/infocollection/data/')
 
 def get_movie_all(html):     #通过soup提取到每个电影的全部信息，以list返回
     soup = BeautifulSoup(html, "html.parser")
@@ -85,7 +85,7 @@ def get_movie_one(movie,name):
         for line in soup_starlevel.stripped_strings:
             result_str = result_str+line+ " "
 
-    os.chdir(os.path.join(os.getcwd(), '/home/tmp/infocollection/data/photos'))
+    os.chdir(os.path.join(os.getcwd(), '/tmp/infocollection/data/photos'))
     t=0
     post = soup_all.find_all('div', id="mainpic" ,class_="")
     for it in post:
@@ -108,7 +108,7 @@ def get_movie_one(movie,name):
 
 
 
-    os.chdir(r'/home/tmp/infocollection/data/')
+    os.chdir(r'/tmp/infocollection/data/')
     result.append(result_str)
 
     return result  #返回获取到的结果
@@ -123,14 +123,14 @@ def read_file(filename):  #读取文件
     return text
 def work():
     try:
-        f = open('/home/tmp/infocollection/data/Douban_by_movies.txt', 'r')
+        f = open('/tmp/infocollection/data/Douban_by_movies.txt', 'r')
 
         name=f.read()
     finally:
         if f:
 
             f.close()
-            w = open('/home/tmp/infocollection/data/Douban_by_movies.txt', 'w')
+            w = open('/tmp/infocollection/data/Douban_by_movies.txt', 'w')
             w.truncate()
             w.close()
         preurl = 'https://www.douban.com/search?cat=1002&q='+str(name)
@@ -140,7 +140,7 @@ def work():
         for movie in movie_list:   
             result = get_movie_one(movie,name)
             text = '' + '电影名： ' + str(result[0])  + str(result[1]) + '\n' + '\t'
-            save_file(text, '/home/tmp/infocollection/data/Douban_by_movies.txt')
+            save_file(text, '/tmp/infocollection/data/Douban_by_movies.txt')
         #get_all_photos(url)
 
 if __name__=='__main__':
