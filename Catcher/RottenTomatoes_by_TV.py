@@ -83,8 +83,10 @@ def work():
     try:
         f = open('/home/monell/qtcode/build-InfoCS-Desktop_Qt_5_10_1_GCC_64bit-Debug/RottenTomatoes_by_TV.txt', 'r')
 
-        name = f.read()
+        content=f.read()
+        name=content[0:-1]
         name=name.rstrip().replace(' ','_')
+        i=content[-1]
     finally:
         if f:
             f.close()
