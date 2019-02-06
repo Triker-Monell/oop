@@ -1,4 +1,4 @@
-oop homework
+#oop project
 
 Time: 2018 Spring Semester
 
@@ -6,7 +6,7 @@ Project: Movie Information Collection system
 
 
 
-关于如何编译运行
+##关于如何编译运行
 
 该程序的最终开发环境为Ubuntu16.04,只适用于Linux系统等
 
